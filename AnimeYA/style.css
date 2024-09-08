@@ -1,9 +1,9 @@
+
 table {
     margin-top: 20px;
     width: 100%;
     background-color: #fff;
     border-collapse: collapse;
-    table-layout: fixed;
 }
 
 th, td {
@@ -17,28 +17,27 @@ thead {
     color: white;
 }
 
-.anime-row td:first-child {
+th:nth-child(1), td:nth-child(1) {
     width: 5%;
-    font-weight: bold;
 }
 
-.anime-row td:nth-child(2) {
+th:nth-child(2), td:nth-child(2) {
     width: 20%;
 }
 
-.anime-row td:nth-child(3) {
+th:nth-child(3), td:nth-child(3) {
     width: 15%;
 }
 
-.anime-row td:nth-child(4) {
+th:nth-child(4), td:nth-child(4) {
     width: 8%;
 }
 
-.anime-row td:nth-child(5) {
+th:nth-child(5), td:nth-child(5) {
     width: 37%;
 }
 
-.anime-row td:nth-child(6) {
+th:nth-child(6), td:nth-child(6) {
     width: 15%;
 }
 
