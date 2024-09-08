@@ -5,7 +5,7 @@ const animeList = [
         rating: 9.0,
         review: "A psychological battle between a detective and a high school genius.",
         status: "Completed",
-        banner: "death_note.jpg"
+        banner: "death_note.png"
     },
     {
         title: "High School DxD",
@@ -13,7 +13,7 @@ const animeList = [
         rating: 7.0,
         review: "Action-packed anime with supernatural and fanservice elements.",
         status: "Ongoing",
-        banner: "high_school_dxd.jpg"
+        banner: "high_school_dxd.png"
     },
 ];
 
