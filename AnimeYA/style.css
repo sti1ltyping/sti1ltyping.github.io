@@ -23,13 +23,14 @@ table {
 }
 
 th, td {
-    text-align: center;
+    text-align: center; /* Center-align the text in both header and body */
     padding: 10px;
 }
 
 thead {
     background-color: #343a40;
     color: white;
+    text-align: center; /* Center-align text in header */
 }
 
 tr:hover {
