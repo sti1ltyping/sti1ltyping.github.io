@@ -19,16 +19,144 @@
         "title": "TONIKAWA: Over The Moon For You",
         "genre": "Comedy, Romance, Shounen",
         "rating": 9.3,
-        "review": "Romance.",
+        "review": "",
         "status": "Ongoing",
         "banner": "tonikawa.png"
     },
     {
         "title": "Horimiya",
-        "genre": " Comedy, Romance, School, Shounen, Slice of Life",
+        "genre": "Comedy, Romance, School, Shounen, Slice of Life",
         "rating": 9.0,
-        "review": "Romance.",
+        "review": "",
         "status": "Ongoing",
         "banner": "horimiya.png"
+    },
+    {
+        "title": "Rent a Girlfriend",
+        "genre": "Comedy, Romance, School, Shounen",
+        "rating": 7.8,
+        "review": "",
+        "status": "Ongoing",
+        "banner": "rent_a_girlfriend.png"
+    },
+    {
+        "title": "Quintessential Quintuplets",
+        "genre": "Comedy, Romance, School, Shounen, Harem",
+        "rating": 8.1,
+        "review": "",
+        "status": "Ongoing",
+        "banner": "quintessential_quintuplets.png"
+    },
+    {
+        "title": "ORESUKI Are you the only one who loves me?",
+        "genre": "Comedy, Romance, School, Harem",
+        "rating": 6.2,
+        "review": "",
+        "status": "Complete",
+        "banner": "oresuki.png"
+    },
+    {
+        "title": "Saekano: How to Raise a Boring Girlfriend",
+        "genre": "Comedy, Ecchi, Romance, School, Harem",
+        "rating": 6.0,
+        "review": "",
+        "status": "Complete",
+        "banner": "saekano.png"
+    },
+    {
+        "title": "A Couple of Cuckoos",
+        "genre": "Comedy, Romance, Shounen, Harem",
+        "rating": 8.9,
+        "review": "",
+        "status": "Ongoing",
+        "banner": "a_couple_of_cuckoos.png"
+    },
+    {
+        "title": "Demon Slayer",
+        "genre": "Action, Demons, Historical, Shounen, Supernatura",
+        "rating": 10,
+        "review": "",
+        "status": "Ongoing",
+        "banner": "demon_slayer.png"
+    },
+    {
+        "title": "Classroom of the Elite",
+        "genre": "Drama, School, Slice of Life, Psychological",
+        "rating": 7.0,
+        "review": "",
+        "status": "Ongoing",
+        "banner": "class_room_of_the_elite.png"
+    },
+    {
+        "title": "Kaguya Sama: Love is War",
+        "genre": "Comedy, Romance, School, Psychological, Seinen",
+        "rating": 9.5,
+        "review": "",
+        "status": "Complete",
+        "banner": "kaguya_sama.png"
+    },
+    {
+        "title": "Naruto",
+        "genre": "Action, Adventure, Comedy, Martial Arts, Shounen, Super Power",
+        "rating": 9.8,
+        "review": "",
+        "status": "Complete",
+        "banner": "naruto.png"
+    },
+    {
+        "title": "DARLING in the FRANXX",
+        "genre": "Action, Drama, Mecha, Romance, Sci-Fi",
+        "rating": 7.4,
+        "review": "",
+        "status": "Complete",
+        "banner": "darning_in_the_franx.png"
+    },
+    {
+        "title": "My Hero Academia",
+        "genre": "Action, Comedy, School, Shounen, Super Power",
+        "rating": 8.9,
+        "review": "",
+        "status": "Ongoing",
+        "banner": "mha.png"
+    },
+    {
+        "title": "My Wife is the Student Council President!",
+        "genre": "Comedy, Ecchi, Romance, School, Shounen",
+        "rating": 7.6,
+        "review": "",
+        "status": "Complete",
+        "banner": "my_wife_is_the_scp.png"
+    },
+    {
+        "title": "Jujutsu Kaisen",
+        "genre": "Action, Demons, Horror, School, Shounen, Supernatural",
+        "rating": 9.6,
+        "review": "",
+        "status": "Ongoing",
+        "banner": "jjk.png"
+    },
+    {
+        "title": "The Angel next door spoils me Rotten",
+        "genre": "Comedy, Romance, School",
+        "rating": 9.4,
+        "review": "",
+        "status": "Ongoing",
+        "banner": "the_angle_next_door.png"
+    },
+    {
+        "title": "My Happy Marriage",
+        "genre": "Drama, Fantasy, Historical, Romance, Supernatural",
+        "rating": 8.9,
+        "review": "",
+        "status": "Complete",
+        "banner": "my_happy_marriage.png"
+    },
+    {
+        "title": "Bleach",
+        "genre": "Action, Adventure, Comedy, Shounen, Super, Power, Supernatural",
+        "rating": 8.7,
+        "review": "",
+        "status": "Complete",
+        "banner": "bleach.png"
     }
 ]
