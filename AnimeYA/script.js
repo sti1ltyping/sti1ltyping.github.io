@@ -13,7 +13,7 @@ function loadAndResizeImage(imageSrc, callback) {
 
         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
-        const resizedImageSrc = canvas.toDataURL('image/jpeg', 0.7);
+        const resizedImageSrc = canvas.toDataURL('image/png', 0.7);
         callback(resizedImageSrc);
     };
 
