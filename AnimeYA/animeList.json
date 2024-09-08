@@ -158,5 +158,261 @@
         "review": "",
         "status": "Complete",
         "banner": "bleach.png"
+    },
+    {
+        "title": "Idoly Pride",
+        "genre": "Music",
+        "rating": 8.9,
+        "review": "",
+        "status": "Complete",
+        "banner": "idoly_pride.png"
+    },
+    {
+        "title": "Yona of the dawn",
+        "genre": "Action, Adventure, Comedy, Fantasy, Romance, Shoujo",
+        "rating": 8.4,
+        "review": "",
+        "status": "Complete",
+        "banner": "yotd.png"
+    },
+    {
+        "title": "Spy x Family",
+        "genre": "Action, Comedy, Shounen",
+        "rating": 9.8,
+        "review": "",
+        "status": "Complete",
+        "banner": "spyxfamily.png"
+    },
+    {
+        "title": "The Dangers in My Heart",
+        "genre": "Comedy, Romance, School, Shounen",
+        "rating": 6.3,
+        "review": "",
+        "status": "Complete",
+        "banner": "tdimh.png"
+    },
+    {
+        "title": "ERASED",
+        "genre": "Mystery, Supernatural, Psychological, Seinen",
+        "rating": 9.8,
+        "review": "",
+        "status": "Complete",
+        "banner": "erased.png"
+    },
+    {
+        "title": "Domestic Girlfriend",
+        "genre": "Drama, Romance, School, Shounen",
+        "rating": 6.2,
+        "review": "",
+        "status": "Complete",
+        "banner": "dgf.png"
+    },
+    {
+        "title": "anohana: The Flower We Saw That Day",
+        "genre": "Drama, Slice of Life, Supernatural",
+        "rating": 9.9,
+        "review": "One of the best sad-ending anime",
+        "status": "Complete",
+        "banner": "anohana.png"
+    },
+    {
+        "title": "Loving Yamada at lv999",
+        "genre": "Comedy, Drama, Romance",
+        "rating": 9.0,
+        "review": "",
+        "status": "Complete",
+        "banner": "loving_yamada_lvl999.png"
+    },
+    {
+        "title": "Rascal Does Not Dream of Bunny Girl Senpai",
+        "genre": "Comedy, Drama, Romance, School, Supernatural",
+        "rating": 9.9,
+        "review": "",
+        "status": "Ongoing",
+        "banner": "bunnygirlsenpai.png"
+    },
+    {
+        "title": "Our Dating Story: The Experienced You and The Inexperienced Me, Kimizero",
+        "genre": "Romance, School",
+        "rating": 9.8,
+        "review": "",
+        "status": "Ongoing",
+        "banner": "our_dating_story.png"
+    },
+    {
+        "title": "Romantic killer",
+        "genre": "Comedy, Romance, Shounen",
+        "rating": 9.4,
+        "review": "",
+        "status": "Complete",
+        "banner": "romantic_killer.png"
+    },
+    {
+        "title": "My Teen Romantic Comedy SNAFU",
+        "genre": "Comedy, Drama, Romance, School, Slice of Life",
+        "rating": 8.0,
+        "review": "",
+        "status": "Complete",
+        "banner": "snafu.png"
+    },
+    {
+        "title": "Shikimori's Not Just a Cutie",
+        "genre": "Comedy, Romance, Slice of Life",
+        "rating": 9.8,
+        "review": "",
+        "status": "Complete",
+        "banner": "shikimori_njac.png"
+    },
+    {
+        "title": "Eromanga Sensei",
+        "genre": "Comedy, Drama, Ecchi, Romance",
+        "rating": 8.7,
+        "review": "",
+        "status": "Complete",
+        "banner": "eromanga_sensei.png"
+    },
+    {
+        "title": "My Stepmom's Daughter is My Ex",
+        "genre": "Comedy, Romance",
+        "rating": 8.9,
+        "review": "",
+        "status": "Complete",
+        "banner": "step_sis_loves_step_bro.png"
+    },
+    {
+        "title": "Mashle: Magic and Muscles",
+        "genre": "Action, Comedy, Fantasy, Parody, School, Shounen",
+        "rating": 9.9,
+        "review": "",
+        "status": "Ongoing",
+        "banner": "mashle.png"
+    },
+    {
+        "title": "The Apothecary Diaries",
+        "genre": "Mystery Drama Historical",
+        "rating": 8.7,
+        "review": "",
+        "status": "Ongoing",
+        "banner": "apothecary_diaries.png"
+    },
+    {
+        "title": "Oshi no ko",
+        "genre": "Drama, Music, Supernatural, Seinen",
+        "rating": 10,
+        "review": "",
+        "status": "Ongoing",
+        "banner": "oshi_no_no.png"
+    },
+    {
+        "title": "Love is like a cocktail",
+        "genre": "Comedy, Romance, Slice of Life",
+        "rating": 8.4,
+        "review": "",
+        "status": "Complete",
+        "banner": "love_is_like_a_cocktail.png"
+    },
+    {
+        "title": "Sugar Apple Fairy Tale",
+        "genre": "Adventure, Fantasy, Romance, Shoujo",
+        "rating": 9.0,
+        "review": "",
+        "status": "Complete",
+        "banner": "sugar_apple_ft.png"
+    },
+    {
+        "title": "Snow white with red hair",
+        "genre": "Adventure, Fantasy, Romance, Shoujo",
+        "rating": 9.2,
+        "review": "",
+        "status": "Complete",
+        "banner": "snow_white_w_red_hair.png"
+    },
+    {
+        "title": "The Reason Why Raeliana Ended up at the Duke's Mansion",
+        "genre": "Comedy, Mystery, Fantasy, Romance, Isekai",
+        "rating": 9.0,
+        "review": "",
+        "status": "Complete",
+        "banner": "raeliana_dukes_mansion.png"
+    },
+    {
+        "title": "School days",
+        "genre": "Drama, Romance, School, Harem",
+        "rating": -10,
+        "review": "",
+        "status": "Complete",
+        "banner": "school_days.png"
+    },
+    {
+        "title": "Charlotte",
+        "genre": "Drama, School, Super Power",
+        "rating": 8.4,
+        "review": "",
+        "status": "Complete",
+        "banner": "charlotte.png"
+    },
+    {
+        "title": "Tada Never Falls in Love",
+        "genre": "Comedy, Romance, Slice of Life",
+        "rating": 7.8,
+        "review": "",
+        "status": "Complete",
+        "banner": "tada_never_fall_in_love.png"
+    },
+    {
+        "title": "The Foolish Angel Dances with the Devil",
+        "genre": "Comedy, Romance, School, Supernatural",
+        "rating": 8.0,
+        "review": "",
+        "status": "Complete",
+        "banner": "the_foolish_angle_dances_w_the_devil.png"
+    },
+    {
+        "title": "Danchigai",
+        "genre": "Comedy, Slice of Life",
+        "rating": 6.8,
+        "review": "",
+        "status": "Complete",
+        "banner": "danchigai.png"
+    },
+    {
+        "title": "More than a married couple, but not lovers.",
+        "genre": "Comedy, Drama, Romance, School, Seinen",
+        "rating": 9.8,
+        "review": "",
+        "status": "Complete",
+        "banner": "more_than_a_married_couple.png"
+    },
+    {
+        "title": "Saint Cecilia and Pastor Lawrence",
+        "genre": "Comedy, Fantasy, Romance, Shounen, Slice of Life",
+        "rating": 8.0,
+        "review": "",
+        "status": "Complete",
+        "banner": "saint_cecilia.png"
+    },
+    {
+        "title": "Date a live",
+        "genre": "Comedy, Mecha, Romance, School, Sci-Fi, Harem",
+        "rating": 9.2,
+        "review": "",
+        "status": "Complete",
+        "banner": "date_a_live.png"
+    },
+    {
+        "title": "Our love has always been 10 centimeters apart.",
+        "genre": "Comedy, Drama, Romance, School",
+        "rating": 6.7,
+        "review": "",
+        "status": "Complete",
+        "banner": "our_love_has_always_been_10cm_apart.png"
+    },
+    {
+        "title": "Bocchi the rock",
+        "genre": "Comedy, Music, Slice of Life",
+        "rating": 10,
+        "review": "",
+        "status": "Complete",
+        "banner": "bocchi_the_rock.png"
     }
 ]
