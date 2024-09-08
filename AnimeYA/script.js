@@ -19,13 +19,13 @@ const animeList = [
 
 const tableBody = document.getElementById("anime-list");
 
-animeList.forEach(anime => {
+animeList.forEach((anime, index) => {
     let row = document.createElement("tr");
     row.className = "anime-row";
-    row.style.backgroundImage = `url('images/${anime.banner}')`;
+    row.style.backgroundImage = `url('images/${anime.banner}')`; 
 
     row.innerHTML = `
-        <td><img src="images/${anime.banner}" alt="${anime.title}" width="100" /></td>
+        <td>${index + 1}</td>  <!-- Serial number -->
         <td>${anime.title}</td>
         <td>${anime.genre}</td>
         <td>${anime.rating}</td>
