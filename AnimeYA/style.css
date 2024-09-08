@@ -1,10 +1,10 @@
-
+/* Table Styles */
 table {
     margin-top: 20px;
     width: 100%;
     background-color: #fff;
     border-collapse: collapse;
-    table-layout: fixed;
+    table-layout: fixed; /* Ensure fixed layout for consistent width */
 }
 
 th, td {
@@ -22,7 +22,7 @@ thead {
     background-size: cover;
     background-position: center;
     color: white;
-    height: 200px;
+    height: 300px;
     position: relative;
     transition: transform 0.3s ease, color 0.3s ease;
 }
