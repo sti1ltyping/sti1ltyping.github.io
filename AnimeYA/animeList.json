@@ -1,0 +1,18 @@
+[
+    {
+        "title": "Death Note",
+        "genre": "Thriller, Supernatural",
+        "rating": 9.0,
+        "review": "A psychological battle between a detective and a high school genius.",
+        "status": "Completed",
+        "banner": "death_note.png"
+    },
+    {
+        "title": "High School DxD",
+        "genre": "Ecchi, Fantasy",
+        "rating": 7.0,
+        "review": "Action-packed anime with supernatural and fanservice elements.",
+        "status": "Ongoing",
+        "banner": "high_school_dxd.png"
+    }
+]
