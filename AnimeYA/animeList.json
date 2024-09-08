@@ -22,5 +22,13 @@
         "review": "Romance.",
         "status": "Ongoing",
         "banner": "tonikawa.png"
+    },
+    {
+        "title": "Horimiya",
+        "genre": " Comedy, Romance, School, Shounen, Slice of Life",
+        "rating": 9.0,
+        "review": "Romance.",
+        "status": "Ongoing",
+        "banner": "horimiya.png"
     }
 ]
