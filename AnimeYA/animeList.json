@@ -414,5 +414,205 @@
         "review": "",
         "status": "Complete",
         "banner": "bocchi_the_rock.png"
+    },
+    {
+        "title": "Studio Apartment, Good Lighting, Angel Included",
+        "genre": "Comedy, Fantasy, Romance, Slice of Life, Supernatural",
+        "rating": 7.8,
+        "review": "",
+        "status": "Complete",
+        "banner": "studio_ap.png"
+    },
+    {
+        "title": "Teasing Master Takagi-san",
+        "genre": "Comedy, Romance, School, Shounen, Slice of Life",
+        "rating": 9.3,
+        "review": "",
+        "status": "Complete",
+        "banner": "teasing_master_takagi_san.png"
+    },
+    {
+        "title": "Fruits Basket",
+        "genre": "Comedy, Drama, Romance, Shoujo, Slice of Life, Supernatural",
+        "rating": 9.7,
+        "review": "",
+        "status": "Complete",
+        "banner": "fruits_basket.png"
+    },
+    {
+        "title": "7th Time Loop: The Villainess Enjoys a Carefree Life Married to Her Worst Enemy!",
+        "genre": "Fantasy Romance",
+        "rating": 9.8,
+        "review": "",
+        "status": "Complete",
+        "banner": "7th_time_loop.png"
+    },
+    {
+        "title": "Hell’s Paradise",
+        "genre": "Action, Adventure, Fantasy, Historical, Shounen",
+        "rating": 10,
+        "review": "",
+        "status": "Ongoing",
+        "banner": "hells_paradise.png"
+    },
+    {
+        "title": "Akame ga Kill!",
+        "genre": "Action, Adventure, Drama, Fantasy, Shounen",
+        "rating": 7.2,
+        "review": "",
+        "status": "Complete",
+        "banner": "akame_ga_kill.png"
+    },
+    {
+        "title": "Plastic Memories",
+        "genre": "Drama Romance Sci-Fi",
+        "rating": 10,
+        "review": "",
+        "status": "Complete",
+        "banner": "plastic_memories.png"
+    },
+    {
+        "title": "My Little Monster",
+        "genre": "Comedy, Romance, School, Shoujo, Slice of Life",
+        "rating": 8.0,
+        "review": "",
+        "status": "Complete",
+        "banner": "my_lil_monster.png"
+    },
+    {
+        "title": "Love, Chunibyo & Other Delusions!",
+        "genre": "Comedy, Drama, Romance, School, Slice of Life",
+        "rating": 8.2,
+        "review": "",
+        "status": "Complete",
+        "banner": "love_chunibyo.png"
+    },
+    {
+        "title": "Tokyo Revengers",
+        "genre": "Action, Drama, School, Shounen",
+        "rating": 10,
+        "review": "",
+        "status": "Complete",
+        "banner": "tokya_revengers.png"
+    },
+    {
+        "title": "Relife",
+        "genre": "Romance, School, Slice of Life",
+        "rating": 7.8,
+        "review": "",
+        "status": "Complete",
+        "banner": "relife.png"
+    },
+    {
+        "title": "Attack on Titan",
+        "genre": "Action, Mystery, Drama, Fantasy, Shounen, Super Power, Military",
+        "rating": 6.5,
+        "review": "It was a 10/10 anime but the vibe changed alot after s3 (when they discoved there are other civilizations)",
+        "status": "Dropped/Watched till s3",
+        "banner": "aot.png"
+    },
+    {
+        "title": "Blue Spring Ride",
+        "genre": "Comedy, Drama, Romance, School, Shoujo, Slice of Life",
+        "rating": 8.8,
+        "review": "",
+        "status": "Ongoing",
+        "banner": "blue_spring_ride.png"
+    },
+    {
+        "title": "Wind Breaker",
+        "genre": "Action, Comedy, Drama, School",
+        "rating": 10,
+        "review": "",
+        "status": "Ongoing",
+        "banner": "windbreaker.png"
+    },
+    {
+        "title": "Shine Post",
+        "genre": "Music, Slice of Life",
+        "rating": 9.0,
+        "review": "",
+        "status": "Complete",
+        "banner": "shine_post.png"
+    },
+    {
+        "title": "Kubo won't let me be invisible",
+        "genre": "Comedy, Romance, School, Seinen",
+        "rating": 10,
+        "review": "",
+        "status": "Ongoing",
+        "banner": "kubo_wont_leme_be_invis.png"
+    },
+    {
+        "title": "Your lie in April",
+        "genre": "Drama, Music, Romance, School, Shounen",
+        "rating": 10,
+        "review": "",
+        "status": "Complete",
+        "banner": "your_lie_in_april.png"
+    },
+    {
+        "title": "EIGHTY-SIX",
+        "genre": "Action, Drama, Mecha, Sci-Fi, Military",
+        "rating": 9.7,
+        "review": "",
+        "status": "Complete",
+        "banner": "86.png"
+    },
+    {
+        "title": "Dororo",
+        "genre": "Action, Adventure, Demons, Historical, Samurai, Shounen, Supernatural",
+        "rating": 9.7,
+        "review": "",
+        "status": "Complete",
+        "banner": "dororo.png"
+    },
+    {
+        "title": "Astra Lost in Space",
+        "genre": "Adventure, Sci-Fi, Shounen, Space",
+        "rating": 10,
+        "review": "",
+        "status": "Complete",
+        "banner": "astra_lost_in_space.png"
+    },
+    {
+        "title": "Iroduku: The World in Colors",
+        "genre": "Drama, Magic, Romance, School",
+        "rating": 9.4,
+        "review": "",
+        "status": "Complete",
+        "banner": "the_world_in_colors.png"
+    },
+    {
+        "title": "Vinland Saga",
+        "genre": "Action, Adventure, Drama, Historical, Seinen",
+        "rating": 2.5,
+        "review": "",
+        "status": "Dropped/Watched till s1",
+        "banner": "vinland_saga.png"
+    },
+    {
+        "title": "Kono Oto Tomare!: Sounds of Life",
+        "genre": "Drama, Music, Romance, School, Shounen",
+        "rating": 10,
+        "review": "",
+        "status": "Ongoing\n(Not sure)",
+        "banner": "sound_of_life.png"
+    },
+    {
+        "title": "Re:Zero - Starting Life in Another World",
+        "genre": "Drama, Fantasy, Psychological, Thriller Isekai",
+        "rating": 10,
+        "review": "",
+        "status": "Ongoing",
+        "banner": "re_zero.png"
+    },
+    {
+        "title": "The Café Terrace and Its Goddesses",
+        "genre": "Comedy, Ecchi, Romance, Shounen, Harem",
+        "rating": 9.9,
+        "review": "",
+        "status": "Watching",
+        "banner": "cafe_famili.png"
     }
 ]
