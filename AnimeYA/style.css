@@ -1,4 +1,4 @@
-
+/* Global Styles */
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f0f0f0;
@@ -7,12 +7,14 @@ body {
     min-height: 100vh;
 }
 
+/* Header */
 header {
     background-color: #343a40;
     color: white;
     padding: 20px;
 }
 
+/* Table Styles */
 table {
     margin-top: 20px;
     width: 100%;
@@ -38,21 +40,25 @@ tr:hover {
     background-size: cover;
     background-position: center;
     color: white;
-    height: 200px; 
+    height: 200px; /* Increased height for better banner visibility */
     position: relative;
 }
 
 .anime-row td {
-    background-color: rgba(0, 0, 0, 0.6); 
-    vertical-align: middle; 
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent overlay for better text contrast */
+    vertical-align: middle; /* Center text vertically */
     font-size: 1.1rem;
+    font-weight: bold; /* Bold text */
+    text-shadow: 2px 2px 4px #000000; /* Black tracing (shadow) around the text */
+    color: white; /* Keep the text white */
 }
 
 .anime-row td:first-child {
-    width: 50px; 
+    width: 50px; /* For the serial number column */
     font-weight: bold;
 }
 
+/* Footer */
 footer {
     background-color: #343a40;
     padding: 10px;
