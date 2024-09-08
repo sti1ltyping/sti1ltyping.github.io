@@ -1,4 +1,4 @@
-/* Global Styles */
+
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f0f0f0;
@@ -7,14 +7,12 @@ body {
     min-height: 100vh;
 }
 
-/* Header */
 header {
     background-color: #343a40;
     color: white;
     padding: 20px;
 }
 
-/* Table Styles */
 table {
     margin-top: 20px;
     width: 100%;
@@ -33,21 +31,28 @@ thead {
 }
 
 tr:hover {
-    background-color: #f0f8ff;
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Banner as Row Background */
 .anime-row {
     background-size: cover;
     background-position: center;
     color: white;
+    height: 200px; 
+    position: relative;
 }
 
 .anime-row td {
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+    background-color: rgba(0, 0, 0, 0.6); 
+    vertical-align: middle; 
+    font-size: 1.1rem;
 }
 
-/* Footer */
+.anime-row td:first-child {
+    width: 50px; 
+    font-weight: bold;
+}
+
 footer {
     background-color: #343a40;
     padding: 10px;
