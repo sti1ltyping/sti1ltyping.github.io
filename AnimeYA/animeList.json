@@ -465,7 +465,7 @@
     },
     {
         "title": "Plastic Memories",
-        "genre": "Drama Romance Sci-Fi",
+        "genre": "Drama, Romance, Sci-Fi",
         "rating": 10,
         "review": "",
         "status": "Complete",
@@ -507,7 +507,7 @@
         "title": "Attack on Titan",
         "genre": "Action, Mystery, Drama, Fantasy, Shounen, Super Power, Military",
         "rating": 6.5,
-        "review": "It was a 10/10 anime but the vibe changed alot after s3 (when they discoved there are other civilizations)",
+        "review": "It was a 10/10 anime but the vibe changed alot after s3",
         "status": "Dropped/Watched till s3",
         "banner": "aot.png"
     },
@@ -614,5 +614,13 @@
         "review": "",
         "status": "Watching",
         "banner": "cafe_famili.png"
+    },
+    {
+        "title": "Love after World Domination",
+        "genre": "Action, Comedy, Romance, Shounen",
+        "rating": 9.5,
+        "review": "",
+        "status": "Watching",
+        "banner": "Koi-wa-Sekai-Seifuku-no-Ato-de-min.png"
     }
 ]
