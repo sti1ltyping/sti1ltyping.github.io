@@ -360,6 +360,14 @@
         "banner": "tada_never_fall_in_love.png"
     },
     {
+        "title": "Golden Time",
+        "genre": "Comedy, Drama, Romance",
+        "rating": 7.2,
+        "review": "",
+        "status": "Complete",
+        "banner": "golden_time.png"
+    },
+    {
         "title": "The Foolish Angel Dances with the Devil",
         "genre": "Comedy, Romance, School, Supernatural",
         "rating": 8.0,
@@ -618,9 +626,17 @@
     {
         "title": "Love after World Domination",
         "genre": "Action, Comedy, Romance, Shounen",
-        "rating": 9.5,
+        "rating": 9.8,
         "review": "",
-        "status": "Watching",
+        "status": "Ongoing",
         "banner": "Koi-wa-Sekai-Seifuku-no-Ato-de-min.png"
+    },
+    {
+        "title": "Boarding School Juliet",
+        "genre": "Action, Comedy, Romance, School, Shounen",
+        "rating": 9.8,
+        "review": "",
+        "status": "Ongoing",
+        "banner": "bsj.png"
     }
 ]
