@@ -654,5 +654,45 @@
         "review": "",
         "status": "Ongoing",
         "banner": "alya_sometimes_hides_her_feelings_in_russian.png"
+    },
+    {
+        "title": "Mob Psycho 100",
+        "genre": "Action, Comedy, Slice of Life, Supernatural",
+        "rating": 8.4,
+        "review": "",
+        "status": "Complete",
+        "banner": "mob_psyhco_100.png"
+    },
+    {
+        "title": "Wistoria: Wand and Sword",
+        "genre": "Action, Adventure, Fantasy, School",
+        "rating": 9.2,
+        "review": "",
+        "status": "Ongoing",
+        "banner": "wistoria.png"
+    },
+    {
+        "title": "The Magical Girl and the Evil Lieutenant Used to Be Archenemies",
+        "genre": "Comedy, Fantasy, Romance",
+        "rating": 9.6,
+        "review": "",
+        "status": "Incomplete story\n(Author died)",
+        "banner": "the_magical_girl_and_the_evil_lieutenant.png"
+    },
+    {
+        "title": "Mushoku Tensei: Jobless Reincarnation",
+        "genre": "Adventure, Drama, Ecchi, Fantasy, Isekai",
+        "rating": 9.8,
+        "review": "",
+        "status": "Ongoing",
+        "banner": "mushoku_tensei.png"
+    },
+    {
+        "title": "Taisho Otome Fairy Tale",
+        "genre": "Comedy, Historical, Romance, Slice of Life",
+        "rating": 8.6,
+        "review": "",
+        "status": "Ongoing",
+        "banner": "taisho_otome_fairy_tale.png"
     }
 ]

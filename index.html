@@ -1,5 +1,102 @@
-<html>
-<body>
-<p>homepage</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme">
+    <div class="theme-toggle-container">
+        <button id="theme-toggle">Theme</button>
+    </div>
+
+    <div class="profile-container">
+
+        <div class="profile-banner" id="profile-banner">
+
+        </div>
+
+        <div class="profile-content">
+            <div class="profile-picture">
+                <img src="https://cdn.discordapp.com/avatars/840587974000771072/fc45eb71e37ead85f8a7b9a4f8c93620.webp?size=128" alt="Profile Picture">
+            </div>
+            <div class="profile-description">
+                <h1>Alya is a cutie</h1> <!-- Display name -->
+                <h4 class="username">sti1ltyping</h4> <!-- Username -->
+                <br>
+                <p></p>
+                <p>♡¸.Can I take a picture of you? I need to show Santa exactly what I want for christmas♡love</p>
+                <br>
+                <p>₍ ᐢ.ˬ.ᐢ₎˚୨୧</p>
+            </div>
+        </div>
+
+        <div class="profile-boxes">
+            <div class="box anime-box" onclick="goToPage('AnimeYA')">
+                <div class="box-content">
+                    <h2>Anime</h2>
+                </div>
+            </div>
+            <div class="box music-box" onclick="goToPage('music.html')">
+                <div class="box-content">
+                    <h2>Music</h2>
+                </div>
+            </div>
+            <div class="box games-box" onclick="goToPage('games.html')">
+                <div class="box-content">
+                    <h2>Games</h2>
+                </div>
+            </div>
+            <div class="box discord-box" onclick="goToPage('discord.html')">
+                <div class="box-content">
+                    <h2>Discord</h2>
+                </div>
+            </div>
+            <div class="box developer-box" onclick="goToPage('developer.html')">
+                <div class="box-content">
+                    <h2>Developer</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        function goToPage(page) {
+            window.location.href = page;
+        }
+
+        const banners = [
+            'banner_0.png',
+            'banner_1.png',
+            'banner_2.png',
+            'banner_3.png',
+        ];
+        let currentBannerIndex = 0;
+
+        function setRandomBanner() {
+            const bannerElement = document.getElementById('profile-banner');
+            currentBannerIndex = (currentBannerIndex + 1) % banners.length;
+            const bannerImage = `images/banners/${banners[currentBannerIndex]}`;
+
+            bannerElement.style.backgroundImage = `url(${bannerImage})`;
+            bannerElement.style.backgroundSize = 'cover';
+            bannerElement.style.backgroundPosition = 'center';
+            bannerElement.style.height = '300px';
+        }
+
+        setInterval(setRandomBanner, 5000);
+
+        const themeToggleButton = document.getElementById('theme-toggle');
+        themeToggleButton.addEventListener('click', () => {
+            document.body.classList.toggle('dark-theme');
+            document.body.classList.toggle('light-theme');
+        });
+
+        window.onload = function() {
+            setRandomBanner();
+        }
+    </script>
 </body>
 </html>
