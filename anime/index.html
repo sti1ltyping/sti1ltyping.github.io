@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎬 My Anime List 🎬</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #111;
+      color: #fff;
+      overflow-x: hidden;
+    }
+    header {
+      text-align: center;
+      padding: 1rem;
+      color: #ffb3ec;
+      text-shadow: 0 0 10px #ff6ec7, 0 0 20px #6eb5ff;
+      position: relative;
+    }
+    .controls {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      display: flex;
+      gap: 0.6rem;
+    }
+    .control-btn {
+      padding: 0.4rem 0.8rem;
+      font-size: 0.8rem;
+      color: #fff;
+      background: #ff6ec7;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 0 10px #ff6ec7, 0 0 20px #6eb5ff;
+      transition: transform 0.2s;
+    }
+    .home-btn {
+      padding: 0.6rem 1rem;
+      font-size: 0.9rem;
+      font-weight: bold;
+      color: #fff;
+      background: #ff6ec7;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 0 10px #ff6ec7, 0 0 20px #6eb5ff;
+      transition: transform 0.2s;
+    }
+    .control-btn:hover { transform: scale(1.1); }
+    .filters {
+      display: flex;
+      justify-content: center;
+      gap: 0.8rem;
+      margin: 1rem 0;
+      flex-wrap: wrap;
+    }
+    select, .filter-btn {
+      padding: 0.4rem 0.8rem;
+      font-size: 0.9rem;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+    }
+    .anime-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      padding: 1rem;
+      max-width: 1000px;
+      margin: auto;
+      position: relative;
+      z-index: 1;
+    }
+    .anime-card {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      min-height: 200px;
+      display: flex;
+      align-items: flex-end;
+      box-shadow: 0 0 20px rgba(0,0,0,0.7);
+      color: #fff;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .anime-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 0 20px #ff6ec7, 0 0 40px #6eb5ff;
+    }
+    .anime-banner {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.6);
+      z-index: -1;
+    }
+    .anime-info {
+      padding: 1.5rem;
+      backdrop-filter: blur(0.01px);
+      background: rgba(0,0,0,0.4);
+      border-radius: 0 0 20px 20px;
+      width: 100%;
+    }
+    .anime-title {
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: #fff;
+      margin: 0;
+      text-shadow: 0 0 5px #000, 0 0 15px #ff6ec7;
+    }
+    .anime-rating {
+      margin-top: 0.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #ffe680;
+      text-shadow: 0 0 5px #000;
+    }
+    .genres {
+      margin-top: 0.8rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .genre {
+      padding: 0.3rem 0.8rem;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #fff;
+      text-shadow: 0 0 5px #000;
+    }
+    #petalsLeft, #petalsRight {
+      pointer-events: none;
+      position: fixed;
+      top: 0;
+      width: 15%;
+      height: 100%;
+      z-index: 9999;
+    }
+    #petalsLeft { left: 0; }
+    #petalsRight { right: 0; }
+    .petal {
+      position: absolute;
+      top: -10px;
+      font-size: 20px;
+      animation: fall linear infinite;
+      color: #ffb3ec;
+      text-shadow: 0 0 8px #ff6ec7;
+    }
+    @keyframes fall {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+    #statsModal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+    }
+    .modal-content {
+      background: #222;
+      padding: 1.5rem;
+      border-radius: 12px;
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
+      color: #fff;
+      box-shadow: 0 0 15px #ff6ec7, 0 0 30px #6eb5ff;
+    }
+    .close-btn {
+      background: crimson;
+      border: none;
+      padding: 0.4rem 0.8rem;
+      color: #fff;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+    /* Updated filter button & select styles */
+    .filter-btn, select {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        background: #222;
+        color: #fff;
+        box-shadow: 0 0 8px #ff6ec7, 0 0 15px #6eb5ff;
+        transition: transform 0.2s, background 0.3s;
+    }
+
+    .filter-btn:hover, select:hover {
+        transform: scale(1.05);
+        background: #333;
+    }
+
+    select {
+        appearance: none;
+        background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
+        color: #fff; /* make text white */
+        padding-right: 2rem;
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 0 8px #ff6ec7, 0 0 15px #6eb5ff;
+        cursor: pointer;
+        position: relative;
+    }
+
+    /* Style the dropdown options */
+    select option {
+        background: #1a1a1a;  /* dark background */
+        color: #fff;          /* white text */
+    }
+
+    /* Hover/focus effect */
+    select:focus {
+        outline: none;
+        background: linear-gradient(145deg, #2a2a2a, #3a3a3a);
+        color: #fff;
+    }
+    /* Genre colors (your list preserved) */
+    .genre.Romance { background: #f651d2; }
+    .genre.Action { background: #6eb5ff; }
+    .genre.Drama { background: #b36bff; }
+    .genre.Fantasy { background: #66ffb3; }
+    .genre.Mystery { background: #ff944d; }
+    .genre.Adventure { background: #ffd24d; }
+    .genre.Comedy { background: #ffb366; }
+    .genre.SciFi { background: #b2b4b9; }
+    .genre.Horror { background: #ff6666; }
+    .genre.SliceofLife { background: #a16ac1; }
+    .genre.Sports { background: #6e92ee; }
+    .genre.Music { background: #f26640; }
+    .genre.Supernatural { background: #9d3048; }
+    .genre.Isekai { background: #6f2b8d; }
+    .genre.Historical { background: #d3c359; }
+    .genre.Psychological { background: #552d5e; }
+    .genre.School { background: #3ba991; }
+    .genre.Ecchi { background: #de2189; }
+    .genre.Thriller { background: #f0f55e; }
+    .genre.Harem { background: #a80f57; }
+    .genre.Shounen { background: #304d61; }
+    .genre.Shoujo { background: #782a70; }
+    .genre.Seinen { background: #4a4e69; }
+    .genre.Demons { background: #6f0505; }
+    .genre.SuperPower { background: #99ad3d; }
+    .genre.MartialArts { background: #879ed2; }
+    .genre.Mecha { background: #b59f9f; }
+    .genre.Parody { background: #f7b7a3; }
+    .genre.Military { background: #4b6f44; }
+    .genre.Samurai { background: #0aaa85; }
+    .genre.Space { background: #2a525d; }
+    .genre.Magic { background: #7b1a51; }
+    .genre.Vampire { background: #af2323; }
+    .genre.Dementia { background: #5c4d7d; }
+    .genre.Game { background: #238594; }
+    .genre.default { background: #888; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🌸 My Anime List 🌸</h1>
+    <div class="controls">
+      <button class="home-btn" onclick="location.href='../'">🏠</button>
+      <button class="control-btn" onclick="togglePetals()">🌸</button>
+      <button class="control-btn" onclick="openStats()">📊</button>
+    </div>
+  </header>
+
+  <div class="filters">
+    <button class="filter-btn" onclick="resetFilters()">❌No Filter</button>
+    <select id="genreSelect" onchange="applyFilters()">
+      <option value="">Filter by Genre</option>
+    </select>
+    <button class="filter-btn" onclick="setSort('desc')">⭐Rating ↑</button>
+    <button class="filter-btn" onclick="setSort('asc')">⭐Rating ↓</button>
+  </div>
+
+  <main class="anime-list" id="animeList"></main>
+  <div id="petalsLeft"></div>
+  <div id="petalsRight"></div>
+
+  <!-- Stats Modal -->
+  <div id="statsModal">
+    <div class="modal-content">
+      <h2>📊 Statistics 📊</h2>
+      <canvas id="pieChart" width="300" height="300"></canvas>
+      <button class="close-btn" onclick="closeStats()">Close</button>
+    </div>
+  </div>
+
+  <script>
+    let animeData = [];
+    let currentGenre = "";
+    let currentSort = null;
+    let petalsOn = true;
+    let petalsInterval;
+
+    const petalsLeft = document.getElementById("petalsLeft");
+    const petalsRight = document.getElementById("petalsRight");
+
+    async function loadAnime() {
+      const response = await fetch('anime.json');
+      animeData = await response.json();
+      populateGenres();
+      applyFilters();
+    }
+
+    function displayAnime(data) {
+      const container = document.getElementById('animeList');
+      container.innerHTML = "";
+
+      data.forEach((anime, index) => {
+        const card = document.createElement("div");
+        card.className = "anime-card";
+        card.innerHTML = `
+          <div class="anime-banner" style="background-image: url('images/${anime.banner}')"></div>
+          <div class="anime-info">
+            <h2 class="anime-title">${index + 1}. ${anime.title}</h2>
+            <div class="anime-rating">⭐ Rating: ${anime.rating}</div>
+            <div class="genres">
+              ${anime.genre.map(g => {
+                const className = g.replace(/\s+/g, '').replace(/-/g, '');
+                return `<span class="genre ${className}">${g}</span>`;
+              }).join('')}
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function populateGenres() {
+        const select = document.getElementById("genreSelect");
+        select.innerHTML = '<option value="">Filter by Genre</option>'; // Reset first
+
+        const genres = new Set();
+        animeData.forEach(anime => anime.genre.forEach(g => genres.add(g)));
+
+        // Sort genres alphabetically
+        const sortedGenres = Array.from(genres).sort((a, b) => a.localeCompare(b));
+
+        sortedGenres.forEach(g => {
+        const opt = document.createElement("option");
+        opt.value = g;
+        opt.textContent = g;
+        select.appendChild(opt);
+        });
+    }
+
+    function applyFilters() {
+      currentGenre = document.getElementById("genreSelect").value;
+      let filtered = [...animeData];
+
+      if (currentGenre) {
+        filtered = filtered.filter(anime => anime.genre.includes(currentGenre));
+      }
+
+      if (currentSort) {
+        filtered.sort((a, b) => currentSort === "asc" ? a.rating - b.rating : b.rating - a.rating);
+      }
+
+      displayAnime(filtered);
+    }
+
+    function resetFilters() {
+      currentGenre = "";
+      currentSort = null;
+      document.getElementById("genreSelect").value = "";
+      displayAnime(animeData);
+    }
+
+    function setSort(order) {
+      currentSort = order;
+      applyFilters();
+    }
+
+    // 🌸 Petal logic
+    function createPetal(container) {
+      const petal = document.createElement("div");
+      petal.className = "petal";
+      petal.innerText = "🌸";
+      petal.style.left = Math.random() * 100 + "%";
+      petal.style.animationDuration = (5 + Math.random() * 5) + "s";
+      petal.style.fontSize = (15 + Math.random() * 15) + "px";
+      container.appendChild(petal);
+      setTimeout(() => petal.remove(), 10000);
+    }
+
+    function startPetals() {
+      petalsInterval = setInterval(() => {
+        createPetal(petalsLeft);
+        createPetal(petalsRight);
+      }, 400);
+    }
+
+    function stopPetals() {
+      clearInterval(petalsInterval);
+      petalsLeft.innerHTML = "";
+      petalsRight.innerHTML = "";
+    }
+
+    function togglePetals() {
+      petalsOn = !petalsOn;
+      if (petalsOn) startPetals();
+      else stopPetals();
+    }
+
+    // 📊 Stats Modal
+    function openStats() {
+      document.getElementById("statsModal").style.display = "flex";
+      renderPieChart();
+    }
+
+    function closeStats() {
+      document.getElementById("statsModal").style.display = "none";
+    }
+
+    function renderPieChart() {
+        const genreCount = {};
+        animeData.forEach(anime => {
+            anime.genre.forEach(g => {
+            genreCount[g] = (genreCount[g] || 0) + 1;
+            });
+        });
+
+        // Group small genres into "Others"
+        const grouped = {};
+        let othersCount = 0;
+        Object.entries(genreCount).forEach(([genre, count]) => {
+            if (count < 5) othersCount += count;
+            else grouped[genre] = count;
+        });
+        if (othersCount > 0) grouped["Others"] = othersCount;
+
+        // Color mapping based on CSS classes
+        const genreColors = {
+            "Romance": "#f651d2",
+            "Action": "#6eb5ff",
+            "Drama": "#b36bff",
+            "Fantasy": "#66ffb3",
+            "Mystery": "#ff944d",
+            "Adventure": "#ffd24d",
+            "Comedy": "#ffb366",
+            "SciFi": "#b2b4b9",
+            "Horror": "#ff6666",
+            "Slice of Life": "#a16ac1",
+            "Sports": "#6e92ee",
+            "Music": "#f26640",
+            "Supernatural": "#9d3048",
+            "Isekai": "#6f2b8d",
+            "Historical": "#d3c359",
+            "Psychological": "#552d5e",
+            "School": "#3ba991",
+            "Ecchi": "#de2189",
+            "Thriller": "#f0f55e",
+            "Harem": "#a80f57",
+            "Shounen": "#304d61",
+            "Shoujo": "#782a70",
+            "Seinen": "#4a4e69",
+            "Demons": "#6f0505",
+            "Super Power": "#99ad3d",
+            "Martial Arts": "#879ed2",
+            "Mecha": "#b59f9f",
+            "Parody": "#f7b7a3",
+            "Military": "#4b6f44",
+            "Samurai": "#0aaa85",
+            "Space": "#2a525d",
+            "Magic": "#7b1a51",
+            "Vampire": "#af2323",
+            "Dementia": "#5c4d7d",
+            "Game": "#238594",
+            "Others": "#888"
+        };
+
+        const labels = Object.keys(grouped);
+        const data = Object.values(grouped);
+        const colors = labels.map(label => genreColors[label] || "#888");
+
+        const pieCtx = document.getElementById("pieChart").getContext("2d");
+        new Chart(pieCtx, {
+            type: "pie",
+            data: {
+            labels,
+            datasets: [{
+                data,
+                backgroundColor: colors
+            }]
+            }
+        });
+        }
+
+    loadAnime();
+    startPetals();
+  </script>
+</body>
+</html>

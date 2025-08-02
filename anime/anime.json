@@ -1,0 +1,1331 @@
+[
+    {
+        "title": "Death Note",
+        "genre": [
+            "Thriller",
+            "Supernatural"
+        ],
+        "rating": 8.21,
+        "banner": "death_note.png"
+    },
+    {
+        "title": "High School DxD",
+        "genre": [
+            "Ecchi",
+            "Fantasy"
+        ],
+        "rating": 6.01,
+        "banner": "high_school_dxd.png"
+    },
+    {
+        "title": "TONIKAWA: Over The Moon For You",
+        "genre": [
+            "Comedy",
+            "Romance",
+            "Shounen"
+        ],
+        "rating": 9.67,
+        "banner": "tonikawa.png"
+    },
+    {
+        "title": "Horimiya",
+        "genre": [
+            "Comedy",
+            "Romance",
+            "School",
+            "Shounen",
+            "Slice of Life"
+        ],
+        "rating": 10,
+        "banner": "horimiya.png"
+    },
+    {
+        "title": "Rent a Girlfriend",
+        "genre": [
+            "Comedy",
+            "Romance",
+            "School",
+            "Shounen"
+        ],
+        "rating": 7.81,
+        "banner": "rent_a_girlfriend.png"
+    },
+    {
+        "title": "Quintessential Quintuplets",
+        "genre": [
+            "Comedy",
+            "Romance",
+            "School",
+            "Shounen",
+            "Harem"
+        ],
+        "rating": 8.94,
+        "banner": "quintessential_quintuplets.png"
+    },
+    {
+        "title": "ORESUKI Are you the only one who loves me?",
+        "genre": [
+            "Comedy",
+            "Romance",
+            "School",
+            "Harem"
+        ],
+        "rating": 6.21,
+        "banner": "oresuki.png"
+    },
+    {
+        "title": "Saekano: How to Raise a Boring Girlfriend",
+        "genre": [
+            "Comedy",
+            "Ecchi",
+            "Romance",
+            "School",
+            "Harem"
+        ],
+        "rating": 6.01,
+        "banner": "saekano.png"
+    },
+    {
+        "title": "A Couple of Cuckoos",
+        "genre": [
+            "Comedy",
+            "Romance",
+            "Shounen",
+            "Harem"
+        ],
+        "rating": 8.97,
+        "banner": "a_couple_of_cuckoos.png"
+    },
+    {
+        "title": "Demon Slayer",
+        "genre": [
+            "Action",
+            "Demons",
+            "Historical",
+            "Shounen",
+            "Supernatural"
+        ],
+        "rating": 10,
+        "banner": "demon_slayer.png"
+    },
+    {
+        "title": "Classroom of the Elite",
+        "genre": [
+            "Drama",
+            "School",
+            "Slice of Life",
+            "Psychological"
+        ],
+        "rating": 7.01,
+        "banner": "class_room_of_the_elite.png"
+    },
+    {
+        "title": "Kaguya Sama: Love is War",
+        "genre": [
+            "Comedy",
+            "Romance",
+            "School",
+            "Psychological",
+            "Seinen"
+        ],
+        "rating": 10,
+        "banner": "kaguya_sama.png"
+    },
+    {
+        "title": "Naruto",
+        "genre": [
+            "Action",
+            "Adventure",
+            "Comedy",
+            "Martial Arts",
+            "Shounen",
+            "Super Power"
+        ],
+        "rating": 10,
+        "banner": "naruto.png"
+    },
+    {
+        "title": "DARLING in the FRANXX",
+        "genre": [
+            "Action",
+            "Drama",
+            "Mecha",
+            "Romance",
+            "Sci-Fi"
+        ],
+        "rating": 7.42,
+        "banner": "darning_in_the_franx.png"
+    },
+    {
+        "title": "My Hero Academia",
+        "genre": [
+            "Action",
+            "Comedy",
+            "School",
+            "Shounen",
+            "Super Power"
+        ],
+        "rating": 9.46,
+        "banner": "mha.png"
+    },
+    {
+        "title": "My Wife is the Student Council President!",
+        "genre": [
+            "Comedy",
+            "Ecchi",
+            "Romance",
+            "School",
+            "Shounen"
+        ],
+        "rating": 7.61,
+        "banner": "my_wife_is_the_scp.png"
+    },
+    {
+        "title": "Jujutsu Kaisen",
+        "genre": [
+            "Action",
+            "Demons",
+            "Horror",
+            "School",
+            "Shounen",
+            "Supernatural"
+        ],
+        "rating": 9.74,
+        "banner": "jjk.png"
+    },
+    {
+        "title": "The Angel next door spoils me Rotten",
+        "genre": [
+            "Comedy",
+            "Romance",
+            "School"
+        ],
+        "rating": 10,
+        "banner": "the_angle_next_door.png"
+    },
+    {
+        "title": "My Happy Marriage",
+        "genre": [
+            "Drama",
+            "Fantasy",
+            "Historical",
+            "Romance",
+            "Supernatural"
+        ],
+        "rating": 9.34,
+        "banner": "my_happy_marriage.png"
+    },
+    {
+        "title": "Bleach",
+        "genre": [
+            "Action",
+            "Adventure",
+            "Comedy",
+            "Shounen",
+            "Super Power",
+            "Supernatural"
+        ],
+        "rating": 8.71,
+        "banner": "bleach.png"
+    },
+    {
+        "title": "Idoly Pride",
+        "genre": [
+            "Music"
+        ],
+        "rating": 8.94,
+        "banner": "idoly_pride.png"
+    },
+    {
+        "title": "Yona of the dawn",
+        "genre": [
+            "Action",
+            "Adventure",
+            "Comedy",
+            "Fantasy",
+            "Romance",
+            "Shoujo"
+        ],
+        "rating": 8.41,
+        "banner": "yotd.png"
+    },
+    {
+        "title": "Spy x Family",
+        "genre": [
+            "Action",
+            "Comedy",
+            "Shounen"
+        ],
+        "rating": 9.84,
+        "banner": "spyxfamily.png"
+    },
+    {
+        "title": "The Dangers in My Heart",
+        "genre": [
+            "Comedy",
+            "Romance",
+            "School",
+            "Shounen"
+        ],
+        "rating": 6.31,
+        "banner": "tdimh.png"
+    },
+    {
+        "title": "ERASED",
+        "genre": [
+            "Mystery",
+            "Supernatural",
+            "Psychological",
+            "Seinen"
+        ],
+        "rating": 9.84,
+        "banner": "erased.png"
+    },
+    {
+        "title": "Domestic Girlfriend",
+        "genre": [
+            "Drama",
+            "Romance",
+            "School",
+            "Shounen"
+        ],
+        "rating": 6.21,
+        "banner": "dgf.png"
+    },
+    {
+        "title": "anohana: The Flower We Saw That Day",
+        "genre": [
+            "Drama",
+            "Slice of Life",
+            "Supernatural"
+        ],
+        "rating": 9.97,
+        "banner": "anohana.png"
+    },
+    {
+        "title": "Loving Yamada at lv999",
+        "genre": [
+            "Comedy",
+            "Drama",
+            "Romance"
+        ],
+        "rating": 9.12,
+        "banner": "loving_yamada_lvl999.png"
+    },
+    {
+        "title": "Rascal Does Not Dream of Bunny Girl Senpai",
+        "genre": [
+            "Comedy",
+            "Drama",
+            "Romance",
+            "School",
+            "Supernatural"
+        ],
+        "rating": 9.71,
+        "banner": "bunnygirlsenpai.png"
+    },
+    {
+        "title": "Our Dating Story: The Experienced You and The Inexperienced Me, Kimizero",
+        "genre": [
+            "Romance",
+            "School"
+        ],
+        "rating": 8.93,
+        "banner": "our_dating_story.png"
+    },
+    {
+        "title": "Romantic killer",
+        "genre": [
+            "Comedy",
+            "Romance",
+            "Shounen"
+        ],
+        "rating": 8.98,
+        "banner": "romantic_killer.png"
+    },
+    {
+        "title": "My Teen Romantic Comedy SNAFU",
+        "genre": [
+            "Comedy",
+            "Drama",
+            "Romance",
+            "School",
+            "Slice of Life"
+        ],
+        "rating": 7.81,
+        "banner": "snafu.png"
+    },
+    {
+        "title": "Shikimori's Not Just a Cutie",
+        "genre": [
+            "Comedy",
+            "Romance",
+            "Slice of Life"
+        ],
+        "rating": 9.89,
+        "banner": "shikimori_njac.png"
+    },
+    {
+        "title": "Eromanga Sensei",
+        "genre": [
+            "Comedy",
+            "Drama",
+            "Ecchi",
+            "Romance"
+        ],
+        "rating": 8.72,
+        "banner": "eromanga_sensei.png"
+    },
+    {
+        "title": "My Stepmom's Daughter is My Ex",
+        "genre": [
+            "Comedy",
+            "Romance"
+        ],
+        "rating": 8.92,
+        "banner": "step_sis_loves_step_bro.png"
+    },
+    {
+        "title": "Mashle: Magic and Muscles",
+        "genre": [
+            "Action",
+            "Comedy",
+            "Fantasy",
+            "Parody",
+            "School",
+            "Shounen"
+        ],
+        "rating": 9.98,
+        "banner": "mashle.png"
+    },
+    {
+        "title": "The Apothecary Diaries",
+        "genre": [
+            "Mystery",
+            "Drama",
+            "Historical"
+        ],
+        "rating": 9.12,
+        "banner": "apothecary_diaries.png"
+    },
+    {
+        "title": "Oshi no ko",
+        "genre": [
+            "Drama",
+            "Music",
+            "Supernatural",
+            "Seinen"
+        ],
+        "rating": 9.61,
+        "banner": "oshi_no_no.png"
+    },
+    {
+        "title": "Love is like a cocktail",
+        "genre": [
+            "Comedy",
+            "Romance",
+            "Slice of Life"
+        ],
+        "rating": 8.41,
+        "banner": "love_is_like_a_cocktail.png"
+    },
+    {
+        "title": "Sugar Apple Fairy Tale",
+        "genre": [
+            "Adventure",
+            "Fantasy",
+            "Romance",
+            "Shoujo"
+        ],
+        "rating": 9.27,
+        "banner": "sugar_apple_ft.png"
+    },
+    {
+        "title": "Snow white with red hair",
+        "genre": [
+            "Adventure",
+            "Fantasy",
+            "Romance",
+            "Shoujo"
+        ],
+        "rating": 9.21,
+        "banner": "snow_white_w_red_hair.png"
+    },
+    {
+        "title": "The Reason Why Raeliana Ended up at the Duke's Mansion",
+        "genre": [
+            "Comedy",
+            "Mystery",
+            "Fantasy",
+            "Romance",
+            "Isekai"
+        ],
+        "rating": 9.14,
+        "banner": "raeliana_dukes_mansion.png"
+    },
+    {
+        "title": "School days",
+        "genre": [
+            "Drama",
+            "Romance",
+            "School",
+            "Harem"
+        ],
+        "rating": 7.58,
+        "banner": "school_days.png"
+    },
+    {
+        "title": "Charlotte",
+        "genre": [
+            "Drama",
+            "School",
+            "Super Power"
+        ],
+        "rating": 8.41,
+        "banner": "charlotte.png"
+    },
+    {
+        "title": "Tada Never Falls in Love",
+        "genre": [
+            "Comedy",
+            "Romance",
+            "Slice of Life"
+        ],
+        "rating": 7.81,
+        "banner": "tada_never_fall_in_love.png"
+    },
+    {
+        "title": "Golden Time",
+        "genre": [
+            "Comedy",
+            "Drama",
+            "Romance"
+        ],
+        "rating": 7.21,
+        "banner": "golden_time.png"
+    },
+    {
+        "title": "The Foolish Angel Dances with the Devil",
+        "genre": [
+            "Comedy",
+            "Romance",
+            "School",
+            "Supernatural"
+        ],
+        "rating": 8.11,
+        "banner": "the_foolish_angle_dances_w_the_devil.png"
+    },
+    {
+        "title": "Danchigai",
+        "genre": [
+            "Comedy",
+            "Slice of Life"
+        ],
+        "rating": 6.81,
+        "banner": "danchigai.png"
+    },
+    {
+        "title": "More than a married couple, but not lovers.",
+        "genre": [
+            "Comedy",
+            "Drama",
+            "Romance",
+            "School",
+            "Seinen"
+        ],
+        "rating": 9.86,
+        "banner": "more_than_a_married_couple.png"
+    },
+    {
+        "title": "Saint Cecilia and Pastor Lawrence",
+        "genre": [
+            "Comedy",
+            "Fantasy",
+            "Romance",
+            "Shounen",
+            "Slice of Life"
+        ],
+        "rating": 9.18,
+        "banner": "saint_cecilia.png"
+    },
+    {
+        "title": "Date a live",
+        "genre": [
+            "Comedy",
+            "Mecha",
+            "Romance",
+            "School",
+            "Sci-Fi",
+            "Harem"
+        ],
+        "rating": 9.24,
+        "banner": "date_a_live.png"
+    },
+    {
+        "title": "Our love has always been 10 centimeters apart.",
+        "genre": [
+            "Comedy",
+            "Drama",
+            "Romance",
+            "School"
+        ],
+        "rating": 6.73,
+        "banner": "our_love_has_always_been_10cm_apart.png"
+    },
+    {
+        "title": "Bocchi the rock",
+        "genre": [
+            "Comedy",
+            "Music",
+            "Slice of Life"
+        ],
+        "rating": 10,
+        "banner": "bocchi_the_rock.png"
+    },
+    {
+        "title": "Studio Apartment, Good Lighting, Angel Included",
+        "genre": [
+            "Comedy",
+            "Fantasy",
+            "Romance",
+            "Slice of Life",
+            "Supernatural"
+        ],
+        "rating": 7.81,
+        "banner": "studio_ap.png"
+    },
+    {
+        "title": "Teasing Master Takagi-san",
+        "genre": [
+            "Comedy",
+            "Romance",
+            "School",
+            "Shounen",
+            "Slice of Life"
+        ],
+        "rating": 9.86,
+        "banner": "teasing_master_takagi_san.png"
+    },
+    {
+        "title": "Fruits Basket",
+        "genre": [
+            "Comedy",
+            "Drama",
+            "Romance",
+            "Shoujo",
+            "Slice of Life",
+            "Supernatural"
+        ],
+        "rating": 9.74,
+        "banner": "fruits_basket.png"
+    },
+    {
+        "title": "7th Time Loop: The Villainess Enjoys a Carefree Life Married to Her Worst Enemy!",
+        "genre": [
+            "Fantasy",
+            "Romance"
+        ],
+        "rating": 9.87,
+        "banner": "7th_time_loop.png"
+    },
+    {
+        "title": "Hell's Paradise",
+        "genre": [
+            "Action",
+            "Adventure",
+            "Fantasy",
+            "Historical",
+            "Shounen"
+        ],
+        "rating": 9.97,
+        "banner": "hells_paradise.png"
+    },
+    {
+        "title": "Akame ga Kill!",
+        "genre": [
+            "Action",
+            "Adventure",
+            "Drama",
+            "Fantasy",
+            "Shounen"
+        ],
+        "rating": 7.21,
+        "banner": "akame_ga_kill.png"
+    },
+    {
+        "title": "Plastic Memories",
+        "genre": [
+            "Drama",
+            "Romance",
+            "Sci-Fi"
+        ],
+        "rating": 10,
+        "banner": "plastic_memories.png"
+    },
+    {
+        "title": "My Little Monster",
+        "genre": [
+            "Comedy",
+            "Romance",
+            "School",
+            "Shoujo",
+            "Slice of Life"
+        ],
+        "rating": 8.61,
+        "banner": "my_lil_monster.png"
+    },
+    {
+        "title": "Love, Chunibyo & Other Delusions!",
+        "genre": [
+            "Comedy",
+            "Drama",
+            "Romance",
+            "School",
+            "Slice of Life"
+        ],
+        "rating": 8.21,
+        "banner": "love_chunibyo.png"
+    },
+    {
+        "title": "Tokyo Revengers",
+        "genre": [
+            "Action",
+            "Drama",
+            "School",
+            "Shounen"
+        ],
+        "rating": 10,
+        "banner": "tokya_revengers.png"
+    },
+    {
+        "title": "Relife",
+        "genre": [
+            "Romance",
+            "School",
+            "Slice of Life"
+        ],
+        "rating": 7.81,
+        "banner": "relife.png"
+    },
+    {
+        "title": "Attack on Titan",
+        "genre": [
+            "Action",
+            "Mystery",
+            "Drama",
+            "Fantasy",
+            "Shounen",
+            "Super Power",
+            "Military"
+        ],
+        "rating": 6.51,
+        "banner": "aot.png"
+    },
+    {
+        "title": "Blue Spring Ride",
+        "genre": [
+            "Comedy",
+            "Drama",
+            "Romance",
+            "School",
+            "Shoujo",
+            "Slice of Life"
+        ],
+        "rating": 8.88,
+        "banner": "blue_spring_ride.png"
+    },
+    {
+        "title": "Wind Breaker",
+        "genre": [
+            "Action",
+            "Comedy",
+            "Drama",
+            "School"
+        ],
+        "rating": 9.32,
+        "banner": "windbreaker.png"
+    },
+    {
+        "title": "Shine Post",
+        "genre": [
+            "Music",
+            "Slice of Life"
+        ],
+        "rating": 8.41,
+        "banner": "shine_post.png"
+    },
+    {
+        "title": "Kubo won't let me be invisible",
+        "genre": [
+            "Comedy",
+            "Romance",
+            "School",
+            "Seinen"
+        ],
+        "rating": 9.76,
+        "banner": "kubo_wont_leme_be_invis.png"
+    },
+    {
+        "title": "Your lie in April",
+        "genre": [
+            "Drama",
+            "Music",
+            "Romance",
+            "School",
+            "Shounen"
+        ],
+        "rating": 10,
+        "banner": "your_lie_in_april.png"
+    },
+    {
+        "title": "EIGHTY-SIX",
+        "genre": [
+            "Action",
+            "Drama",
+            "Mecha",
+            "Sci-Fi",
+            "Military"
+        ],
+        "rating": 9.87,
+        "banner": "86.png"
+    },
+    {
+        "title": "Dororo",
+        "genre": [
+            "Action",
+            "Adventure",
+            "Demons",
+            "Historical",
+            "Samurai",
+            "Shounen",
+            "Supernatural"
+        ],
+        "rating": 9.76,
+        "banner": "dororo.png"
+    },
+    {
+        "title": "Astra Lost in Space",
+        "genre": [
+            "Adventure",
+            "Sci-Fi",
+            "Shounen",
+            "Space"
+        ],
+        "rating": 10,
+        "banner": "astra_lost_in_space.png"
+    },
+    {
+        "title": "Iroduku: The World in Colors",
+        "genre": [
+            "Drama",
+            "Magic",
+            "Romance",
+            "School"
+        ],
+        "rating": 9.01,
+        "banner": "the_world_in_colors.png"
+    },
+    {
+        "title": "Vinland Saga",
+        "genre": [
+            "Action",
+            "Adventure",
+            "Drama",
+            "Historical",
+            "Seinen"
+        ],
+        "rating": 2.5,
+        "banner": "vinland_saga.png"
+    },
+    {
+        "title": "Kono Oto Tomare!: Sounds of Life",
+        "genre": [
+            "Drama",
+            "Music",
+            "Romance",
+            "School",
+            "Shounen"
+        ],
+        "rating": 9.8,
+        "banner": "sound_of_life.png"
+    },
+    {
+        "title": "Re:Zero - Starting Life in Another World",
+        "genre": [
+            "Drama",
+            "Fantasy",
+            "Psychological",
+            "Thriller",
+            "Isekai"
+        ],
+        "rating": 9.78,
+        "banner": "re_zero.png"
+    },
+    {
+        "title": "The Cafe Terrace and Its Goddesses",
+        "genre": [
+            "Comedy",
+            "Ecchi",
+            "Romance",
+            "Shounen",
+            "Harem"
+        ],
+        "rating": 9.27,
+        "banner": "cafe_famili.png"
+    },
+    {
+        "title": "Love after World Domination",
+        "genre": [
+            "Action",
+            "Comedy",
+            "Romance",
+            "Shounen"
+        ],
+        "rating": 9.94,
+        "banner": "Koi-wa-Sekai-Seifuku-no-Ato-de-min.png"
+    },
+    {
+        "title": "Boarding School Juliet",
+        "genre": [
+            "Action",
+            "Comedy",
+            "Romance",
+            "School",
+            "Shounen"
+        ],
+        "rating": 9.97,
+        "banner": "bsj.png"
+    },
+    {
+        "title": "Days with My Stepsister",
+        "genre": [
+            "Comedy",
+            "Romance",
+            "Slice of Life",
+            "Psychological"
+        ],
+        "rating": 8.72,
+        "banner": "days_with_my_stepsis.png"
+    },
+    {
+        "title": "Alya Sometimes Hides Her Feelings In Russian",
+        "genre": [
+            "Comedy",
+            "Romance",
+            "Slice of Life"
+        ],
+        "rating": 10,
+        "banner": "alya_sometimes_hides_her_feelings_in_russian.png"
+    },
+    {
+        "title": "Mob Psycho 100",
+        "genre": [
+            "Action",
+            "Comedy",
+            "Slice of Life",
+            "Supernatural"
+        ],
+        "rating": 8.49,
+        "banner": "mob_psyhco_100.png"
+    },
+    {
+        "title": "Wistoria: Wand and Sword",
+        "genre": [
+            "Action",
+            "Adventure",
+            "Fantasy",
+            "School"
+        ],
+        "rating": 9.25,
+        "banner": "wistoria.png"
+    },
+    {
+        "title": "The Magical Girl and the Evil Lieutenant Used to Be Archenemies",
+        "genre": [
+            "Comedy",
+            "Fantasy",
+            "Romance"
+        ],
+        "rating": 9.61,
+        "banner": "the_magical_girl_and_the_evil_lieutenant.png"
+    },
+    {
+        "title": "Mushoku Tensei: Jobless Reincarnation",
+        "genre": [
+            "Adventure",
+            "Drama",
+            "Ecchi",
+            "Fantasy",
+            "Isekai"
+        ],
+        "rating": 9.86,
+        "banner": "mushoku_tensei.png"
+    },
+    {
+        "title": "Taisho Otome Fairy Tale",
+        "genre": [
+            "Comedy",
+            "Historical",
+            "Romance",
+            "Slice of Life"
+        ],
+        "rating": 8.62,
+        "banner": "taisho_otome_fairy_tale.png"
+    },
+    {
+        "title": "Pseudo Harem",
+        "genre": [
+            "Comedy",
+            "Romance",
+            "School",
+            "Shounen",
+            "Slice of Life"
+        ],
+        "rating": 9.99,
+        "banner": "giji_harem.png"
+    },
+    {
+        "title": "Tokyo Ghoul",
+        "genre": [
+            "Action",
+            "Mystery",
+            "Drama",
+            "Horror",
+            "Supernatural",
+            "Psychological",
+            "Seinen"
+        ],
+        "rating": 7.8,
+        "banner": "tokyo_ghoul.jpg"
+    },
+    {
+        "title": "Mieruko chan",
+        "genre": [
+            "Comedy",
+            "Horror",
+            "Supernatural"
+        ],
+        "rating": 9.99,
+        "banner": "mieruko_chan.jpg"
+    },
+    {
+        "title": "Assassination Classroom",
+        "genre": [
+            "Action",
+            "Comedy",
+            "School",
+            "Shounen"
+        ],
+        "rating": 9.68,
+        "banner": "assassination_classroom.png"
+    },
+    {
+        "title": "Kiss x Sis",
+        "genre": [
+            "Comedy",
+            "Ecchi",
+            "Romance",
+            "School",
+            "Harem",
+            "Seinen"
+        ],
+        "rating": 7.04,
+        "banner": "kiss_x_sis.jpg"
+    },
+    {
+        "title": "Scissor Seven",
+        "genre": [
+            "Action",
+            "Comedy",
+            "Mystery",
+            "Drama",
+            "Martial Arts",
+            "Romance",
+            "Super Power"
+        ],
+        "rating": 9.43,
+        "banner": "scissor_seven.jpg"
+    },
+    {
+        "title": "2.5 Dimensional Seduction",
+        "genre": [
+            "Comedy",
+            "Ecchi",
+            "School",
+            "Shounen",
+            "Harem"
+        ],
+        "rating": 7.61,
+        "banner": "2.5_dimensional_seduction.png"
+    },
+    {
+        "title": "365 Days to the Wedding",
+        "genre": [
+            "Romance",
+            "Seinen"
+        ],
+        "rating": 6.51,
+        "banner": "365_days_to_the_wedding.jpg"
+    },
+    {
+        "title": "Wotakoi: Love is Hard for Otaku",
+        "genre": [
+            "Comedy",
+            "Romance",
+            "Slice of Life"
+        ],
+        "rating": 8.01,
+        "banner": "love_is_hard_for_otaku.jpg"
+    },
+    {
+        "title": "Dan Da Dan",
+        "genre": [
+            "Action",
+            "Comedy",
+            "Supernatural"
+        ],
+        "rating": 9.74,
+        "banner": "dandadan.jpg"
+    },
+    {
+        "title": "Akebi's Sailor Uniform",
+        "genre": [
+            "School",
+            "Slice of Life"
+        ],
+        "rating": 8.01,
+        "banner": "akebis_sailor_uniform.png"
+    },
+    {
+        "title": "Guilty Crown",
+        "genre": [
+            "Action",
+            "Drama",
+            "Mecha",
+            "Romance",
+            "Sci-Fi",
+            "Super Power"
+        ],
+        "rating": 4.01,
+        "banner": "guilty_crown.jpg"
+    },
+    {
+        "title": "Bakemonogatari",
+        "genre": [
+            "Mystery",
+            "Romance",
+            "Vampire",
+            "Supernatural"
+        ],
+        "rating": 6.01,
+        "banner": "monogatari.jpg"
+    },
+    {
+        "title": "Wonder Egg Priority",
+        "genre": [
+            "Drama",
+            "Fantasy",
+            "Psychological"
+        ],
+        "rating": 8.78,
+        "banner": "wonder_egg_priority.jpg"
+    },
+    {
+        "title": "Heavenly Delusion",
+        "genre": [
+            "Adventure",
+            "Mystery",
+            "Sci-Fi",
+            "Seinen"
+        ],
+        "rating": 9.79,
+        "banner": "heavenly_delusion.png"
+    },
+    {
+        "title": "I'm Getting Married to a Girl I Hate in My Class",
+        "genre": [
+            "Comedy",
+            "Romance"
+        ],
+        "rating": 7.01,
+        "banner": "im_getting_married_to_a_girl_i_hate_in_my_class.jpg"
+    },
+    {
+        "title": "Tower of God",
+        "genre": [
+            "Action",
+            "Adventure",
+            "Mystery",
+            "Drama",
+            "Fantasy"
+        ],
+        "rating": 8.48,
+        "banner": "tower_of_god.jpg"
+    },
+    {
+        "title": "Makeine: Too Many Losing Heroines!",
+        "genre": [
+            "Comedy",
+            "Romance",
+            "School"
+        ],
+        "rating": 6.71,
+        "banner": "makeine.jpg"
+    },
+    {
+        "title": "No Game, No Life",
+        "genre": [
+            "Adventure",
+            "Comedy",
+            "Ecchi",
+            "Fantasy",
+            "Game",
+            "Supernatural",
+            "Isekai"
+        ],
+        "rating": 10,
+        "banner": "no_game_no_life.jpeg"
+    },
+    {
+        "title": "Blue Box",
+        "genre": [
+            "Romance",
+            "School",
+            "Shounen",
+            "Sports"
+        ],
+        "rating": 6.01,
+        "banner": "blue_box.png"
+    },
+    {
+        "title": "Sakamoto Days",
+        "genre": [
+            "Action",
+            "Comedy",
+            "Shounen"
+        ],
+        "rating": 8.76,
+        "banner": "sakamoto_days.jpg"
+    },
+    {
+        "title": "Neon Genesis Evangelion",
+        "genre": [
+            "Action",
+            "Dementia",
+            "Drama",
+            "Mecha",
+            "Sci-Fi",
+            "Psychological"
+        ],
+        "rating": 8.34,
+        "banner": "neon_genesis_evangelion.jpg"
+    },
+    {
+        "title": "Cautious Hero: The Hero Is Overpowered but Overly Cautious",
+        "genre": [
+            "Action",
+            "Adventure",
+            "Comedy",
+            "Fantasy",
+            "Isekai"
+        ],
+        "rating": 8.96,
+        "banner": "cautious_hero.jpg"
+    },
+    {
+        "title": "Ya Boy Kongming!",
+        "genre": [
+            "Comedy",
+            "Music",
+            "Historical"
+        ],
+        "rating": 8.89,
+        "banner": "ya_boy_kongming.png"
+    },
+    {
+        "title": "Toradora!",
+        "genre": [
+            "Comedy",
+            "Romance",
+            "School",
+            "Slice of Life"
+        ],
+        "rating": 7.01,
+        "banner": "toradora.jpg"
+    },
+    {
+        "title": "Insomniacs After School",
+        "genre": [
+            "Romance",
+            "School",
+            "Seinen"
+        ],
+        "rating": 9.09,
+        "banner": "insomniacs_after_school.jpg"
+    },
+    {
+        "title": "Tsukigakirei",
+        "genre": [
+            "Romance",
+            "School",
+            "Slice of Life"
+        ],
+        "rating": 9.99,
+        "banner": "tsukigakirei.jpg"
+    },
+    {
+        "title": "Steins;Gate",
+        "genre": [
+            "Drama",
+            "Sci-Fi",
+            "Psychological",
+            "Thriller",
+            "Isekai"
+        ],
+        "rating": 10,
+        "banner": "steins_gate.png"
+    },
+    {
+        "title": "KonoSuba: God's Blessing on This Wonderful World!",
+        "genre": [
+            "Adventure",
+            "Comedy",
+            "Fantasy",
+            "Parody",
+            "Isekai"
+        ],
+        "rating": 6.71,
+        "banner": "konosuba.jpg"
+    },
+    {
+        "title": "Summer Pockets",
+        "genre": [
+            "Drama",
+            "Romance",
+            "Slice of Life",
+            "Supernatural"
+        ],
+        "rating": 7.81,
+        "banner": "summer_pockets.png"
+    },
+    {
+        "title": "The Eminence in Shadow",
+        "genre": [
+            "Action",
+            "Comedy",
+            "Fantasy",
+            "Isekai"
+        ],
+        "rating": 8.67,
+        "banner": "the_eminence_in_shadow.jpg"
+    },
+    {
+        "title": "Higehiro: After Being Rejected, I Shaved and Took in a High School Runaway",
+        "genre": [
+            "Drama",
+            "Romance"
+        ],
+        "rating": 9.97,
+        "banner": "higehiro.png"
+    }
+]

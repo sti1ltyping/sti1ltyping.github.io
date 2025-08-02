@@ -1,102 +1,213 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile Page</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🌸 My Anime Hub 🌸</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Poppins:wght@400;600&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Fullscreen background */
+    .bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      background: url("img/wp1.jpg") no-repeat center center / cover;
+      filter: brightness(0.7);
+    }
+
+    /* Top-right controls */
+    .controls {
+      position: fixed;
+      top: 15px;
+      right: 20px;
+      display: flex;
+      gap: 10px;
+      z-index: 20;
+    }
+
+    .toggle-btn {
+      padding: 0.6rem 1rem;
+      font-size: 0.9rem;
+      font-weight: bold;
+      color: #fff;
+      background: #ff6ec7;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 0 10px #ff6ec7, 0 0 20px #6eb5ff;
+      transition: transform 0.2s;
+    }
+
+    .toggle-btn:hover {
+      transform: scale(1.1);
+    }
+
+    header {
+      text-align: center;
+      padding: 3rem 1rem 1rem;
+      z-index: 1;
+    }
+
+    header h1 {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 2rem;
+      color: #ffb3ec;
+      text-shadow: 0 0 10px #ff6ec7, 0 0 20px #ff6ec7;
+    }
+
+    header p {
+      font-size: 1rem;
+      color: #cce7ff;
+      text-shadow: 0 0 8px #6eb5ff;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      width: 90%;
+      max-width: 1000px;
+      margin: 2rem auto;
+      z-index: 1;
+    }
+
+    .card {
+      background: rgba(0, 0, 0, 0.6);
+      border: 2px solid transparent;
+      border-radius: 20px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card:hover {
+      transform: translateY(-10px) scale(1.05);
+      border-color: #ff6ec7;
+      box-shadow: 0 0 20px #ff6ec7, 0 0 40px #6eb5ff;
+    }
+
+    .card h3 {
+      font-size: 1.4rem;
+      color: #fff;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 0 8px #ff6ec7;
+    }
+
+    .card p {
+      font-size: 0.9rem;
+      color: #cce7ff;
+    }
+
+    footer {
+      margin-top: auto;
+      padding: 1rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #eee;
+      z-index: 1;
+      text-shadow: 0 0 5px #000;
+    }
+
+    /* Cherry blossom petals */
+    .petal {
+      position: fixed;
+      top: -10px;
+      font-size: 20px;
+      animation: fall linear infinite;
+      z-index: 50;
+      pointer-events: none;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+  </style>
 </head>
-<body class="dark-theme">
-    <div class="theme-toggle-container">
-        <button id="theme-toggle">Theme</button>
-    </div>
+<body>
+  <div class="bg"></div>
 
-    <div class="profile-container">
+  <!-- Top right controls -->
+  <div class="controls">
+    <button class="toggle-btn" onclick="togglePetals()">🌸</button>
+  </div>
 
-        <div class="profile-banner" id="profile-banner">
+  <header>
+    <h1>🌸 Welcome 🌸</h1>
+    <p>Choose your adventure ✨</p>
+  </header>
 
-        </div>
+  <main class="grid">
+    <a class="card" href="home/">
+      <h3>🏠 About me</h3>
+      <p>Get to stalk me</p>
+    </a>
+    <a class="card" href="anime/">
+      <h3>🎬 Anime</h3>
+      <p>My anime list</p>
+    </a>
+    <a class="card" href="games/">
+      <h3>🎮 Games</h3>
+      <p>bs</p>
+    </a>
+    <a class="card" href="game-achievement/">
+      <h3>🏆 Achievements</h3>
+      <p>No lifed few games</p>
+    </a>
+  </main>
 
-        <div class="profile-content">
-            <div class="profile-picture">
-                <img src="https://cdn.discordapp.com/avatars/840587974000771072/c477213931d64741416714034b13196e.webp?size=100" alt="Profile Picture">
-            </div>
-            <div class="profile-description">
-                <h1>Alya is a cutie</h1> <!-- Display name -->
-                <h4 class="username">sti1ltyping</h4> <!-- Username -->
-                <br>
-                <p></p>
-                <p>♡¸.Can I take a picture of you? I need to show Santa exactly what I want for christmas♡love</p>
-                <br>
-                <p>₍ ᐢ.ˬ.ᐢ₎˚୨୧</p>
-            </div>
-        </div>
+  <footer>
+    Made with 💖 by me
+  </footer>
 
-        <div class="profile-boxes">
-            <div class="box anime-box" onclick="goToPage('AnimeYA')">
-                <div class="box-content">
-                    <h2>Anime</h2>
-                </div>
-            </div>
-            <div class="box music-box" onclick="goToPage('music.html')">
-                <div class="box-content">
-                    <h2>Music</h2>
-                </div>
-            </div>
-            <div class="box games-box" onclick="goToPage('games.html')">
-                <div class="box-content">
-                    <h2>Games</h2>
-                </div>
-            </div>
-            <div class="box discord-box" onclick="goToPage('discord.html')">
-                <div class="box-content">
-                    <h2>Discord</h2>
-                </div>
-            </div>
-            <div class="box developer-box" onclick="goToPage('developer.html')">
-                <div class="box-content">
-                    <h2>Developer</h2>
-                </div>
-            </div>
-        </div>
-    </div>
+  <script>
+    // Petal toggle logic
+    let petalsEnabled = true;
+    let petalInterval;
 
+    function createPetal() {
+      const petal = document.createElement("div");
+      petal.classList.add("petal");
+      petal.textContent = "🌸";
+      petal.style.left = Math.random() * 100 + "vw";
+      petal.style.animationDuration = (5 + Math.random() * 5) + "s";
+      petal.style.fontSize = (16 + Math.random() * 10) + "px";
+      document.body.appendChild(petal);
+      setTimeout(() => petal.remove(), 10000);
+    }
 
-    <script>
-        function goToPage(page) {
-            window.location.href = page;
-        }
+    function togglePetals() {
+      if (!petalsEnabled) {
+        petalInterval = setInterval(createPetal, 400);
+        petalsEnabled = true;
+      } else {
+        clearInterval(petalInterval);
+        petalsEnabled = false;
+      }
+    }
 
-        const banners = [
-            'banner_0.png',
-            'banner_1.png',
-            'banner_2.png',
-            'banner_3.png',
-        ];
-        let currentBannerIndex = 0;
-
-        function setRandomBanner() {
-            const bannerElement = document.getElementById('profile-banner');
-            currentBannerIndex = (currentBannerIndex + 1) % banners.length;
-            const bannerImage = `images/banners/${banners[currentBannerIndex]}`;
-
-            bannerElement.style.backgroundImage = `url(${bannerImage})`;
-            bannerElement.style.backgroundSize = 'cover';
-            bannerElement.style.backgroundPosition = 'center';
-            bannerElement.style.height = '300px';
-        }
-
-        setInterval(setRandomBanner, 5000);
-
-        const themeToggleButton = document.getElementById('theme-toggle');
-        themeToggleButton.addEventListener('click', () => {
-            document.body.classList.toggle('dark-theme');
-            document.body.classList.toggle('light-theme');
-        });
-
-        window.onload = function() {
-            setRandomBanner();
-        }
-    </script>
+    // start petals by default
+    petalInterval = setInterval(createPetal, 400);
+  </script>
 </body>
 </html>
