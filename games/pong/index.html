@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🏓 Pong Game 🏓</title>
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #111;
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      flex-direction: column;
+    }
+    canvas {
+      background: black;
+      display: block;
+      border: 2px solid #ff6ec7;
+      box-shadow: 0 0 20px #ff6ec7, 0 0 40px #6eb5ff;
+    }
+    .controls {
+      margin-bottom: 15px;
+    }
+    button {
+      padding: 0.6rem 1rem;
+      font-size: 1rem;
+      font-weight: bold;
+      color: #fff;
+      background: #ff6ec7;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      margin: 0 10px;
+      box-shadow: 0 0 10px #ff6ec7, 0 0 20px #6eb5ff;
+    }
+    button:hover {
+      transform: scale(1.1);
+    }
+    .instructions {
+      width: 800px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      margin-top: 10px;
+      color: #ffb3ec;
+      text-shadow: 0 0 5px #6eb5ff;
+    }
+  </style>
+</head>
+<body>
+  <div class="controls">
+    <button onclick="startGame('pvp')">👫 Player vs Player</button>
+    <button onclick="startGame('ai')">🤖 Player vs Computer</button>
+  </div>
+  <canvas id="pong" width="800" height="500"></canvas>
+
+  <div class="instructions">
+    <div>👈 Use <b>W</b> / <b>S</b> to move</div>
+    <div>Use <b>▲</b> / <b>▼</b> to move 👉</div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById("pong");
+    const ctx = canvas.getContext("2d");
+
+    const paddleWidth = 10, paddleHeight = 100, ballSize = 12;
+    let gameMode = "pvp"; // default
+    let leftPaddle, rightPaddle, ball, leftScore, rightScore;
+
+    function resetGame() {
+      leftPaddle = { x: 0, y: canvas.height/2 - paddleHeight/2, dy: 0 };
+      rightPaddle = { x: canvas.width - paddleWidth, y: canvas.height/2 - paddleHeight/2, dy: 0 };
+      ball = { x: canvas.width/2, y: canvas.height/2, dx: 4 * (Math.random() > 0.5 ? 1 : -1), dy: 3 * (Math.random() > 0.5 ? 1 : -1) };
+      leftScore = 0;
+      rightScore = 0;
+    }
+
+    function drawRect(x, y, w, h, color) {
+      ctx.fillStyle = color;
+      ctx.fillRect(x, y, w, h);
+    }
+
+    function drawCircle(x, y, r, color) {
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      ctx.arc(x, y, r, 0, Math.PI * 2, false);
+      ctx.closePath();
+      ctx.fill();
+    }
+
+    function drawText(text, x, y) {
+      ctx.fillStyle = "#fff";
+      ctx.font = "30px Poppins";
+      ctx.fillText(text, x, y);
+    }
+
+    function drawNet() {
+      for (let i = 0; i <= canvas.height; i += 20) {
+        drawRect(canvas.width/2 - 1, i, 2, 10, "#fff");
+      }
+    }
+
+    function render() {
+      drawRect(0, 0, canvas.width, canvas.height, "#000");
+      drawNet();
+      drawText(leftScore, canvas.width/4, 50);
+      drawText(rightScore, 3*canvas.width/4, 50);
+      drawRect(leftPaddle.x, leftPaddle.y, paddleWidth, paddleHeight, "#ff6ec7");
+      drawRect(rightPaddle.x, rightPaddle.y, paddleWidth, paddleHeight, "#6eb5ff");
+      drawCircle(ball.x, ball.y, ballSize, "#fff");
+    }
+
+    function movePaddles() {
+      leftPaddle.y += leftPaddle.dy;
+      rightPaddle.y += rightPaddle.dy;
+
+      [leftPaddle, rightPaddle].forEach(p => {
+        if (p.y < 0) p.y = 0;
+        if (p.y + paddleHeight > canvas.height) p.y = canvas.height - paddleHeight;
+      });
+
+      if (gameMode === "ai") {
+        const center = rightPaddle.y + paddleHeight/2;
+        if (ball.y < center) rightPaddle.dy = -4;
+        else if (ball.y > center) rightPaddle.dy = 4;
+        else rightPaddle.dy = 0;
+      }
+    }
+
+    function moveBall() {
+      ball.x += ball.dx;
+      ball.y += ball.dy;
+
+      // wall collision (top/bottom)
+      if (ball.y - ballSize < 0 || ball.y + ballSize > canvas.height) {
+        ball.dy = -ball.dy;
+      }
+
+      // paddle collision
+      const paddle = ball.x < canvas.width/2 ? leftPaddle : rightPaddle;
+      if (
+        ball.x - ballSize < paddle.x + paddleWidth &&
+        ball.x + ballSize > paddle.x &&
+        ball.y > paddle.y &&
+        ball.y < paddle.y + paddleHeight
+      ) {
+        ball.dx = -ball.dx;
+        let hitPos = ball.y - (paddle.y + paddleHeight/2);
+        hitPos = hitPos / (paddleHeight/2);
+        ball.dy = hitPos * 5;
+      }
+
+      // score
+      if (ball.x - ballSize < 0) {
+        rightScore++;
+        resetBall();
+      } else if (ball.x + ballSize > canvas.width) {
+        leftScore++;
+        resetBall();
+      }
+    }
+
+    function resetBall() {
+      ball.x = canvas.width/2;
+      ball.y = canvas.height/2;
+      ball.dx = 4 * (Math.random() > 0.5 ? 1 : -1);
+      ball.dy = 3 * (Math.random() > 0.5 ? 1 : -1);
+    }
+
+    function gameLoop() {
+      movePaddles();
+      moveBall();
+      render();
+    }
+
+    function startGame(mode) {
+      gameMode = mode;
+      resetGame();
+    }
+
+    document.addEventListener("keydown", e => {
+      if (e.key === "w") leftPaddle.dy = -6;
+      if (e.key === "s") leftPaddle.dy = 6;
+      if (gameMode === "pvp") {
+        if (e.key === "ArrowUp") rightPaddle.dy = -6;
+        if (e.key === "ArrowDown") rightPaddle.dy = 6;
+      }
+    });
+
+    document.addEventListener("keyup", e => {
+      if (e.key === "w" || e.key === "s") leftPaddle.dy = 0;
+      if (gameMode === "pvp" && (e.key === "ArrowUp" || e.key === "ArrowDown")) rightPaddle.dy = 0;
+    });
+
+    startGame("pvp");
+    setInterval(gameLoop, 1000/60);
+  </script>
+</body>
+</html>

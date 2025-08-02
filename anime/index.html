@@ -290,7 +290,6 @@
   <div id="petalsLeft"></div>
   <div id="petalsRight"></div>
 
-  <!-- Stats Modal -->
   <div id="statsModal">
     <div class="modal-content">
       <h2>📊 Statistics 📊</h2>
@@ -347,7 +346,6 @@
         const genres = new Set();
         animeData.forEach(anime => anime.genre.forEach(g => genres.add(g)));
 
-        // Sort genres alphabetically
         const sortedGenres = Array.from(genres).sort((a, b) => a.localeCompare(b));
 
         sortedGenres.forEach(g => {
@@ -385,7 +383,6 @@
       applyFilters();
     }
 
-    // 🌸 Petal logic
     function createPetal(container) {
       const petal = document.createElement("div");
       petal.className = "petal";
@@ -416,7 +413,6 @@
       else stopPetals();
     }
 
-    // 📊 Stats Modal
     function openStats() {
       document.getElementById("statsModal").style.display = "flex";
       renderPieChart();
@@ -434,7 +430,6 @@
             });
         });
 
-        // Group small genres into "Others"
         const grouped = {};
         let othersCount = 0;
         Object.entries(genreCount).forEach(([genre, count]) => {
@@ -443,7 +438,6 @@
         });
         if (othersCount > 0) grouped["Others"] = othersCount;
 
-        // Color mapping based on CSS classes
         const genreColors = {
             "Romance": "#f651d2",
             "Action": "#6eb5ff",

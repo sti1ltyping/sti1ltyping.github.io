@@ -144,7 +144,6 @@
 <body>
   <div class="bg"></div>
 
-  <!-- Top right controls -->
   <div class="controls">
     <button class="home-btn" onclick="location.href='../'">🏠</button>
     <button class="toggle-btn" onclick="togglePetals()">🌸</button>
@@ -166,7 +165,6 @@
     </a>
     <a class="card" href="#">
       <h3>✨ Coming Soon</h3>
-      <p>More anime games on the way!</p>
     </a>
   </main>
 
@@ -175,7 +173,6 @@
   </footer>
 
   <script>
-    // Petal toggle logic
     let petalsEnabled = true;
     let petalInterval;
 
@@ -200,7 +197,6 @@
       }
     }
 
-    // Start petals by default
     petalInterval = setInterval(createPetal, 400);
   </script>
 </body>
