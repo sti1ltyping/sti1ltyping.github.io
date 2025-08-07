@@ -325,6 +325,18 @@
         "banner": "bunnygirlsenpai.png"
     },
     {
+        "title": "My Dress-Up Darling",
+        "genre": [
+            "Comedy",
+            "Ecchi",
+            "Romance",
+            "School",
+            "Seinen"
+        ],
+        "rating": 8.42,
+        "banner": "my_dressup_darling.png"
+    },
+    {
         "title": "Our Dating Story: The Experienced You and The Inexperienced Me, Kimizero",
         "genre": [
             "Romance",
@@ -698,6 +710,16 @@
         "banner": "tokya_revengers.png"
     },
     {
+        "title": "Solo Leveling",
+        "genre": [
+            "Action",
+            "Adventure",
+            "Fantasy"
+        ],
+        "rating": 8.93,
+        "banner": "solo_leveling.jpeg"
+    },
+    {
         "title": "Relife",
         "genre": [
             "Romance",
@@ -776,6 +798,17 @@
         ],
         "rating": 10,
         "banner": "your_lie_in_april.png"
+    },
+    {
+        "title": "Tsuredure Children",
+        "genre": [
+            "Comedy",
+            "Romance",
+            "School",
+            "Shounen"
+        ],
+        "rating": 9.11,
+        "banner": "tsuredure_children.jpg"
     },
     {
         "title": "EIGHTY-SIX",
@@ -1327,5 +1360,16 @@
         ],
         "rating": 9.97,
         "banner": "higehiro.png"
+    },
+    {
+        "title": "Maid sama",
+        "genre": [
+            "Action",
+            "Adventure",
+            "Fantasy",
+            "Isekai"
+        ],
+        "rating": 8.71,
+        "banner": "maid_sama.jpg"
     }
 ]
