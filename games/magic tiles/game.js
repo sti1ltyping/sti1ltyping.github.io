@@ -2,7 +2,7 @@
 const DEFAULT_CONFIG = {
   LANES: 4,
   NOTE_SPEED: 4, // Default pixels per frame
-  NOTE_SIZE: 40, // Default note height in pixels
+  NOTE_SIZE: 30, // Default note height in pixels
   HIT_LINE_Y: 0.85, // Default 85% down the screen
   PERFECT_WINDOW: 50, // milliseconds
   GREAT_WINDOW: 100,
@@ -90,12 +90,26 @@ class Game {
   }
   
   setupCanvas() {
-    const container = this.canvas.parentElement;
-    this.canvas.width = 600;
-    this.canvas.height = window.innerHeight;
+    const updateCanvasSize = () => {
+      const container = this.canvas.parentElement;
+      const isMobile = window.innerWidth <= 768;
+      
+      if (isMobile) {
+        // Mobile: use full width, proportional height
+        this.canvas.width = Math.min(600, window.innerWidth);
+        this.canvas.height = window.innerHeight - 100; // Leave space for UI
+      } else {
+        // Desktop: standard size
+        this.canvas.width = 600;
+        this.canvas.height = window.innerHeight;
+      }
+    };
     
-    window.addEventListener('resize', () => {
-      this.canvas.height = window.innerHeight;
+    updateCanvasSize();
+    
+    window.addEventListener('resize', updateCanvasSize);
+    window.addEventListener('orientationchange', () => {
+      setTimeout(updateCanvasSize, 100);
     });
   }
   
