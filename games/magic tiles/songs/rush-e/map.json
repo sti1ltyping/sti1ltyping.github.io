@@ -6,7 +6,7 @@
   "config": {
     "NOTE_SPEED": 12,
     "HIT_LINE_Y": 0.81,
-    "NOTE_SIZE": 100
+    "NOTE_SIZE": 120
   },
   "notes": [
     {
