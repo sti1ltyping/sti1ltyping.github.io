@@ -61,6 +61,9 @@ class Game {
     // Active game config (will be set per song)
     this.config = { ...DEFAULT_CONFIG };
     
+    // Debug mode (set to true to see touch detection logs)
+    this.debugMode = false;
+    
     this.notes = [];
     this.activeHolds = [];
     this.score = 0;
@@ -153,6 +156,7 @@ class Game {
       
       for (let touch of e.changedTouches) {
         const lane = this.getTouchLane(touch.clientX);
+        console.log('Touch detected - Lane:', lane, 'ClientX:', touch.clientX);
         if (lane !== -1) {
           this.lanePressed[lane] = true;
           this.handleLanePress(lane);
@@ -200,15 +204,38 @@ class Game {
   getTouchLane(clientX) {
     const rect = this.canvas.getBoundingClientRect();
     const x = clientX - rect.left;
-    const laneWidth = this.canvas.width / this.config.LANES;
-    return Math.floor(x / laneWidth);
+    
+    // Account for canvas scaling: use displayed width, not internal width
+    const displayedWidth = rect.width;
+    const laneWidth = displayedWidth / this.config.LANES;
+    const lane = Math.floor(x / laneWidth);
+    
+    // Debug logging
+    if (this.debugMode) {
+      console.log('Touch Debug:', {
+        clientX: clientX,
+        rectLeft: rect.left,
+        relativeX: x,
+        displayedWidth: displayedWidth,
+        canvasInternalWidth: this.canvas.width,
+        laneWidth: laneWidth,
+        calculatedLane: lane,
+        totalLanes: this.config.LANES
+      });
+    }
+    
+    return lane >= 0 && lane < this.config.LANES ? lane : -1;
   }
   
   getMouseLane(clientX) {
     const rect = this.canvas.getBoundingClientRect();
     const x = clientX - rect.left;
-    const laneWidth = this.canvas.width / this.config.LANES;
+    
+    // Account for canvas scaling: use displayed width, not internal width
+    const displayedWidth = rect.width;
+    const laneWidth = displayedWidth / this.config.LANES;
     const lane = Math.floor(x / laneWidth);
+    
     return lane >= 0 && lane < this.config.LANES ? lane : -1;
   }
   
