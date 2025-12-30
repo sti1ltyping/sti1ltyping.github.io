@@ -1371,5 +1371,151 @@
         ],
         "rating": 8.71,
         "banner": "maid_sama.jpg"
+    },
+    {
+        "title": "Fire Force",
+        "genre": [
+            "Action",
+            "Shounen",
+            "Supernatural"
+        ],
+        "rating": 9.77,
+        "banner": ""
+    },
+    {
+        "title": "Fullmetal Alchemist",
+        "genre": [
+            "Action",
+            "Adventure",
+            "Comedy",
+            "Drama",
+            "Fantasy",
+            "Magic",
+            "Shounen",
+            "Military"
+        ],
+        "rating": 8.50,
+        "banner": ""
+    },
+    {
+        "title": "The Detective Is Already Dead",
+        "genre": [
+            "Comedy",
+            "Mystery",
+            "Drama",
+            "Romance"
+        ],
+        "rating": 9.42,
+        "banner": ""
+    },
+    {
+        "title": "Zom 100: Bucket List of the Dead",
+        "genre": [
+            "Action",
+            "Comedy",
+            "Horror",
+            "Supernatural",
+            "Thriller",
+            "Seinen"
+        ],
+        "rating": 8.64,
+        "banner": ""
+    },
+    {
+        "title": "Atri -My Dear Moments-",
+        "genre": [
+            "Drama",
+            "Romance",
+            "Sci-Fi"
+        ],
+        "rating": 9.67,
+        "banner": ""
+    },
+    {
+        "title": "Corpse Party: Tortured Souls",
+        "genre": [
+            "Mystery",
+            "Horror",
+            "Supernatural"
+        ],
+        "rating": 9.12,
+        "banner": ""
+    },
+    {
+        "title": "Takopi's Original Sin",
+        "genre": [
+            "Drama",
+            "Sci-Fi",
+            "Shounen",
+            "Psychological"
+        ],
+        "rating": 9.11,
+        "banner": ""
+    },
+    {
+        "title": "You Are Ms. Servant.",
+        "genre": [
+            "Comedy",
+            "Romance"
+        ],
+        "rating": 5.01,
+        "banner": ""
+    },
+    {
+        "title": "Call of the Night",
+        "genre": [
+            "Romance",
+            "Shounen",
+            "Supernatural"
+        ],
+        "rating": 8.30,
+        "banner": ""
+    },
+    {
+        "title": "The Summer Hikaru Died",
+        "genre": [
+            "Mystery",
+            "Horror",
+            "Supernatural",
+            "Psychological",
+            "Thriller"
+        ],
+        "rating": 7.55,
+        "banner": ""
+    },
+    {
+        "title": "There's No Freaking Way I'll be Your Lover! Unless...",
+        "genre": [
+            "Comedy",
+            "Romance",
+            "School",
+            "Shoujo"
+        ],
+        "rating": 8.44,
+        "banner": ""
+    },
+    {
+        "title": "Violet Evergarden",
+        "genre": [
+            "Drama",
+            "Fantasy",
+            "Slice of Life"
+        ],
+        "rating": 6.32,
+        "banner": ""
+    },
+    {
+        "title": "Code Geass: Lelouch of the Rebellion",
+        "genre": [
+            "Action",
+            "Drama",
+            "Mecha",
+            "School",
+            "Sci-Fi",
+            "Super Power",
+            "Military"
+        ],
+        "rating": 10,
+        "banner": ""
     }
 ]

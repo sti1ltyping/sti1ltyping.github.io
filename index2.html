@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🎮 Games 🎮</title>
+  <title>🌸 About Me 🌸</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Cormorant+Garamond:wght@300;400;600&family=Press+Start+2P&display=swap');
 
@@ -22,6 +22,7 @@
       background: #0a0a0f;
     }
 
+    /* Animated gradient background overlay */
     .bg-overlay {
       position: fixed;
       top: 0;
@@ -48,10 +49,11 @@
       width: 100%;
       height: 100%;
       z-index: -2;
-      background: url("../img/wp1.jpg") no-repeat center center / cover;
+      background: url("img/wp1.jpg") no-repeat center center / cover;
       filter: brightness(0.4) contrast(1.1);
     }
 
+    /* Grain texture overlay */
     .grain {
       position: fixed;
       top: 0;
@@ -73,7 +75,7 @@
       z-index: 100;
     }
 
-    .toggle-btn, .home-btn {
+    .toggle-btn {
       padding: 0.7rem 1.2rem;
       font-size: 1rem;
       font-weight: 600;
@@ -85,13 +87,9 @@
       backdrop-filter: blur(10px);
       box-shadow: 0 4px 20px rgba(255, 110, 199, 0.3);
       transition: all 0.3s ease;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
     }
 
-    .toggle-btn:hover, .home-btn:hover {
+    .toggle-btn:hover {
       transform: translateY(-2px) scale(1.05);
       box-shadow: 0 6px 30px rgba(255, 110, 199, 0.5);
     }
@@ -102,6 +100,7 @@
       padding: 0 2rem;
     }
 
+    /* Header Section */
     header {
       text-align: center;
       padding: 8rem 2rem 4rem;
@@ -156,25 +155,105 @@
       }
     }
 
-    .games-section {
-      padding: 2rem 2rem 6rem;
+    /* About Me Section */
+    .about-section {
+      padding: 4rem 2rem;
       animation: fadeInUp 1s ease-out 0.4s backwards;
     }
 
-    .games-grid {
+    .about-content {
+      max-width: 800px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, rgba(255, 110, 199, 0.05), rgba(110, 181, 255, 0.05));
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 30px;
+      padding: 3rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-content::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 110, 199, 0.1) 0%, transparent 70%);
+      animation: rotate 20s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .about-content > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .about-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      color: #ffb3ec;
+      margin-bottom: 2rem;
+      text-align: center;
+      text-shadow: 0 0 20px rgba(255, 110, 199, 0.4);
+    }
+
+    .about-text {
+      font-size: 1.2rem;
+      line-height: 2;
+      color: #e0e0e0;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      font-weight: 300;
+    }
+
+    .about-text strong {
+      color: #ffb3ec;
+      font-weight: 600;
+    }
+
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 110, 199, 0.5), transparent);
+      margin: 2.5rem 0;
+    }
+
+    /* Navigation Cards Section */
+    .nav-section {
+      padding: 4rem 2rem 6rem;
+      animation: fadeInUp 1s ease-out 0.6s backwards;
+    }
+
+    .nav-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: #cce7ff;
+      text-align: center;
+      margin-bottom: 3rem;
+      text-shadow: 0 0 20px rgba(110, 181, 255, 0.5);
+    }
+
+    .nav-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2.5rem;
-      max-width: 1100px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      max-width: 1000px;
       margin: 0 auto;
     }
 
-    .game-card {
+    .nav-card {
       background: linear-gradient(135deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4));
       backdrop-filter: blur(10px);
       border: 2px solid rgba(255, 110, 199, 0.2);
       border-radius: 25px;
-      padding: 3.5rem 2.5rem;
+      padding: 3rem 2rem;
       text-align: center;
       text-decoration: none;
       color: #fff;
@@ -182,10 +261,9 @@
       position: relative;
       overflow: hidden;
       cursor: pointer;
-      display: block;
     }
 
-    .game-card::before {
+    .nav-card::before {
       content: '';
       position: absolute;
       top: 0;
@@ -197,67 +275,45 @@
       transition: opacity 0.4s;
     }
 
-    .game-card:hover::before {
+    .nav-card:hover::before {
       opacity: 1;
     }
 
-    .game-card:hover {
+    .nav-card:hover {
       transform: translateY(-15px) scale(1.03);
       border-color: #ff6ec7;
       box-shadow: 0 15px 60px rgba(255, 110, 199, 0.4), 0 0 40px rgba(110, 181, 255, 0.3);
     }
 
-    .game-card-icon {
-      font-size: 5rem;
-      margin-bottom: 1.5rem;
+    .nav-card-icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
       display: block;
       filter: drop-shadow(0 0 20px rgba(255, 110, 199, 0.6));
       transition: transform 0.4s;
     }
 
-    .game-card:hover .game-card-icon {
+    .nav-card:hover .nav-card-icon {
       transform: scale(1.2) rotate(5deg);
     }
 
-    .game-card h3 {
+    .nav-card h3 {
       font-family: 'Playfair Display', serif;
-      font-size: 2rem;
+      font-size: 1.8rem;
       color: #ffb3ec;
-      margin-bottom: 1rem;
+      margin-bottom: 0.8rem;
       text-shadow: 0 0 15px rgba(255, 110, 199, 0.5);
       font-weight: 700;
-      position: relative;
-      z-index: 1;
     }
 
-    .game-card p {
-      font-size: 1.2rem;
+    .nav-card p {
+      font-size: 1.1rem;
       color: #cce7ff;
       font-weight: 300;
       line-height: 1.6;
-      position: relative;
-      z-index: 1;
     }
 
-    .game-card.coming-soon {
-      opacity: 0.7;
-      cursor: default;
-    }
-
-    .game-card.coming-soon:hover {
-      transform: translateY(-5px) scale(1.01);
-      box-shadow: 0 8px 30px rgba(255, 110, 199, 0.2);
-    }
-
-    .game-card.coming-soon .game-card-icon {
-      animation: pulse 2s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 0.6; }
-      50% { opacity: 1; }
-    }
-
+    /* Footer */
     footer {
       padding: 3rem 2rem;
       text-align: center;
@@ -272,13 +328,13 @@
       color: #ffb3ec;
       text-decoration: none;
       transition: color 0.3s;
-      font-weight: 600;
     }
 
     footer a:hover {
       color: #ff6ec7;
     }
 
+    /* Cherry blossom petals */
     .petal {
       position: fixed;
       top: -10px;
@@ -300,36 +356,30 @@
       }
     }
 
+    /* Responsive Design */
     @media (max-width: 768px) {
       header {
         padding: 6rem 1rem 3rem;
       }
 
-      .games-grid {
+      .about-content {
+        padding: 2rem 1.5rem;
+      }
+
+      .nav-grid {
         grid-template-columns: 1fr;
-        gap: 2rem;
+        gap: 1.5rem;
       }
 
-      .game-card {
-        padding: 3rem 2rem;
-      }
-
-      .controls {
-        top: 15px;
-        right: 15px;
-        gap: 8px;
-      }
-
-      .toggle-btn, .home-btn {
-        padding: 0.6rem 1rem;
-        font-size: 0.9rem;
+      .nav-card {
+        padding: 2.5rem 1.5rem;
       }
     }
 
-    .game-card:nth-child(1) { animation: fadeInUp 1s ease-out 0.5s backwards; }
-    .game-card:nth-child(2) { animation: fadeInUp 1s ease-out 0.6s backwards; }
-    .game-card:nth-child(3) { animation: fadeInUp 1s ease-out 0.7s backwards; }
-    .game-card:nth-child(4) { animation: fadeInUp 1s ease-out 0.8s backwards; }
+    /* Stagger animation for cards */
+    .nav-card:nth-child(1) { animation: fadeInUp 1s ease-out 0.7s backwards; }
+    .nav-card:nth-child(2) { animation: fadeInUp 1s ease-out 0.8s backwards; }
+    .nav-card:nth-child(3) { animation: fadeInUp 1s ease-out 0.9s backwards; }
   </style>
 </head>
 <body>
@@ -338,45 +388,73 @@
   <div class="grain"></div>
 
   <div class="controls">
-    <a class="home-btn" href="../">🏠 Home</a>
     <button class="toggle-btn" onclick="togglePetals()">🌸 Petals</button>
   </div>
 
   <header>
-    <div class="header-decoration">🎮</div>
-    <h1>Gaming Arcade</h1>
-    <p class="subtitle">Choose your adventure</p>
+    <div class="header-decoration">🌸</div>
+    <h1>Welcome to My World</h1>
+    <p class="subtitle">Where dreams meet pixels</p>
   </header>
 
-  <main class="games-section">
-    <div class="container">
-      <div class="games-grid">
-        <a class="game-card" href="snake/">
-          <span class="game-card-icon">🐍</span>
-          <h3>Snake</h3>
-          <p>Classic arcade nostalgia—guide your snake, eat the dots, and don't bite yourself!</p>
-        </a>
-        
-        <a class="game-card" href="pong/">
-          <span class="game-card-icon">🏓</span>
-          <h3>Pong</h3>
-          <p>The ultimate retro showdown—challenge a friend or test your reflexes solo!</p>
-        </a>
-        
-        <div class="game-card coming-soon">
-          <span class="game-card-icon">✨</span>
-          <h3>Coming Soon</h3>
-          <p>More exciting games are on their way—stay tuned for the next adventure!</p>
+  <main>
+    <section class="about-section">
+      <div class="container">
+        <div class="about-content">
+          <h2 class="about-title">About Me 🌸</h2>
+          
+          <p class="about-text">
+            <strong>Hello!</strong> I'm a passionate gamer, anime enthusiast, and achievement hunter living in my own digital paradise.
+          </p>
+          
+          <div class="divider"></div>
+          
+          <p class="about-text">
+            When I'm not exploring virtual worlds or binge-watching my favorite anime series, 
+            you'll find me chasing that next platinum trophy or 100% completion rate. 
+            Gaming isn't just a hobby—it's a lifestyle.
+          </p>
+          
+          <div class="divider"></div>
+          
+          <p class="about-text">
+            This little corner of the internet is where I showcase my journey—my anime watchlist, 
+            gaming achievements, and all the experiences that make life worth living. 
+            Feel free to explore and maybe you'll discover something new!
+          </p>
         </div>
       </div>
-    </div>
+    </section>
+
+    <section class="nav-section">
+      <div class="container">
+        <h2 class="nav-title">Explore My Universe ✨</h2>
+        <div class="nav-grid">
+          <a class="nav-card" href="anime/">
+            <span class="nav-card-icon">🎬</span>
+            <h3>Anime Collection</h3>
+            <p>Dive into my curated anime list and discover what I've been watching</p>
+          </a>
+          
+          <a class="nav-card" href="games/">
+            <span class="nav-card-icon">🎮</span>
+            <h3>Gaming Library</h3>
+            <p>Check out the games that have captured my heart and countless hours</p>
+          </a>
+          
+          <a class="nav-card" href="game-achievement/">
+            <span class="nav-card-icon">🏆</span>
+            <h3>Trophy Cabinet</h3>
+            <p>Witness the fruits of my no-life gaming sessions and hard-earned achievements</p>
+          </a>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer>
-    <p>
-      <a href="../">← Back to Home</a> | Made with 💖 and countless respawns
-    </p>
-    <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.7;">© 2025 • Game On!</p>
+    <p>Made with 💖 and countless energy drinks</p>
+    <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.7;">© 2025 • Powered by passion</p>
   </footer>
 
   <script>
@@ -401,10 +479,12 @@
       } else {
         clearInterval(petalInterval);
         petalsEnabled = false;
+        // Remove existing petals
         document.querySelectorAll('.petal').forEach(p => p.remove());
       }
     }
 
+    // Start with petals enabled
     petalInterval = setInterval(createPetal, 400);
   </script>
 </body>

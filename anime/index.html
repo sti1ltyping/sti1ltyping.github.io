@@ -265,6 +265,50 @@
     .genre.Dementia { background: #5c4d7d; }
     .genre.Game { background: #238594; }
     .genre.default { background: #888; }
+
+    
+    .controls {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      display: flex;
+      gap: 0.8rem;
+    }
+    .control-btn, .home-btn {
+      padding: 0.6rem 1.2rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #fff;
+      background: linear-gradient(135deg, #ff6ec7, #b36bff);
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(255, 110, 199, 0.4);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .control-btn::before, .home-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.5s;
+    }
+    .control-btn:hover, .home-btn:hover { 
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(255, 110, 199, 0.6);
+    }
+    .control-btn:hover::before, .home-btn:hover::before {
+      left: 100%;
+    }
+    .control-btn:active, .home-btn:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 10px rgba(255, 110, 199, 0.4);
+    }
   </style>
 </head>
 <body>

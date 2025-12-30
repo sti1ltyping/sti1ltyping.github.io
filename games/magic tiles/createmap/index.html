@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎵 Beatmap Creator 🌸</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Outfit:wght@300;400;600;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --pink: #ff6ec7;
+      --blue: #6eb5ff;
+      --light-pink: #ffb3ec;
+      --light-blue: #cce7ff;
+      --dark: #0a0a0f;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      color: #fff;
+      min-height: 100vh;
+      overflow-x: hidden;
+      background: var(--dark);
+    }
+
+    .bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    }
+
+    .bg-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(255, 110, 199, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(110, 181, 255, 0.1) 0%, transparent 50%);
+      animation: breathe 8s ease-in-out infinite;
+    }
+
+    @keyframes breathe {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 0.9; }
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem 0 3rem;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 900;
+      color: var(--light-pink);
+      text-shadow: 0 0 30px rgba(255, 110, 199, 0.6);
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      color: var(--light-blue);
+      text-shadow: 0 0 15px rgba(110, 181, 255, 0.5);
+    }
+
+    /* Setup Screen */
+    .setup-screen, .editor-screen {
+      display: none;
+      animation: fadeIn 0.5s ease-out;
+    }
+
+    .setup-screen.active, .editor-screen.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .setup-form {
+      max-width: 600px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, rgba(255, 110, 199, 0.1), rgba(110, 181, 255, 0.1));
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255, 110, 199, 0.3);
+      border-radius: 25px;
+      padding: 3rem;
+    }
+
+    .form-group {
+      margin-bottom: 2rem;
+    }
+
+    label {
+      display: block;
+      font-size: 1.1rem;
+      color: var(--light-pink);
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select {
+      width: 100%;
+      padding: 1rem;
+      font-size: 1rem;
+      background: rgba(0, 0, 0, 0.5);
+      border: 2px solid rgba(255, 110, 199, 0.3);
+      border-radius: 15px;
+      color: #fff;
+      font-family: 'Outfit', sans-serif;
+      transition: all 0.3s;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: var(--pink);
+      box-shadow: 0 0 20px rgba(255, 110, 199, 0.3);
+    }
+
+    .file-upload {
+      position: relative;
+      display: block;
+      cursor: pointer;
+      z-index: 1;
+    }
+
+    .file-upload-label {
+      display: block;
+      padding: 2rem;
+      background: rgba(0, 0, 0, 0.5);
+      border: 2px dashed rgba(255, 110, 199, 0.5);
+      border-radius: 15px;
+      text-align: center;
+      transition: all 0.3s;
+      color: var(--light-blue);
+    }
+
+    .file-upload-label:hover {
+      border-color: var(--pink);
+      background: rgba(255, 110, 199, 0.1);
+    }
+
+    .file-upload input[type="file"] {
+      position: absolute;
+      opacity: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+    }
+
+    .file-name {
+      margin-top: 0.5rem;
+      color: var(--light-pink);
+      font-size: 0.9rem;
+    }
+
+    .btn {
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      background: linear-gradient(135deg, var(--pink), var(--blue));
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 50px;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-family: 'Outfit', sans-serif;
+      display: inline-block;
+      position: relative;
+      z-index: 3;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(255, 110, 199, 0.5);
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    /* Editor Screen */
+    .editor-container {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .editor-main {
+      position: relative;
+    }
+
+    .editor-sidebar {
+      background: linear-gradient(135deg, rgba(255, 110, 199, 0.1), rgba(110, 181, 255, 0.1));
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255, 110, 199, 0.3);
+      border-radius: 25px;
+      padding: 2rem;
+      max-height: calc(100vh - 200px);
+      overflow-y: auto;
+    }
+
+    /* Canvas */
+    .canvas-container {
+      position: relative;
+      background: linear-gradient(180deg, 
+        rgba(10, 10, 15, 0.3) 0%,
+        rgba(10, 10, 15, 0.5) 50%,
+        rgba(10, 10, 15, 0.8) 100%
+      );
+      border: 2px solid rgba(255, 110, 199, 0.3);
+      border-radius: 15px;
+      overflow: hidden;
+    }
+
+    #editorCanvas {
+      display: block;
+      cursor: crosshair;
+    }
+
+    /* Controls */
+    .controls {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .control-group {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 0.5rem 1rem;
+      border-radius: 15px;
+      border: 1px solid rgba(255, 110, 199, 0.3);
+    }
+
+    .control-group label {
+      margin: 0;
+      font-size: 0.9rem;
+      font-weight: 400;
+    }
+
+    .control-btn {
+      padding: 0.6rem 1.2rem;
+      font-size: 0.9rem;
+      background: linear-gradient(135deg, rgba(255, 110, 199, 0.8), rgba(110, 181, 255, 0.8));
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 50px;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-weight: 600;
+    }
+
+    .control-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .control-btn.active {
+      background: linear-gradient(135deg, var(--pink), var(--blue));
+      box-shadow: 0 0 20px rgba(255, 110, 199, 0.5);
+    }
+
+    /* Note type selector */
+    .note-type-selector {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .note-type-btn {
+      padding: 0.5rem 1rem;
+      background: rgba(0, 0, 0, 0.5);
+      border: 2px solid rgba(255, 110, 199, 0.3);
+      border-radius: 10px;
+      color: var(--light-blue);
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 0.9rem;
+    }
+
+    .note-type-btn:hover {
+      border-color: var(--pink);
+    }
+
+    .note-type-btn.active {
+      background: linear-gradient(135deg, rgba(255, 110, 199, 0.3), rgba(110, 181, 255, 0.3));
+      border-color: var(--pink);
+      color: #fff;
+      font-weight: 600;
+    }
+
+    /* Sidebar */
+    .sidebar-section {
+      margin-bottom: 2rem;
+    }
+
+    .sidebar-section h3 {
+      font-family: 'Playfair Display', serif;
+      color: var(--light-pink);
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+
+    .stat {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(255, 110, 199, 0.2);
+    }
+
+    .stat-label {
+      color: var(--light-blue);
+    }
+
+    .stat-value {
+      color: #fff;
+      font-weight: 600;
+    }
+
+    /* Note list */
+    .note-list {
+      max-height: 300px;
+      overflow-y: auto;
+      margin-top: 1rem;
+    }
+
+    .note-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem;
+      margin-bottom: 0.5rem;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 8px;
+      border: 1px solid rgba(255, 110, 199, 0.2);
+      font-size: 0.85rem;
+    }
+
+    .note-item:hover {
+      background: rgba(255, 110, 199, 0.1);
+      border-color: var(--pink);
+    }
+
+    .note-info {
+      flex: 1;
+    }
+
+    .delete-note {
+      background: rgba(255, 0, 0, 0.3);
+      border: 1px solid rgba(255, 0, 0, 0.5);
+      color: #ff6b6b;
+      padding: 0.3rem 0.6rem;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      transition: all 0.3s;
+    }
+
+    .delete-note:hover {
+      background: rgba(255, 0, 0, 0.5);
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(10px);
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: linear-gradient(135deg, rgba(255, 110, 199, 0.2), rgba(110, 181, 255, 0.2));
+      backdrop-filter: blur(20px);
+      border: 2px solid rgba(255, 110, 199, 0.5);
+      border-radius: 25px;
+      padding: 3rem;
+      max-width: 800px;
+      max-height: 80vh;
+      overflow-y: auto;
+      animation: fadeInUp 0.5s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .modal h2 {
+      font-family: 'Playfair Display', serif;
+      color: var(--light-pink);
+      margin-bottom: 2rem;
+      font-size: 2rem;
+    }
+
+    .json-output {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 1.5rem;
+      border-radius: 15px;
+      border: 2px solid rgba(255, 110, 199, 0.3);
+      color: #fff;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      white-space: pre-wrap;
+      word-break: break-all;
+      max-height: 400px;
+      overflow-y: auto;
+      margin-bottom: 2rem;
+    }
+
+    .copy-notification {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: linear-gradient(135deg, var(--pink), var(--blue));
+      padding: 1.5rem 3rem;
+      border-radius: 15px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      box-shadow: 0 10px 40px rgba(255, 110, 199, 0.5);
+      z-index: 2000;
+      animation: popIn 0.3s ease-out;
+      display: none;
+    }
+
+    .copy-notification.show {
+      display: block;
+    }
+
+    @keyframes popIn {
+      0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+      100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    }
+
+    /* Scrollbar */
+    .editor-sidebar::-webkit-scrollbar,
+    .note-list::-webkit-scrollbar,
+    .json-output::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .editor-sidebar::-webkit-scrollbar-track,
+    .note-list::-webkit-scrollbar-track,
+    .json-output::-webkit-scrollbar-track {
+      background: rgba(255, 110, 199, 0.1);
+      border-radius: 10px;
+    }
+
+    .editor-sidebar::-webkit-scrollbar-thumb,
+    .note-list::-webkit-scrollbar-thumb,
+    .json-output::-webkit-scrollbar-thumb {
+      background: linear-gradient(135deg, var(--pink), var(--blue));
+      border-radius: 10px;
+    }
+
+    @media (max-width: 1024px) {
+      .editor-container {
+        grid-template-columns: 1fr;
+      }
+
+      .editor-sidebar {
+        max-height: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg"></div>
+  <div class="bg-overlay"></div>
+
+  <div class="container">
+    <header>
+      <h1>🎵 Beatmap Creator 🌸</h1>
+      <p class="subtitle">Create custom beatmaps for Magic Tiles</p>
+    </header>
+
+    <!-- Setup Screen -->
+    <div class="setup-screen active" id="setupScreen">
+      <div class="setup-form">
+        <div class="form-group">
+          <label>Song Title</label>
+          <input type="text" id="songTitle" placeholder="e.g., Cherry Blossom Dance" required>
+        </div>
+
+        <div class="form-group">
+          <label>Artist Name</label>
+          <input type="text" id="artistName" placeholder="e.g., Sakura Dreams" required>
+        </div>
+
+        <div class="form-group">
+          <label>Difficulty</label>
+          <select id="difficulty">
+            <option value="Easy">Easy</option>
+            <option value="Medium" selected>Medium</option>
+            <option value="Hard">Hard</option>
+            <option value="Expert">Expert</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>BPM (Beats Per Minute)</label>
+          <input type="number" id="bpm" placeholder="e.g., 120" min="60" max="300" value="120" required>
+        </div>
+
+        <div class="form-group">
+          <label>Approach Rate (ms)</label>
+          <input type="number" id="approachRate" placeholder="ms before hit (e.g., 5000)" min="200" max="10000" step="100" value="5000" required>
+        </div>
+
+        <div class="form-group">
+          <label>Upload Audio File (MP3, WAV, OGG)</label>
+          <div class="file-upload">
+            <label class="file-upload-label" for="audioFile">
+              <div>📁 Click to upload or drag & drop</div>
+              <div class="file-name" id="fileName">No file selected</div>
+            </label>
+            <input type="file" id="audioFile" accept="audio/*" required>
+          </div>
+        </div>
+
+        <div class="btn-group">
+          <button class="btn" id="startMappingBtn" disabled>Start Mapping 🎹</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Editor Screen -->
+    <div class="editor-screen" id="editorScreen">
+      <div class="controls">
+        <button class="control-btn" id="playPauseBtn">▶ Play</button>
+        <button class="control-btn" id="stopBtn">⏹ Stop</button>
+        
+        <div class="control-group">
+          <label>Volume:</label>
+          <input type="range" id="volumeSlider" min="0" max="100" value="70" style="width: 100px;">
+        </div>
+
+        <div class="control-group">
+          <label>Playback Speed:</label>
+          <select id="playbackSpeed">
+            <option value="0.5">0.5x</option>
+            <option value="0.75">0.75x</option>
+            <option value="1" selected>1x</option>
+            <option value="1.25">1.25x</option>
+            <option value="1.5">1.5x</option>
+          </select>
+        </div>
+
+        <button class="control-btn" id="exportBtn">💾 Export JSON</button>
+        <button class="control-btn" id="clearAllBtn">🗑️ Clear All</button>
+      </div>
+
+      <div class="editor-container">
+        <div class="editor-main">
+          <div class="note-type-selector">
+            <button class="note-type-btn active" data-type="tap">🎯 Tap Note</button>
+            <button class="note-type-btn" data-type="hold">⏸️ Hold Note (Click & Drag)</button>
+          </div>
+          
+          <div class="canvas-container" style="margin-top: 1rem;">
+            <canvas id="editorCanvas"></canvas>
+          </div>
+        </div>
+
+        <div class="editor-sidebar">
+          <div class="sidebar-section">
+            <h3>📊 Statistics</h3>
+            <div class="stat">
+              <span class="stat-label">Current Time</span>
+              <span class="stat-value" id="currentTime">0:00</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">Total Notes</span>
+              <span class="stat-value" id="totalNotes">0</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">Tap Notes</span>
+              <span class="stat-value" id="tapNotes">0</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">Hold Notes</span>
+              <span class="stat-value" id="holdNotes">0</span>
+            </div>
+          </div>
+
+          <div class="sidebar-section">
+            <h3>📝 Song Info</h3>
+            <div class="stat">
+              <span class="stat-label">Title</span>
+              <span class="stat-value" id="infoTitle">-</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">Artist</span>
+              <span class="stat-value" id="infoArtist">-</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">BPM</span>
+              <span class="stat-value" id="infoBpm">-</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">Difficulty</span>
+              <span class="stat-value" id="infoDifficulty">-</span>
+            </div>
+          </div>
+
+          <div class="sidebar-section">
+            <h3>🎵 Note List</h3>
+            <div class="note-list" id="noteList">
+              <div style="text-align: center; color: var(--light-blue); padding: 2rem;">
+                No notes yet. Start clicking on the canvas!
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Export Modal -->
+  <div class="modal" id="exportModal">
+    <div class="modal-content">
+      <h2>📋 Export Beatmap JSON</h2>
+      <p style="color: var(--light-blue); margin-bottom: 1rem;">
+        Copy this JSON and save it as <strong>map.json</strong> in your song folder!
+      </p>
+      <div class="json-output" id="jsonOutput"></div>
+      <div class="btn-group">
+        <button class="btn" id="copyJsonBtn">📋 Copy to Clipboard</button>
+        <button class="btn" id="downloadJsonBtn">💾 Download File</button>
+        <button class="btn" id="closeModalBtn">✖ Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="copy-notification" id="copyNotification">
+    ✅ Copied to clipboard!
+  </div>
+
+  <script src="beatmap-creator.js"></script>
+</body>
+</html>

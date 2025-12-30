@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎹 Magic Tiles 🌸</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Outfit:wght@300;400;600;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --pink: #ff6ec7;
+      --blue: #6eb5ff;
+      --light-pink: #ffb3ec;
+      --light-blue: #cce7ff;
+      --dark: #0a0a0f;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      color: #fff;
+      min-height: 100vh;
+      overflow: hidden;
+      position: relative;
+      background: var(--dark);
+    }
+
+    /* Background layers */
+    .bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    }
+
+    .bg-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(255, 110, 199, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(110, 181, 255, 0.1) 0%, transparent 50%);
+      animation: breathe 8s ease-in-out infinite;
+    }
+
+    @keyframes breathe {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 0.9; }
+    }
+
+    /* Menu Screen */
+    .menu-screen {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    .menu-screen.hidden {
+      display: none;
+    }
+
+    .menu-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 10vw, 6rem);
+      font-weight: 900;
+      color: var(--light-pink);
+      text-shadow: 0 0 40px rgba(255, 110, 199, 0.8), 0 0 80px rgba(255, 110, 199, 0.4);
+      margin-bottom: 1rem;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .menu-subtitle {
+      font-size: 1.5rem;
+      color: var(--light-blue);
+      text-shadow: 0 0 20px rgba(110, 181, 255, 0.6);
+      margin-bottom: 3rem;
+      animation: fadeInUp 1s ease-out 0.2s backwards;
+    }
+
+    /* Song list container */
+    .song-list-container {
+      width: 100%;
+      max-width: 1000px;
+      max-height: 500px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 0 1rem;
+      animation: fadeInUp 1s ease-out 0.3s backwards;
+    }
+
+    /* Custom scrollbar */
+    .song-list-container::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    .song-list-container::-webkit-scrollbar-track {
+      background: rgba(255, 110, 199, 0.1);
+      border-radius: 10px;
+    }
+
+    .song-list-container::-webkit-scrollbar-thumb {
+      background: linear-gradient(135deg, var(--pink), var(--blue));
+      border-radius: 10px;
+    }
+
+    .song-list-container::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(135deg, var(--light-pink), var(--light-blue));
+    }
+
+    /* Loading and error messages */
+    .loading-message,
+    .error-message {
+      text-align: center;
+      font-size: 1.5rem;
+      color: var(--light-pink);
+      padding: 3rem;
+    }
+
+    .error-message {
+      color: #ff6b6b;
+    }
+
+    /* Song table */
+    .song-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0 1rem;
+    }
+
+    .song-table thead th {
+      position: sticky;
+      top: 0;
+      background: linear-gradient(135deg, rgba(255, 110, 199, 0.3), rgba(110, 181, 255, 0.3));
+      backdrop-filter: blur(10px);
+      color: var(--light-pink);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 2px solid rgba(255, 110, 199, 0.5);
+      z-index: 10;
+    }
+
+    .song-table thead th:last-child {
+      text-align: center;
+    }
+
+    .song-table tbody tr {
+      background: linear-gradient(135deg, rgba(255, 110, 199, 0.1), rgba(110, 181, 255, 0.1));
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255, 110, 199, 0.2);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      animation: fadeInUp 1s ease-out backwards;
+    }
+
+    .song-table tbody tr:hover {
+      background: linear-gradient(135deg, rgba(255, 110, 199, 0.2), rgba(110, 181, 255, 0.2));
+      border-color: var(--pink);
+      transform: translateX(5px);
+      box-shadow: 0 5px 20px rgba(255, 110, 199, 0.3);
+    }
+
+    .song-table tbody td {
+      padding: 1.5rem 1rem;
+      color: var(--light-blue);
+      font-size: 1.1rem;
+    }
+
+    .song-table tbody td:first-child {
+      font-weight: 600;
+      color: #fff;
+      font-size: 1.2rem;
+    }
+
+    .song-table .difficulty-badge {
+      display: inline-block;
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .difficulty-badge.easy {
+      background: rgba(0, 255, 0, 0.2);
+      color: #00ff88;
+      border: 1px solid #00ff88;
+    }
+
+    .difficulty-badge.medium {
+      background: rgba(255, 200, 0, 0.2);
+      color: #ffd700;
+      border: 1px solid #ffd700;
+    }
+
+    .difficulty-badge.hard {
+      background: rgba(255, 0, 0, 0.2);
+      color: #ff6b6b;
+      border: 1px solid #ff6b6b;
+    }
+
+    .difficulty-badge.expert {
+      background: rgba(128, 0, 255, 0.2);
+      color: #b968ff;
+      border: 1px solid #b968ff;
+    }
+
+    .play-btn {
+      padding: 0.8rem 1.5rem;
+      background: linear-gradient(135deg, var(--pink), var(--blue));
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .play-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 5px 20px rgba(255, 110, 199, 0.5);
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Game Screen */
+    .game-screen {
+      display: none;
+      width: 100%;
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .game-screen.active {
+      display: block;
+    }
+
+    /* Game UI */
+    .game-ui {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
+      padding: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .score-display {
+      text-align: left;
+    }
+
+    .score-label {
+      font-size: 1rem;
+      color: var(--light-blue);
+      margin-bottom: 0.5rem;
+    }
+
+    .score-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      color: var(--light-pink);
+      text-shadow: 0 0 20px rgba(255, 110, 199, 0.6);
+      font-weight: 900;
+    }
+
+    .combo-display {
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    .combo-value {
+      font-size: 2rem;
+      color: #ffd700;
+      text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+      font-weight: 700;
+    }
+
+    .game-controls {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .game-btn {
+      padding: 0.8rem 1.5rem;
+      background: linear-gradient(135deg, rgba(255, 110, 199, 0.8), rgba(110, 181, 255, 0.8));
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 50px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s;
+      font-size: 1rem;
+    }
+
+    .game-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(255, 110, 199, 0.5);
+    }
+
+    /* Game Canvas Container */
+    .game-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      max-width: 600px;
+      height: 100vh;
+    }
+
+    #gameCanvas {
+      display: block;
+      margin: 0 auto;
+      background: linear-gradient(180deg, 
+        rgba(10, 10, 15, 0.3) 0%,
+        rgba(10, 10, 15, 0.5) 50%,
+        rgba(10, 10, 15, 0.8) 100%
+      );
+      border-left: 2px solid rgba(255, 110, 199, 0.3);
+      border-right: 2px solid rgba(255, 110, 199, 0.3);
+    }
+
+    /* Hit feedback */
+    .hit-feedback {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 3rem;
+      font-weight: 900;
+      pointer-events: none;
+      animation: hitPop 0.6s ease-out forwards;
+      z-index: 100;
+      font-family: 'Playfair Display', serif;
+    }
+
+    @keyframes hitPop {
+      0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(0.5);
+      }
+      50% {
+        transform: translate(-50%, -50%) scale(1.2);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-50%, -80%) scale(1);
+      }
+    }
+
+    .hit-feedback.perfect {
+      color: #00ffff;
+      text-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
+    }
+
+    .hit-feedback.great {
+      color: #00ff00;
+      text-shadow: 0 0 30px rgba(0, 255, 0, 0.8);
+    }
+
+    .hit-feedback.good {
+      color: #ffff00;
+      text-shadow: 0 0 30px rgba(255, 255, 0, 0.8);
+    }
+
+    .hit-feedback.miss {
+      color: #ff0000;
+      text-shadow: 0 0 30px rgba(255, 0, 0, 0.8);
+    }
+
+    /* Game Over Screen */
+    .game-over-screen {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(10px);
+    }
+
+    .game-over-screen.active {
+      display: flex;
+    }
+
+    .game-over-content {
+      text-align: center;
+      padding: 4rem;
+      background: linear-gradient(135deg, rgba(255, 110, 199, 0.2), rgba(110, 181, 255, 0.2));
+      backdrop-filter: blur(20px);
+      border: 2px solid rgba(255, 110, 199, 0.5);
+      border-radius: 30px;
+      animation: fadeInUp 0.5s ease-out;
+    }
+
+    .game-over-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 4rem;
+      color: var(--light-pink);
+      text-shadow: 0 0 30px rgba(255, 110, 199, 0.8);
+      margin-bottom: 2rem;
+    }
+
+    .final-score {
+      font-size: 2rem;
+      color: var(--light-blue);
+      margin-bottom: 1rem;
+    }
+
+    .final-score span {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      color: var(--light-pink);
+      font-weight: 900;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .stat-item {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 1.5rem;
+      border-radius: 15px;
+    }
+
+    .stat-label {
+      font-size: 1rem;
+      color: var(--light-blue);
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-value {
+      font-size: 2rem;
+      color: var(--light-pink);
+      font-weight: 700;
+    }
+
+    .game-over-buttons {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    /* Cherry blossom petals */
+    .petal {
+      position: fixed;
+      font-size: 20px;
+      animation: fall linear infinite;
+      z-index: 5;
+      pointer-events: none;
+      filter: drop-shadow(0 0 5px rgba(255, 110, 199, 0.5));
+    }
+
+    @keyframes fall {
+      0% { 
+        transform: translateY(0) rotate(0deg); 
+        opacity: 1; 
+      }
+      100% { 
+        transform: translateY(100vh) rotate(360deg); 
+        opacity: 0; 
+      }
+    }
+
+    @media (max-width: 768px) {
+      .menu-title {
+        font-size: 3rem;
+      }
+
+      .song-list {
+        grid-template-columns: 1fr;
+      }
+
+      .game-ui {
+        padding: 1rem;
+      }
+
+      .score-value {
+        font-size: 2rem;
+      }
+
+      .game-over-content {
+        padding: 2rem;
+        margin: 1rem;
+      }
+
+      .game-over-title {
+        font-size: 2.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg"></div>
+  <div class="bg-overlay"></div>
+
+  <!-- Menu Screen -->
+  <div class="menu-screen" id="menuScreen">
+    <h1 class="menu-title">🎹 Magic Tiles 🌸</h1>
+    <p class="menu-subtitle">Choose Your Song</p>
+    <div class="song-list-container">
+      <div class="loading-message" id="loadingMessage">Loading songs... 🌸</div>
+      <div class="error-message" id="errorMessage" style="display: none;">
+        No songs found. Please add song folders to the songs/ directory.
+      </div>
+      <table class="song-table" id="songTable" style="display: none;">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Artist</th>
+            <th>Difficulty</th>
+            <th>BPM</th>
+            <th>Play</th>
+          </tr>
+        </thead>
+        <tbody id="songTableBody">
+          <!-- Songs will be dynamically loaded here -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Game Screen -->
+  <div class="game-screen" id="gameScreen">
+    <div class="game-ui">
+      <div class="score-display">
+        <div class="score-label">SCORE</div>
+        <div class="score-value" id="scoreDisplay">0</div>
+        <div class="combo-display">
+          <div class="combo-value" id="comboDisplay">COMBO: 0</div>
+        </div>
+      </div>
+      <div class="game-controls">
+        <button class="game-btn" id="pauseBtn">⏸ Pause</button>
+        <button class="game-btn" id="backBtn">🏠 Menu</button>
+      </div>
+    </div>
+    <div class="game-container">
+      <canvas id="gameCanvas"></canvas>
+    </div>
+  </div>
+
+  <!-- Game Over Screen -->
+  <div class="game-over-screen" id="gameOverScreen">
+    <div class="game-over-content">
+      <h2 class="game-over-title">Song Complete! 🌸</h2>
+      <div class="final-score">
+        Final Score: <span id="finalScore">0</span>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-label">Perfect</div>
+          <div class="stat-value" id="perfectCount">0</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">Great</div>
+          <div class="stat-value" id="greatCount">0</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">Good</div>
+          <div class="stat-value" id="goodCount">0</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">Miss</div>
+          <div class="stat-value" id="missCount">0</div>
+        </div>
+      </div>
+      <div class="game-over-buttons">
+        <button class="game-btn" id="retryBtn">🔄 Retry</button>
+        <button class="game-btn" id="menuBtn">🏠 Menu</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="songs.js"></script>
+  <script src="game.js"></script>
+  
+  <script>
+    // Cherry blossom petals
+    function createPetal() {
+      const petal = document.createElement("div");
+      petal.classList.add("petal");
+      petal.textContent = "🌸";
+      petal.style.left = Math.random() * 100 + "vw";
+      petal.style.top = "-20px";
+      petal.style.animationDuration = (5 + Math.random() * 5) + "s";
+      petal.style.fontSize = (16 + Math.random() * 10) + "px";
+      document.body.appendChild(petal);
+      setTimeout(() => petal.remove(), 10000);
+    }
+
+    setInterval(createPetal, 800);
+  </script>
+</body>
+</html>
