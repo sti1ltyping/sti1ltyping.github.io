@@ -3,206 +3,981 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🌸 $$$ 🌸</title>
+  <script>history.scrollRestoration = 'manual'; window.scrollTo(0, 0);</script>
+  <title>about me</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="icon" type="image/x-icon" href="assets/pinkheart.ico">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Poppins:wght@400;600&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      color: #fff;
+    @font-face { font-family: 'CFT';  src: url('assets/cft.ttf')  format('truetype'); }
+    @font-face { font-family: 'CFT2'; src: url('assets/cft2.otf') format('opentype'); }
+
+    :root {
+      --bg: #0a0508;
+      --surface: rgba(20, 10, 15, 0.9);
+      --border: rgba(255, 100, 150, 0.25);
+      --border-h: rgba(255, 150, 180, 0.45);
+      --text: #f5e6f0;
+      --text-muted: #c9a8b8;
+      --accent: #ff3d6d;
+      --accent-light: #ff6b94;
+      --accent-dark: #cc2d58;
+      --glow: rgba(255, 61, 109, 0.6);
+      --nav-h: 52px;
+    }
+
+    html, body {
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
+      background: var(--bg);
+      background-image: url('assets/wp1.jpg');
+      background-attachment: fixed;
+      background-position: center;
+      background-size: cover;
+      color: var(--text);
+      font-family: 'Outfit', sans-serif;
       overflow-x: hidden;
       position: relative;
     }
 
-    .bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -2;
-      background: url("img/wp1.jpg") no-repeat center center / cover;
-      filter: brightness(0.7);
+    body::before {
+      content: '';
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(10, 5, 8, 0.4);
+      z-index: 0; pointer-events: none;
     }
 
-    .controls {
-      position: fixed;
-      top: 15px;
-      right: 20px;
-      display: flex;
-      gap: 10px;
-      z-index: 20;
+    /* ── Petal bg ── */
+    .petal-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; overflow: hidden; }
+    .petal { position: absolute; opacity: 0.7; animation: fall linear; filter: blur(0.5px); }
+    @keyframes fall {
+      0%   { transform: translateY(0) rotate(0deg);   opacity: 0.7; }
+      50%  { opacity: 0.6; }
+      100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
     }
 
-    .toggle-btn {
-      padding: 0.6rem 1rem;
-      font-size: 0.9rem;
-      font-weight: bold;
-      color: #fff;
-      background: #ff6ec7;
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-      box-shadow: 0 0 10px #ff6ec7, 0 0 20px #6eb5ff;
-      transition: transform 0.2s;
+    /* ── BG glows ── */
+    .bg-decoration { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+    .glow-1 { position: absolute; top: 10%; right: -10%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(255,61,109,.15) 0%, transparent 70%); border-radius: 50%; filter: blur(80px); animation: float 8s ease-in-out infinite; }
+    .glow-2 { position: absolute; bottom: -5%; left: -5%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(255,61,109,.10) 0%, transparent 70%); border-radius: 50%; filter: blur(80px); animation: float 10s ease-in-out infinite reverse; }
+    @keyframes float { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(-30px); } }
+
+    /* ══ CLICK TO ENTER SCREEN ══ */
+    #enterScreen {
+      position: fixed; inset: 0;
+      background: #0a0508;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      z-index: 11000;
+      gap: 0;
+      transition: opacity 0.4s ease;
+    }
+    #enterScreen.hidden { display: none; }
+
+    .enter-hint {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.72rem;
+      color: rgba(201,168,184,0.4);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      animation: enterBreathe 2.8s ease-in-out infinite;
+    }
+    @keyframes enterBreathe {
+      0%,100% { opacity: 0.4; }
+      50%      { opacity: 0.75; }
     }
 
-    .toggle-btn:hover {
-      transform: scale(1.1);
+    /* ══ NAVIGATION BAR ══ */
+    .nav-bar {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: var(--nav-h);
+      z-index: 500;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(10, 5, 8, 0.72);
+      backdrop-filter: blur(18px) saturate(1.4);
+      -webkit-backdrop-filter: blur(18px) saturate(1.4);
+      border-bottom: 1px solid rgba(255,100,150,0.18);
+      box-shadow: 0 2px 30px rgba(0,0,0,0.5);
     }
-
-    header {
-      text-align: center;
-      padding: 3rem 1rem 1rem;
-      z-index: 1;
+    .nav-left { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); display: flex; align-items: center; gap: 10px; }
+    #musicBtn {
+      width: 34px; height: 34px;
+      background: rgba(255,61,109,0.12);
+      border: 1.5px solid rgba(255,100,150,0.35);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.3s ease;
+      color: var(--accent-light); font-size: 14px;
+      position: relative; overflow: hidden;
     }
+    #musicBtn::after { content: ''; position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(circle, rgba(255,61,109,0.25) 0%, transparent 70%); opacity: 0; transition: opacity 0.3s; }
+    #musicBtn:hover { border-color: var(--accent); box-shadow: 0 0 14px var(--glow); }
+    #musicBtn:hover::after { opacity: 1; }
+    #musicBtn.playing { animation: pulse-ring 2s ease-in-out infinite; }
+    @keyframes pulse-ring { 0%,100% { box-shadow: 0 0 6px var(--glow); } 50% { box-shadow: 0 0 18px var(--glow), 0 0 35px rgba(255,61,109,0.3); } }
+    .eq-bars { display: none; gap: 2px; align-items: flex-end; height: 14px; }
+    .eq-bars.show { display: flex; }
+    .eq-bar { width: 3px; background: var(--accent-light); border-radius: 2px; animation: eq-bounce 0.6s ease-in-out infinite; }
+    .eq-bar:nth-child(1) { height: 6px;  animation-delay: 0s; }
+    .eq-bar:nth-child(2) { height: 10px; animation-delay: 0.1s; }
+    .eq-bar:nth-child(3) { height: 7px;  animation-delay: 0.2s; }
+    .eq-bar:nth-child(4) { height: 12px; animation-delay: 0.05s; }
+    @keyframes eq-bounce { 0%,100% { transform: scaleY(1); } 50% { transform: scaleY(1.6); } }
 
-    header h1 {
-      font-family: 'Press Start 2P', cursive;
-      font-size: 2rem;
-      color: #ffb3ec;
-      text-shadow: 0 0 10px #ff6ec7, 0 0 20px #ff6ec7;
-    }
-
-    header p {
-      font-size: 1rem;
-      color: #cce7ff;
-      text-shadow: 0 0 8px #6eb5ff;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 2rem;
-      width: 90%;
-      max-width: 1000px;
-      margin: 2rem auto;
-      z-index: 1;
-    }
-
-    .card {
-      background: rgba(0, 0, 0, 0.6);
-      border: 2px solid transparent;
-      border-radius: 20px;
-      padding: 2rem 1.5rem;
-      text-align: center;
-      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .card:hover {
-      transform: translateY(-10px) scale(1.05);
-      border-color: #ff6ec7;
-      box-shadow: 0 0 20px #ff6ec7, 0 0 40px #6eb5ff;
-    }
-
-    .card h3 {
-      font-size: 1.4rem;
-      color: #fff;
-      margin-bottom: 0.5rem;
-      text-shadow: 0 0 8px #ff6ec7;
-    }
-
-    .card p {
-      font-size: 0.9rem;
-      color: #cce7ff;
-    }
-
-    footer {
-      margin-top: auto;
-      padding: 1rem;
-      text-align: center;
-      font-size: 0.9rem;
-      color: #eee;
-      z-index: 1;
-      text-shadow: 0 0 5px #000;
-    }
-
-    /* Cherry blossom petals */
-    .petal {
-      position: fixed;
-      top: -10px;
-      font-size: 20px;
-      animation: fall linear infinite;
-      z-index: 50;
+    /* ══ VIEWS BADGE ══ */
+    .nav-views {
+      position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
+      display: flex; align-items: center; gap: 6px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.72rem; font-weight: 500;
+      color: rgba(245,230,240,0.4);
+      letter-spacing: 0.06em;
+      user-select: none;
+      opacity: 0;
+      transition: opacity 0.8s ease;
       pointer-events: none;
     }
+    .nav-views.visible { opacity: 1; }
+    .nav-views svg { flex-shrink: 0; opacity: 0.55; }
 
-    @keyframes fall {
-      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    .nav-links { display: flex; align-items: stretch; gap: 0; list-style: none; height: 100%; }
+    .nav-links li { display: flex; align-items: stretch; }
+    .nav-links li a {
+      position: relative; display: flex; flex-direction: row;
+      align-items: center; justify-content: center; gap: 7px;
+      padding: 0 18px; font-size: 0.72rem; font-weight: 500;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: rgba(245,230,240,0.55); text-decoration: none;
+      transition: color 0.3s ease, background 0.3s ease;
+      font-family: 'Outfit', sans-serif;
+      border-right: 1px solid rgba(255,100,150,0.10);
+    }
+    .nav-links li:first-child a { border-left: 1px solid rgba(255,100,150,0.10); }
+    .nav-icon { width: 16px; height: 16px; object-fit: contain; opacity: 0.55; transition: opacity 0.3s, transform 0.3s cubic-bezier(0.34,1.56,0.64,1), filter 0.3s; flex-shrink: 0; }
+    .nav-links li a::after {
+      content: ''; position: absolute; bottom: 0; left: 50%;
+      width: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent-light), transparent);
+      box-shadow: 0 0 8px var(--glow);
+      transition: width 0.35s cubic-bezier(0.4,0,0.2,1), left 0.35s cubic-bezier(0.4,0,0.2,1);
+      border-radius: 2px;
+    }
+    .nav-links li a:hover, .nav-links li a.active { color: #ffffff; background: rgba(255,61,109,0.07); }
+    .nav-links li a:hover .nav-icon, .nav-links li a.active .nav-icon { opacity: 1; transform: translateY(-2px) scale(1.1); filter: drop-shadow(0 0 6px rgba(255,107,148,0.6)); }
+    .nav-links li a:hover::after, .nav-links li a.active::after { width: 80%; left: 10%; }
+    .nav-links li a.active { color: var(--accent-light); text-shadow: 0 0 10px rgba(255,107,148,0.4); }
+    .nav-links li a.active .nav-icon { filter: drop-shadow(0 0 6px rgba(255,107,148,0.6)); }
+
+    /* ══ PAGE VIEWS ══ */
+    .page-view { display: none; }
+    .page-view.active { display: block; }
+
+    /* ══ INITIAL LOADING SCREEN ══ */
+    .loading-container {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100vh;
+      background: #0a0508;
+      display: none; /* hidden until enter click */
+      flex-direction: column; align-items: center; justify-content: center;
+      z-index: 10000; pointer-events: auto;
+    }
+    .welcome-message { font-size: 2rem; font-weight: 700; color: #ffffff; margin-bottom: 40px; opacity: 0; animation: slideUpWelcome 0.6s ease-out 0s forwards; }
+    @keyframes slideUpWelcome { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    .loading-bar-wrapper { width: 300px; height: 4px; background: rgba(255,100,150,0.2); border-radius: 2px; overflow: hidden; box-shadow: 0 0 10px rgba(255,61,109,0.3); }
+    .loading-bar { height: 100%; background: linear-gradient(90deg, #ff3d6d, #ff6b94, #ff3d6d); width: 0%; animation: loadingProgress 1.8s ease-in-out 0s forwards; box-shadow: 0 0 15px #ff6b94; }
+    @keyframes loadingProgress { 0% { width: 0%; } 100% { width: 100%; } }
+
+    /* ══ PAGE TRANSITION OVERLAY ══ */
+    #pageTransition {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100vh;
+      background: #0a0508;
+      display: none; flex-direction: column; align-items: center; justify-content: center;
+      z-index: 9000;
+    }
+    #pageTransition.show { display: flex; }
+    .transition-label { font-size: 1.5rem; font-weight: 700; color: #ffffff; margin-bottom: 36px; letter-spacing: 0.08em; opacity: 0; transform: translateY(20px); transition: opacity 0.4s ease, transform 0.4s ease; }
+    #pageTransition.show .transition-label { opacity: 1; transform: translateY(0); }
+    .transition-bar-wrapper { width: 280px; height: 3px; background: rgba(255,100,150,0.2); border-radius: 2px; overflow: hidden; }
+    .transition-bar { height: 100%; background: linear-gradient(90deg, #ff3d6d, #ff6b94, #ff3d6d); width: 0%; border-radius: 2px; box-shadow: 0 0 12px #ff6b94; transition: width 0.6s ease; }
+
+    /* ══ PAGE CONTENT FADE ══ */
+    @keyframes pageEnter { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+    .page-view.active { animation: pageEnter 0.5s ease-out; }
+
+    /* ══════════════════════════════════
+       PROFILE PAGE
+    ══════════════════════════════════ */
+    #page-profile main { position: relative; z-index: 1; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: calc(var(--nav-h) + 60px) 20px 60px; gap: 40px; }
+    @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    .header { text-align: center; animation: slideUp 0.8s ease-out; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+    .profile-pic-container { position: relative; width: 200px; height: 200px; display: flex; align-items: center; justify-content: center; animation: slideUp 0.8s ease-out; overflow: visible; margin-bottom: 8px; }
+    .profile-pic-inner { width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--accent); box-shadow: 0 0 30px var(--glow), inset 0 0 20px rgba(255,61,109,0.3); overflow: hidden; flex-shrink: 0; position: relative; z-index: 10; }
+    .profile-pic { width: 100%; height: 100%; object-fit: cover; background: linear-gradient(135deg, var(--accent-dark), var(--accent)); border-radius: 50%; }
+    .avatar-decoration { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 135px; height: 135px; pointer-events: none; z-index: 20; }
+    .decoration-img { width: 100%; height: 100%; object-fit: contain; }
+    .display-name { font-family: 'CFT2', sans-serif; font-size: clamp(1.8rem, 5vw, 2.2rem); font-weight: 100; color: #ffffff; -webkit-text-stroke: 8px #ff6b94; paint-order: stroke fill; letter-spacing: -0.5px; text-shadow: 0 0 20px var(--glow); margin: 0; transition: all 0.3s ease; }
+    .display-name:hover { animation: stroke-flash 0.7s ease-in-out; }
+    @keyframes stroke-flash {
+      0%,100% { -webkit-text-stroke: 8px #ff6b94; color: #ffffff; }
+      25%      { -webkit-text-stroke: 8px #ffb3d9; }
+      50%      { -webkit-text-stroke: 8px #ff6b94; }
+      75%      { -webkit-text-stroke: 8px #ffb3d9; }
+    }
+    .username { font-size: 0.98rem; color: #e5bbcf; letter-spacing: 0.1em; font-weight: 400; margin: 0; animation: slideUp 0.8s ease-out 0.15s backwards; }
+    .age-display { font-size: 0.8rem; color: var(--text-muted); letter-spacing: 0.05em; margin-top: 2px; animation: slideUp 0.8s ease-out 0.15s backwards; }
+    .bio { max-width: 550px; width: 100%; background: var(--surface); border: 2px solid var(--border); border-radius: 16px; padding: 24px; backdrop-filter: blur(10px); animation: slideUp 0.8s ease-out 0.25s backwards; font-size: 0.9rem; color: var(--text); box-shadow: 0 0 20px var(--glow), inset 0 0 20px rgba(255,61,109,0.1); line-height: 1.7; word-spacing: 0.05em; }
+    .bio p { margin-bottom: 8px; } .bio p:last-child { margin-bottom: 0; } .bio strong { color: var(--accent-light); font-weight: 600; }
+    .hobbies-toggle { background: none; border: none; color: var(--accent-light); font-weight: 600; font-size: 0.95rem; display: inline-flex; align-items: center; gap: 10px; padding: 0; transition: all 0.3s ease; font-family: inherit; margin: 12px 0 0 0; }
+    .hobbies-toggle:hover { color: #ffb3d9; text-shadow: 0 0 10px var(--glow); }
+    .toggle-icon { display: inline-block; transition: transform 0.4s cubic-bezier(0.68,-0.55,0.265,1.55); font-size: 0.75rem; color: var(--accent-light); }
+    .hobbies-toggle.expanded .toggle-icon { transform: rotate(180deg); }
+    .hobbies-content { max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.68,-0.55,0.265,1.55); }
+    .hobbies-content.expanded { max-height: 350px; }
+    .hobbies-list { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 8px; }
+    .hobby-item { display: flex; gap: 8px; align-items: flex-start; animation: slideUp 0.4s ease-out; }
+    .keyword-anime { color: #ff9dd5; font-weight: 500; display: inline-block; min-width: 70px; white-space: nowrap; }
+    .keyword-code  { color: #ffa3e0; font-weight: 500; display: inline-block; min-width: 70px; white-space: nowrap; }
+    .keyword-game  { color: #ffb3eb; font-weight: 500; display: inline-block; min-width: 70px; white-space: nowrap; }
+    .socials-section { width: 100%; max-width: 550px; animation: slideUp 0.8s ease-out 0.35s backwards; }
+    .socials-title { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px; text-align: center; }
+    .socials-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
+    .social-link { width: 100%; height: 50px; background: var(--surface); border: 2px solid var(--border); border-radius: 12px; display: flex; align-items: center; justify-content: flex-start; gap: 16px; padding: 0 16px; text-decoration: none; transition: all 0.3s ease; box-shadow: 0 0 15px rgba(255,61,109,0.3); color: var(--text); font-size: 0.95rem; font-weight: 500; }
+    .social-link:hover { border-color: var(--border-h); transform: translateX(6px); box-shadow: 0 0 25px var(--glow), inset 0 0 15px rgba(255,61,109,0.2); background: rgba(255,61,109,0.12); }
+    .social-link img { width: 20px; height: 20px; object-fit: contain; flex-shrink: 0; }
+    footer { position: relative; z-index: 1; text-align: center; padding: 30px 20px; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid var(--border); animation: slideUp 0.8s ease-out 0.45s backwards; }
+    footer a { color: var(--accent); text-decoration: none; transition: color 0.3s; }
+    footer a:hover { color: var(--accent-light); }
+
+    /* ══════════════════════════════════
+       ANIME PAGE
+    ══════════════════════════════════ */
+    #page-anime { min-height: 100vh; position: relative; z-index: 1; }
+    .anime-page-inner { padding: calc(var(--nav-h) + 30px) 20px 60px; max-width: 900px; margin: 0 auto; }
+    .anime-header { text-align: center; margin-bottom: 28px; animation: slideUp 0.7s ease-out; }
+    .anime-header h1 { font-family: 'CFT2', sans-serif; font-size: clamp(1.6rem, 4vw, 2rem); color: #ffffff; -webkit-text-stroke: 6px #ff6b94; paint-order: stroke fill; text-shadow: 0 0 20px var(--glow); margin-bottom: 6px; }
+    .anime-header p { font-size: 0.8rem; color: var(--text-muted); letter-spacing: 0.1em; }
+
+    /* ── Anime toolbar ── */
+    .anime-toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px; margin-bottom: 28px; animation: slideUp 0.7s ease-out 0.1s backwards; }
+    .anime-btn {
+      display: flex; align-items: center; gap: 6px;
+      padding: 8px 16px; font-size: 0.78rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text); background: var(--surface);
+      border: 1.5px solid var(--border); border-radius: 10px;
+      transition: all 0.3s ease;
+      font-family: 'Outfit', sans-serif;
+      box-shadow: 0 0 12px rgba(255,61,109,0.15);
+    }
+    .anime-btn:hover { border-color: var(--border-h); color: #fff; background: rgba(255,61,109,0.12); box-shadow: 0 0 20px var(--glow); transform: translateY(-2px); }
+    .anime-btn.active-sort { border-color: var(--accent-light); color: var(--accent-light); box-shadow: 0 0 16px rgba(255,107,148,0.4); }
+
+    /* ── Anime cards ── */
+    .anime-list-grid { display: flex; flex-direction: column; gap: 16px; animation: slideUp 0.7s ease-out 0.2s backwards; }
+    .anime-card { position: relative; border-radius: 18px; overflow: hidden; min-height: 170px; display: flex; align-items: flex-end; border: 1.5px solid rgba(255,100,150,0.15); transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.35s ease, border-color 0.3s; }
+    .anime-card:hover { transform: translateY(-6px) scale(1.01); box-shadow: 0 0 30px rgba(255,61,109,0.5), 0 0 60px rgba(255,61,109,0.15); border-color: rgba(255,107,148,0.5); }
+    .anime-banner { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center top; transition: filter 0.35s ease; }
+    .anime-card:hover .anime-banner { filter: brightness(0.75) saturate(1.1); }
+    .anime-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(5,2,4,0.95) 0%, rgba(5,2,4,0.5) 50%, rgba(5,2,4,0.1) 100%); z-index: 1; }
+    .anime-info { position: relative; z-index: 2; padding: 20px 22px 18px; width: 100%; }
+    .anime-card-top { display: flex; align-items: baseline; gap: 10px; margin-bottom: 4px; }
+    .anime-num { font-size: 0.7rem; font-weight: 600; color: var(--accent-light); letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.8; flex-shrink: 0; }
+    .anime-title { font-size: 1.25rem; font-weight: 700; color: #fff; text-shadow: 0 2px 8px rgba(0,0,0,0.8); margin: 0; line-height: 1.2; }
+    .anime-rating { margin-top: 4px; font-size: 0.88rem; font-weight: 600; color: #ffe680; display: flex; align-items: center; gap: 5px; }
+    .rating-bar-wrap { flex: 1; max-width: 120px; height: 3px; background: rgba(255,255,255,0.15); border-radius: 2px; overflow: hidden; }
+    .rating-bar-fill { height: 100%; background: linear-gradient(90deg, #ffb84d, #ffe680); border-radius: 2px; box-shadow: 0 0 6px rgba(255,230,100,0.5); }
+    .genres { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 5px; }
+    .genre-tag { padding: 3px 10px; border-radius: 20px; font-size: 0.72rem; font-weight: 500; color: #fff; letter-spacing: 0.04em; text-shadow: 0 1px 3px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.15); backdrop-filter: blur(4px); }
+
+    /* genre colours */
+    .g-Romance{background:rgba(246,81,210,0.55)}.g-Action{background:rgba(110,181,255,0.5)}.g-Drama{background:rgba(179,107,255,0.5)}.g-Fantasy{background:rgba(102,255,179,0.4)}.g-Mystery{background:rgba(255,148,77,0.5)}.g-Adventure{background:rgba(255,210,77,0.45)}.g-Comedy{background:rgba(255,179,102,0.5)}.g-SciFi,.g-Sci-Fi{background:rgba(178,180,185,0.45)}.g-Horror{background:rgba(255,102,102,0.5)}.g-SliceofLife,.g-Slice-of-Life{background:rgba(161,106,193,0.5)}.g-Sports{background:rgba(110,146,238,0.5)}.g-Music{background:rgba(242,102,64,0.5)}.g-Supernatural{background:rgba(157,48,72,0.55)}.g-Isekai{background:rgba(111,43,141,0.55)}.g-Historical{background:rgba(211,195,89,0.5)}.g-Psychological{background:rgba(85,45,94,0.6)}.g-School{background:rgba(59,169,145,0.5)}.g-Ecchi{background:rgba(222,33,137,0.55)}.g-Thriller{background:rgba(240,245,94,0.45)}.g-Harem{background:rgba(168,15,87,0.55)}.g-Shounen{background:rgba(48,77,97,0.6)}.g-Shoujo{background:rgba(120,42,112,0.55)}.g-Seinen{background:rgba(74,78,105,0.6)}.g-Demons{background:rgba(111,5,5,0.65)}.g-SuperPower,.g-Super-Power{background:rgba(153,173,61,0.5)}.g-MartialArts,.g-Martial-Arts{background:rgba(135,158,210,0.5)}.g-Mecha{background:rgba(181,159,159,0.45)}.g-Parody{background:rgba(247,183,163,0.5)}.g-Military{background:rgba(75,111,68,0.55)}.g-Samurai{background:rgba(10,170,133,0.5)}.g-Space{background:rgba(42,82,93,0.6)}.g-Magic{background:rgba(123,26,81,0.6)}.g-Vampire{background:rgba(175,35,35,0.6)}.g-Game{background:rgba(35,133,148,0.55)}.g-default{background:rgba(136,136,136,0.45)}
+
+    /* ── Stats modal ── */
+    .stats-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 8000; justify-content: center; align-items: center; backdrop-filter: blur(6px); }
+    .stats-modal.show { display: flex; }
+    .stats-modal-inner { background: rgba(15,6,11,0.97); border: 1.5px solid var(--border); border-radius: 20px; padding: 28px 24px; max-width: 480px; width: 90%; box-shadow: 0 0 40px var(--glow); text-align: center; animation: slideUp 0.4s ease-out; }
+    .stats-modal-inner h2 { font-size: 1.1rem; color: var(--accent-light); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 20px; }
+    .stats-close { margin-top: 18px; padding: 8px 22px; background: rgba(255,61,109,0.15); border: 1.5px solid var(--border); border-radius: 10px; color: var(--text); font-family: 'Outfit', sans-serif; font-size: 0.82rem; transition: all 0.3s; }
+    .stats-close:hover { border-color: var(--accent-light); background: rgba(255,61,109,0.25); }
+
+    /* ══ GENRE PICKER POPUP ══ */
+    .genre-popup-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 7000; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
+    .genre-popup-overlay.show { display: flex; }
+    .genre-popup {
+      background: rgba(12,5,10,0.98);
+      border: 1.5px solid var(--border);
+      border-radius: 20px; padding: 24px 22px;
+      max-width: 520px; width: 92%;
+      box-shadow: 0 0 40px var(--glow);
+      animation: slideUp 0.35s ease-out;
+      max-height: 80vh; display: flex; flex-direction: column;
+    }
+    .genre-popup-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+    .genre-popup-header h3 { font-size: 0.85rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent-light); }
+    .genre-popup-close { background: none; border: none; color: var(--text-muted); font-size: 1.2rem; line-height: 1; padding: 2px 6px; border-radius: 6px; transition: color 0.2s, background 0.2s; }
+    .genre-popup-close:hover { color: #fff; background: rgba(255,61,109,0.2); }
+    .genre-chips { display: flex; flex-wrap: wrap; gap: 8px; overflow-y: auto; padding-right: 4px; flex: 1; }
+    .genre-chip {
+      padding: 5px 13px; border-radius: 20px; font-size: 0.75rem; font-weight: 500;
+      color: rgba(245,230,240,0.7);
+      background: rgba(255,100,150,0.08);
+      border: 1.5px solid rgba(255,100,150,0.2);
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .genre-chip:hover { border-color: var(--accent-light); color: #fff; background: rgba(255,61,109,0.15); }
+    .genre-chip.selected { background: rgba(255,61,109,0.3); border-color: var(--accent-light); color: #fff; box-shadow: 0 0 10px rgba(255,107,148,0.3); }
+    .genre-popup-footer { display: flex; gap: 10px; margin-top: 16px; justify-content: flex-end; }
+    .genre-popup-footer button { padding: 8px 20px; border-radius: 10px; font-family: 'Outfit', sans-serif; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.08em; transition: all 0.25s; }
+    .btn-clear-genres { background: none; border: 1.5px solid rgba(255,100,150,0.25); color: var(--text-muted); }
+    .btn-clear-genres:hover { border-color: var(--border-h); color: var(--text); }
+    .btn-apply-genres { background: rgba(255,61,109,0.2); border: 1.5px solid var(--accent-light); color: var(--accent-light); }
+    .btn-apply-genres:hover { background: rgba(255,61,109,0.35); box-shadow: 0 0 16px rgba(255,107,148,0.4); color: #fff; }
+
+    /* active-genre indicator on the Genre button */
+    .anime-btn.genre-active { border-color: var(--accent-light); color: var(--accent-light); box-shadow: 0 0 16px rgba(255,107,148,0.4); }
+
+    /* ══ CUSTOM CURSOR ══ */
+    * { cursor: none; }
+    #cursor-dot { position: fixed; width: 8px; height: 8px; background: var(--accent); border-radius: 50%; pointer-events: none; z-index: 9999; top: 0; left: 0; transform: translate(-50%, -50%); box-shadow: 0 0 10px var(--accent); }
+    #cursor-ring {
+      position: fixed; width: 30px; height: 30px;
+      border: 2px solid var(--accent); border-radius: 50%;
+      pointer-events: none; z-index: 9998; top: 0; left: 0;
+      transform: translate(-50%, -50%); opacity: 0.8;
+      box-shadow: 0 0 15px rgba(255,61,109,0.5);
+      transition: width 0.2s ease, height 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    #cursor-ring.hovered {
+      width: 48px; height: 48px;
+      border-color: var(--accent-light);
+      box-shadow: 0 0 22px rgba(255,107,148,0.55);
+    }
+    .ripple { position: fixed; border: 2px solid var(--accent); border-radius: 50%; pointer-events: none; z-index: 9997; animation: ripple-animation 0.6s ease-out; transform: translate(-50%, -50%); }
+    @keyframes ripple-animation { 0% { width: 0; height: 0; opacity: 1; } 100% { width: 60px; height: 60px; opacity: 0; } }
+
+    /* ── Responsive ── */
+    @media (max-width: 700px) {
+      :root { --nav-h: 52px; }
+      .nav-links li a { padding: 0 10px; font-size: 0.62rem; letter-spacing: 0.12em; gap: 5px; }
+      .nav-icon { width: 13px; height: 13px; }
+      #page-profile main { padding: calc(var(--nav-h) + 30px) 16px 40px; gap: 28px; }
+      .anime-page-inner { padding: calc(var(--nav-h) + 20px) 12px 40px; }
+      .anime-card { min-height: 140px; }
+      .anime-title { font-size: 1.05rem; }
+      .nav-views { display: none; }
     }
   </style>
 </head>
 <body>
-  <div class="bg"></div>
 
-  <div class="controls">
-    <button class="toggle-btn" onclick="togglePetals()">🌸</button>
+  <!-- ══ CLICK TO ENTER SCREEN ══ -->
+  <div id="enterScreen">
+    <span class="enter-hint">click anywhere to enter</span>
   </div>
 
-  <header>
-    <h1>🌸 Welcome 🌸</h1>
-    <p>Choose your adventure ✨</p>
-  </header>
+  <!-- Initial loading screen -->
+  <div class="loading-container" id="loadingContainer">
+    <div class="welcome-message">Welcome</div>
+    <div class="loading-bar-wrapper"><div class="loading-bar" id="loadingBar"></div></div>
+  </div>
 
-  <main class="grid">
-    <a class="card" href="home/">
-      <h3>🏠 About me</h3>
-      <p>Get to stalk me</p>
-    </a>
-    <a class="card" href="anime/">
-      <h3>🎬 Anime</h3>
-      <p>My anime list</p>
-    </a>
-    <a class="card" href="games/">
-      <h3>🎮 Games</h3>
-      <p>bs</p>
-    </a>
-    <a class="card" href="game-achievement/">
-      <h3>🏆 Achievements</h3>
-      <p>No lifed few games</p>
-    </a>
-  </main>
+  <!-- Page transition overlay -->
+  <div id="pageTransition">
+    <div class="transition-label" id="transitionLabel">Loading</div>
+    <div class="transition-bar-wrapper"><div class="transition-bar" id="transitionBar"></div></div>
+  </div>
 
-  <footer>
-    Made with 💖 by me
-  </footer>
+  <!-- Audio -->
+  <audio id="bgMusic" loop><source src="assets/music.mp3" type="audio/mpeg"></audio>
+
+  <!-- Cursor -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+
+  <div class="petal-bg" id="petalBg"></div>
+  <div class="bg-decoration"><div class="glow-1"></div><div class="glow-2"></div></div>
+
+  <!-- ══ NAV BAR ══ -->
+  <nav class="nav-bar">
+    <div class="nav-left">
+      <button id="musicBtn" title="Toggle music" aria-label="Toggle background music">
+        <svg id="iconSpeaker" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+          <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+        </svg>
+        <svg id="iconMuted" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+          <line x1="23" y1="9" x2="17" y2="15"/>
+          <line x1="17" y1="9" x2="23" y2="15"/>
+        </svg>
+      </button>
+      <div class="eq-bars" id="eqBars">
+        <div class="eq-bar"></div><div class="eq-bar"></div>
+        <div class="eq-bar"></div><div class="eq-bar"></div>
+      </div>
+    </div>
+
+    <ul class="nav-links">
+      <li><a data-page="profile" class="active"><img src="assets/pinkheart.ico" alt="" class="nav-icon">Profile</a></li>
+      <li><a data-page="games"><img src="assets/Games.ico" alt="" class="nav-icon">Games</a></li>
+      <li><a data-page="anime"><img src="assets/Anime.ico" alt="" class="nav-icon">Anime List</a></li>
+      <li><a data-page="music"><img src="assets/Music.ico" alt="" class="nav-icon">Music</a></li>
+      <li><a data-page="comment"><img src="assets/Comment.ico" alt="" class="nav-icon">Comment</a></li>
+    </ul>
+
+    <!-- Views badge -->
+    <div class="nav-views" id="navViews">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+        <circle cx="12" cy="12" r="3"/>
+      </svg>
+      <span id="viewCount">—</span>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════
+       PAGE: PROFILE
+  ══════════════════════════ -->
+  <div id="page-profile" class="page-view active">
+    <main>
+      <header class="header">
+        <div class="profile-pic-container">
+          <div class="profile-pic-inner">
+            <img src="assets/avatar.png" alt="Profile" class="profile-pic">
+          </div>
+          <div class="avatar-decoration">
+            <img src="assets/in_love.png" alt="" class="decoration-img">
+          </div>
+        </div>
+        <h1 class="display-name">Alya is a cutie</h1>
+        <p class="username">@sti1ltyping</p>
+      </header>
+
+      <section class="bio">
+        <p><strong>Hey</strong></p>
+        <p>I'm sti1ltyping/Alya is a cutie. If you don't know me personally or via my discord bot projects, then I dunno why you're here.</p>
+        <br>
+        <p>I spend most of my time on discord. DMs &amp; friend requests off if you need anything, contact me in <a href="https://discord.gg/B3DQgwUgyT" target="_blank" rel="noopener"><u>my server</u></a></p>
+        <br>
+        <button class="hobbies-toggle" id="hobbiesToggle">
+          <span class="toggle-icon">▼</span>
+          <strong>More about me</strong>
+        </button>
+        <div class="hobbies-content" id="hobbiesContent">
+          <br>
+          <p>
+            Currently <span class="age-display" id="ageDisplay"></span> years old.<br>
+            
+          </p>
+          <div class="hobbies-list">
+            <strong>Hobbies</strong>
+            <div class="hobby-item"><span class="keyword-anime">Anime:</span><span>Love to escape reality</span></div>
+            <div class="hobby-item"><span class="keyword-code">Coding:</span><span>Maybe I like to torture myself</span></div>
+            <div class="hobby-item"><span class="keyword-game">Games:</span><span>Valorant and osu! I don't play for fun, I play to prove myself better than my friends</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="socials-section">
+        <p class="socials-title">Socials</p>
+        <div class="socials-grid">
+          <a href="https://discord.gg/B3DQgwUgyT" target="_blank" rel="noopener" class="social-link"><img src="assets/Discord.ico" alt="Discord">Discord</a>
+          <a href="https://www.instagram.com/sti1ltyping/" target="_blank" rel="noopener" class="social-link"><img src="assets/Instagram.png" alt="Instagram">Instagram</a>
+          <a href="https://open.spotify.com/user/31d5t2zdn2btknh43kiaebdutboa?si=10598f1689274e92" target="_blank" rel="noopener" class="social-link"><img src="assets/Spotify.ico" alt="Spotify">Spotify</a>
+          <a href="https://github.com/sti1ltyping" target="_blank" rel="noopener" class="social-link"><img src="assets/Github.ico" alt="GitHub">GitHub</a>
+        </div>
+      </section>
+    </main>
+    <footer><p>sleepless nights and vibe code 💖</p></footer>
+  </div>
+
+  <!-- ══════════════════════════
+       PAGE: ANIME LIST
+  ══════════════════════════ -->
+  <div id="page-anime" class="page-view">
+    <div class="anime-page-inner">
+      <div class="anime-header">
+        <h1>My Anime List</h1>
+        <p id="animeCountLabel">Loading...</p>
+      </div>
+
+      <div class="anime-toolbar">
+        <button class="anime-btn" id="btnNoFilter" onclick="resetAnimeFilters()">✕ No Filter</button>
+        <button class="anime-btn" id="btnGenre" onclick="openGenrePopup()">
+          <span id="genreBtnLabel">Genre</span>
+          <svg id="genreDropIcon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <button class="anime-btn" id="btnRating" onclick="cycleAnimeSort()">
+          <span id="ratingBtnLabel">⭐ Rating</span>
+          <svg id="ratingArrow" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:none"><polyline id="ratingArrowPoly" points="12 5 12 19"/><polyline id="ratingArrowHead" points="5 12 12 5 19 12"/></svg>
+        </button>
+        <button class="anime-btn" onclick="openAnimeStats()">Stats</button>
+      </div>
+
+      <div class="anime-list-grid" id="animeListGrid"></div>
+    </div>
+  </div>
+
+  <!-- Genre picker popup -->
+  <div class="genre-popup-overlay" id="genrePopupOverlay" onclick="closeGenrePopupIfOutside(event)">
+    <div class="genre-popup" id="genrePopup">
+      <div class="genre-popup-header">
+        <h3>Select Genres</h3>
+        <button class="genre-popup-close" onclick="closeGenrePopup()">✕</button>
+      </div>
+      <div class="genre-chips" id="genreChips"></div>
+      <div class="genre-popup-footer">
+        <button class="btn-clear-genres" onclick="clearGenreSelection()">Clear</button>
+        <button class="btn-apply-genres" onclick="applyGenreFilter()">Apply</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats modal -->
+  <div class="stats-modal" id="statsModal">
+    <div class="stats-modal-inner">
+      <h2>Genre Distribution</h2>
+      <canvas id="pieChart" width="320" height="320"></canvas>
+      <button class="stats-close" onclick="closeAnimeStats()">Close</button>
+    </div>
+  </div>
 
   <script>
-    let petalsEnabled = true;
-    let petalInterval;
-
-    function createPetal() {
-      const petal = document.createElement("div");
-      petal.classList.add("petal");
-      petal.textContent = "🌸";
-      petal.style.left = Math.random() * 100 + "vw";
-      petal.style.animationDuration = (5 + Math.random() * 5) + "s";
-      petal.style.fontSize = (16 + Math.random() * 10) + "px";
-      document.body.appendChild(petal);
-      setTimeout(() => petal.remove(), 10000);
+    /* ══════════════════════════════════════════════════════
+       PAGE META — title & icon per page
+    ══════════════════════════════════════════════════════ */
+    const pageMeta = {
+      profile: { title: 'about me',   icon: 'assets/pinkheart.ico' },
+      anime:   { title: 'Anime List', icon: 'assets/Anime.ico'     },
+      games:   { title: 'Games',      icon: 'assets/Games.ico'     },
+      music:   { title: 'Music',      icon: 'assets/Music.ico'     },
+      comment: { title: 'Comments',   icon: 'assets/Comment.ico'   },
+    };
+    function applyPageMeta(page) {
+      const m = pageMeta[page] || pageMeta.profile;
+      document.title = m.title;
+      let link = document.querySelector("link[rel~='icon']");
+      if (!link) { link = document.createElement('link'); link.rel = 'icon'; document.head.appendChild(link); }
+      link.type = 'image/x-icon';
+      link.href = m.icon;
     }
 
-    function togglePetals() {
-      if (!petalsEnabled) {
-        petalInterval = setInterval(createPetal, 400);
-        petalsEnabled = true;
-      } else {
-        clearInterval(petalInterval);
-        petalsEnabled = false;
+    /* ══════════════════════════════════════════════════════
+       VIEWS — global counter via counterapi.dev
+       Falls back to localStorage if the API is unavailable.
+    ══════════════════════════════════════════════════════ */
+    const COUNTER_NS  = 'sti1ltyping';          // your namespace
+    const COUNTER_KEY = 'github-io-views';       // counter name
+    const COUNTER_URL = `https://api.counterapi.dev/v1/${COUNTER_NS}/${COUNTER_KEY}`;
+    const LS_KEY      = 'site_views_fallback';   // localStorage fallback key
+
+    function showViews(n) {
+      document.getElementById('viewCount').textContent = Number(n).toLocaleString();
+      setTimeout(() => document.getElementById('navViews').classList.add('visible'), 100);
+    }
+
+    async function bumpViews() {
+      try {
+        const res  = await fetch(`${COUNTER_URL}/up`);
+        if (!res.ok) throw new Error('api error');
+        const data = await res.json();
+        const v    = data.count ?? data.value ?? 0;
+        localStorage.setItem(LS_KEY, v);          // cache latest for fallback
+        return v;
+      } catch {
+        const v = (parseInt(localStorage.getItem(LS_KEY) || '0', 10)) + 1;
+        localStorage.setItem(LS_KEY, v);
+        return v;
       }
     }
 
-    petalInterval = setInterval(createPetal, 400);
+    /* ══════════════════════════════════════════════════════
+       AUDIO HELPERS
+    ══════════════════════════════════════════════════════ */
+    const audio    = document.getElementById('bgMusic');
+    const musicBtn = document.getElementById('musicBtn');
+    const iconSpk  = document.getElementById('iconSpeaker');
+    const iconMute = document.getElementById('iconMuted');
+    const eqBars   = document.getElementById('eqBars');
+    let isMuted = false;
+
+    function tryPlay() {
+      audio.volume = 0.45;
+      audio.muted  = false;
+      audio.play().catch(() => {/* swallow — user already clicked so this shouldn't fail */});
+    }
+
+    function setPlayingUI(on) {
+      if (on && !isMuted) {
+        musicBtn.classList.add('playing');
+        eqBars.classList.add('show');
+        iconSpk.style.display  = 'block';
+        iconMute.style.display = 'none';
+      }
+    }
+
+    audio.addEventListener('play', () => {
+      if (!isMuted) {
+        musicBtn.classList.add('playing');
+        eqBars.classList.add('show');
+        iconSpk.style.display  = 'block';
+        iconMute.style.display = 'none';
+      }
+    });
+    audio.addEventListener('pause', () => {
+      musicBtn.classList.remove('playing');
+      eqBars.classList.remove('show');
+      iconSpk.style.display  = 'none';
+      iconMute.style.display = 'block';
+    });
+
+    musicBtn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play(); isMuted = false; setPlayingUI(true);
+      } else if (isMuted) {
+        audio.muted = false; isMuted = false;
+        musicBtn.classList.add('playing'); eqBars.classList.add('show');
+        iconSpk.style.display = 'block'; iconMute.style.display = 'none';
+      } else {
+        audio.muted = true; isMuted = true;
+        musicBtn.classList.remove('playing'); eqBars.classList.remove('show');
+        iconSpk.style.display = 'none'; iconMute.style.display = 'block';
+      }
+    });
+
+    /* ══════════════════════════════════════════════════════
+       CLICK TO ENTER — boot sequence
+    ══════════════════════════════════════════════════════ */
+    window.addEventListener('load', () => {
+      window.scrollTo({ top: 0 });
+    });
+
+    document.getElementById('enterScreen').addEventListener('click', () => {
+      const enter = document.getElementById('enterScreen');
+      const lc    = document.getElementById('loadingContainer');
+      const bar   = document.getElementById('loadingBar');
+
+      /* 1. Kill enter screen and show loading screen in the SAME synchronous tick —
+            no gap, no flash, browser paints them together. */
+      enter.classList.add('hidden');
+      lc.style.transition = 'none';
+      lc.style.opacity    = '1';
+      lc.style.display    = 'flex';
+
+      /* Re-trigger the CSS bar animation by cloning */
+      const newBar = bar.cloneNode(true);
+      bar.parentNode.replaceChild(newBar, bar);
+
+      /* 2. Fire the global view counter in parallel — don't await it so
+            the screen swap above is never delayed. Badge updates whenever
+            the API responds (fast), or immediately from cache if it fails. */
+      bumpViews().then(v => showViews(v));
+
+      /* 3. Music starts only AFTER welcome animation has finished (~2300ms) */
+      setTimeout(() => tryPlay(), 2300);
+
+      /* 4. Dismiss loading screen */
+      setTimeout(() => {
+        lc.style.transition = 'opacity 0.5s ease-out';
+        lc.style.opacity    = '0';
+        setTimeout(() => {
+          lc.style.display       = 'none';
+          lc.style.pointerEvents = 'none';
+        }, 500);
+      }, 2300);
+    });
+
+    /* ── Age ── */
+    (function() {
+      const today = new Date(), b = new Date('2007-12-11');
+      let age = today.getFullYear() - b.getFullYear();
+      const md = today.getMonth() - b.getMonth();
+      if (md < 0 || (md === 0 && today.getDate() < b.getDate())) age--;
+      document.getElementById('ageDisplay').textContent = age;
+    })();
+
+    /* ── Hobbies toggle ── */
+    document.getElementById('hobbiesToggle').addEventListener('click', function() {
+      this.classList.toggle('expanded');
+      document.getElementById('hobbiesContent').classList.toggle('expanded');
+    });
+
+    /* ══════════════════════════════════════════════════════
+       SPA NAVIGATION + PAGE TRANSITIONS
+    ══════════════════════════════════════════════════════ */
+    const pageNames = { profile:'Profile', anime:'Anime List', games:'Games', music:'Music', comment:'Comments' };
+    let currentPage = 'profile';
+    let animeLoaded = false;
+    let pieChartInstance = null;
+
+    document.querySelectorAll('.nav-links a[data-page]').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = this.dataset.page;
+        if (target === currentPage) return;
+        if (!['profile','anime'].includes(target)) return;
+        navigateTo(target);
+      });
+    });
+
+    function navigateTo(target) {
+      const overlay = document.getElementById('pageTransition');
+      const label   = document.getElementById('transitionLabel');
+      const bar     = document.getElementById('transitionBar');
+
+      label.textContent = pageNames[target] || target;
+      overlay.classList.add('show');
+      bar.style.width = '0%';
+
+      requestAnimationFrame(() => requestAnimationFrame(() => { bar.style.width = '100%'; }));
+
+      setTimeout(() => {
+        document.querySelectorAll('.page-view').forEach(v => v.classList.remove('active'));
+        document.getElementById('page-' + target).classList.add('active');
+        document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active'));
+        document.querySelector(`.nav-links a[data-page="${target}"]`).classList.add('active');
+        currentPage = target;
+
+        window.scrollTo({ top: 0 });
+        applyPageMeta(target);
+
+        if (target === 'anime' && !animeLoaded) { loadAnime(); animeLoaded = true; }
+
+        overlay.style.opacity = '1';
+        setTimeout(() => {
+          overlay.style.opacity    = '0';
+          overlay.style.transition = 'opacity 0.4s ease';
+          setTimeout(() => {
+            overlay.classList.remove('show');
+            overlay.style.opacity    = '';
+            overlay.style.transition = '';
+            bar.style.width = '0%';
+          }, 400);
+        }, 100);
+      }, 650);
+    }
+
+    /* ══════════════════════════════════════════════════════
+       PETALS
+    ══════════════════════════════════════════════════════ */
+    const petalBg = document.getElementById('petalBg');
+    const flowers = ['flower_01.png','flower_02.png','flower_07.png'];
+    const petals  = ['flower_03.png','flower_04.png','flower_05.png','flower_06.png','flower_08.png','flower_09.png'];
+
+    function spawnPetal(startY) {
+      const isFlower = Math.random() < 0.15;
+      const src = isFlower ? flowers[Math.floor(Math.random()*flowers.length)] : petals[Math.floor(Math.random()*petals.length)];
+      const el  = document.createElement('div');
+      el.className = 'petal';
+      const img = document.createElement('img');
+      img.src = 'assets/' + src;
+      img.style.cssText = 'width:100%;height:100%;object-fit:contain;';
+      el.appendChild(img);
+      const size = isFlower ? (10+Math.random()*20)+'px' : (4+Math.random()*7)+'px';
+      el.style.width  = size;
+      el.style.height = size;
+      el.style.left   = (Math.random()*100)+'vw';
+      el.style.top    = (startY !== undefined ? startY : -30)+'px';
+      const rem = startY !== undefined ? (110-(startY/window.innerHeight)*100) : 110;
+      const dur = (12+Math.random()*8)*(rem/110);
+      el.style.animationDuration      = dur+'s';
+      el.style.animationDelay         = '0s';
+      el.style.animationIterationCount= '1';
+      el.style.animationFillMode      = 'forwards';
+      petalBg.appendChild(el);
+      setTimeout(() => el.remove(), (dur+0.5)*1000);
+    }
+    for (let i=0;i<30;i++) setTimeout(()=>spawnPetal(Math.random()*window.innerHeight), Math.random()*300);
+    setInterval(()=>spawnPetal(), 260);
+
+    /* ══════════════════════════════════════════════════════
+       CUSTOM CURSOR
+    ══════════════════════════════════════════════════════ */
+    const cDot  = document.getElementById('cursor-dot');
+    const cRing = document.getElementById('cursor-ring');
+    let mx=0, my=0, rx=0, ry=0;
+
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      cDot.style.left = mx+'px'; cDot.style.top = my+'px';
+    });
+    (function tick() {
+      rx += (mx-rx)*0.2; ry += (my-ry)*0.2;
+      cRing.style.left = rx+'px'; cRing.style.top = ry+'px';
+      requestAnimationFrame(tick);
+    })();
+
+    document.addEventListener('mouseenter', () => { cDot.style.opacity='1'; cRing.style.opacity='0.8'; });
+    document.addEventListener('mouseleave', () => { cDot.style.opacity='0'; cRing.style.opacity='0'; });
+
+    const INTERACTABLE = 'a, button, input, select, textarea, label, [onclick], .anime-card, .genre-chip, .social-link, .nav-links li a';
+    document.addEventListener('mouseover', e => { if (e.target.closest(INTERACTABLE)) cRing.classList.add('hovered'); });
+    document.addEventListener('mouseout',  e => { if (e.target.closest(INTERACTABLE)) cRing.classList.remove('hovered'); });
+
+    document.addEventListener('click', e => {
+      const r = document.createElement('div'); r.className = 'ripple';
+      r.style.left = e.clientX+'px'; r.style.top = e.clientY+'px';
+      document.body.appendChild(r); setTimeout(() => r.remove(), 1000);
+    });
+
+    /* ══════════════════════════════════════════════════════
+       ANIME PAGE LOGIC
+    ══════════════════════════════════════════════════════ */
+    let animeData      = [];
+    let selectedGenres = new Set();
+    let animeSort      = 0; // 0=default 1=desc 2=asc
+
+    async function loadAnime() {
+      try {
+        const res = await fetch('anime/anime.json');
+        animeData = await res.json();
+        populateGenreChips();
+        renderAnime(animeData);
+      } catch(e) {
+        document.getElementById('animeListGrid').innerHTML =
+          '<p style="text-align:center;color:var(--text-muted);padding:40px">Could not load anime.json</p>';
+      }
+    }
+
+    function renderAnime(data) {
+      const grid = document.getElementById('animeListGrid');
+      document.getElementById('animeCountLabel').textContent = data.length + ' anime';
+      grid.innerHTML = '';
+      data.forEach((anime, i) => {
+        const card = document.createElement('div');
+        card.className = 'anime-card';
+        const pct = Math.min(100, (anime.rating/10)*100);
+        const genreTags = anime.genre.map(g => {
+          const cls = 'g-' + g.replace(/\s+/g,'').replace(/-/g,'');
+          return `<span class="genre-tag ${cls}">${g}</span>`;
+        }).join('');
+        card.innerHTML = `
+          <div class="anime-banner" style="background-image:url('anime/images/${anime.banner}');filter:brightness(0.60)"></div>
+          <div class="anime-info">
+            <div class="anime-card-top">
+              <span class="anime-num">#${i+1}</span>
+              <h2 class="anime-title">${anime.title}</h2>
+            </div>
+            <div class="anime-rating">
+              ⭐ ${anime.rating}
+              <div class="rating-bar-wrap"><div class="rating-bar-fill" style="width:${pct}%"></div></div>
+            </div>
+            <div class="genres">${genreTags}</div>
+          </div>`;
+        grid.appendChild(card);
+      });
+    }
+
+    function getFilteredSorted() {
+      let f = [...animeData];
+      if (selectedGenres.size > 0) {
+        f = f.filter(a => [...selectedGenres].every(g => a.genre.includes(g)));
+      }
+      if (animeSort === 1) f.sort((a,b) => b.rating - a.rating);
+      if (animeSort === 2) f.sort((a,b) => a.rating - b.rating);
+      return f;
+    }
+
+    function applyFiltersAndRender() { renderAnime(getFilteredSorted()); }
+
+    /* ── Genre popup ── */
+    function populateGenreChips() {
+      const gs = new Set();
+      animeData.forEach(a => a.genre.forEach(g => gs.add(g)));
+      const chips = document.getElementById('genreChips');
+      chips.innerHTML = '';
+      [...gs].sort().forEach(g => {
+        const btn = document.createElement('button');
+        btn.className = 'genre-chip' + (selectedGenres.has(g) ? ' selected' : '');
+        btn.textContent = g;
+        btn.dataset.genre = g;
+        btn.addEventListener('click', () => { btn.classList.toggle('selected'); });
+        chips.appendChild(btn);
+      });
+    }
+
+    function openGenrePopup() {
+      document.querySelectorAll('.genre-chip').forEach(chip => {
+        chip.classList.toggle('selected', selectedGenres.has(chip.dataset.genre));
+      });
+      document.getElementById('genrePopupOverlay').classList.add('show');
+    }
+    function closeGenrePopup() { document.getElementById('genrePopupOverlay').classList.remove('show'); }
+    function closeGenrePopupIfOutside(e) { if (e.target === document.getElementById('genrePopupOverlay')) closeGenrePopup(); }
+    function clearGenreSelection() { document.querySelectorAll('.genre-chip').forEach(c => c.classList.remove('selected')); }
+
+    function applyGenreFilter() {
+      selectedGenres = new Set([...document.querySelectorAll('.genre-chip.selected')].map(c => c.dataset.genre));
+      closeGenrePopup();
+      updateGenreBtnLabel();
+      applyFiltersAndRender();
+    }
+
+    function updateGenreBtnLabel() {
+      const btn   = document.getElementById('btnGenre');
+      const label = document.getElementById('genreBtnLabel');
+      if (selectedGenres.size === 0)      { label.textContent = 'Genre'; btn.classList.remove('genre-active'); }
+      else if (selectedGenres.size === 1) { label.textContent = [...selectedGenres][0]; btn.classList.add('genre-active'); }
+      else                                { label.textContent = `${selectedGenres.size} Genres`; btn.classList.add('genre-active'); }
+    }
+
+    /* ── Rating sort (cycles: default → desc → asc → default) ── */
+    function cycleAnimeSort() {
+      animeSort = (animeSort + 1) % 3;
+      const arrow     = document.getElementById('ratingArrow');
+      const head      = document.getElementById('ratingArrowHead');
+      const btnRating = document.getElementById('btnRating');
+
+      if (animeSort === 0) {
+        arrow.style.display = 'none';
+        btnRating.classList.remove('active-sort');
+      } else if (animeSort === 1) {
+        arrow.style.display = 'inline';
+        head.setAttribute('points', '5 12 12 5 19 12');
+        document.getElementById('ratingArrowPoly').setAttribute('points', '12 5 12 19');
+        btnRating.classList.add('active-sort');
+      } else {
+        head.setAttribute('points', '5 12 12 19 19 12');
+        document.getElementById('ratingArrowPoly').setAttribute('points', '12 5 12 19');
+      }
+      applyFiltersAndRender();
+    }
+
+    /* ── No filter reset ── */
+    function resetAnimeFilters() {
+      selectedGenres = new Set();
+      animeSort = 0;
+      updateGenreBtnLabel();
+      document.getElementById('ratingArrow').style.display = 'none';
+      document.getElementById('btnRating').classList.remove('active-sort');
+      renderAnime(animeData);
+    }
+
+    /* ── Stats ── */
+    function openAnimeStats()  { document.getElementById('statsModal').classList.add('show'); renderPieChart(); }
+    function closeAnimeStats() { document.getElementById('statsModal').classList.remove('show'); }
+
+    function renderPieChart() {
+      if (pieChartInstance) { pieChartInstance.destroy(); pieChartInstance = null; }
+      const gc = {};
+      animeData.forEach(a => a.genre.forEach(g => gc[g] = (gc[g]||0)+1));
+      const grouped = {}; let others = 0;
+      Object.entries(gc).forEach(([g,c]) => c < 5 ? others+=c : grouped[g]=c);
+      if (others) grouped['Others'] = others;
+      const colors = {Romance:'#f651d2',Action:'#6eb5ff',Drama:'#b36bff',Fantasy:'#66ffb3',Mystery:'#ff944d',Adventure:'#ffd24d',Comedy:'#ffb366','Slice of Life':'#a16ac1',Sports:'#6e92ee',Music:'#f26640',Supernatural:'#9d3048',Isekai:'#6f2b8d',Historical:'#d3c359',Psychological:'#552d5e',School:'#3ba991',Ecchi:'#de2189',Thriller:'#f0f55e',Harem:'#a80f57',Shounen:'#304d61',Shoujo:'#782a70',Seinen:'#4a4e69',Demons:'#6f0505','Super Power':'#99ad3d','Martial Arts':'#879ed2',Mecha:'#b59f9f',Military:'#4b6f44',Samurai:'#0aaa85',Space:'#2a525d',Magic:'#7b1a51',Vampire:'#af2323',Game:'#238594',Others:'#888'};
+      const labels = Object.keys(grouped);
+      pieChartInstance = new Chart(document.getElementById('pieChart').getContext('2d'), {
+        type: 'pie',
+        data: { labels, datasets: [{ data: Object.values(grouped), backgroundColor: labels.map(l=>colors[l]||'#888') }] },
+        options: { plugins: { legend: { labels: { color: '#f5e6f0', font: { family: 'Outfit', size: 11 } } } } }
+      });
+    }
   </script>
 </body>
 </html>

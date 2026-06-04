@@ -104,18 +104,18 @@
     let snake, direction, nextDirection, food, score, game;
 
     const headUp = new Image();
-    headUp.src = "img/head_up.png";
+    headUp.src = "assets/head_up.png";
     const headDown = new Image();
-    headDown.src = "img/head_down.png";
+    headDown.src = "assets/head_down.png";
     const headLeft = new Image();
-    headLeft.src = "img/head_left.png";
+    headLeft.src = "assets/head_left.png";
     const headRight = new Image();
-    headRight.src = "img/head_right.png";
+    headRight.src = "assets/head_right.png";
 
     const bodyImg = new Image();
-    bodyImg.src = "img/body.png";
+    bodyImg.src = "assets/body.png";
     const foodImg = new Image();
-    foodImg.src = "img/food.png";
+    foodImg.src = "assets/food.png";
 
     document.addEventListener("keydown", e => {
       if (e.key === "ArrowUp" && direction !== "DOWN") nextDirection = "UP";

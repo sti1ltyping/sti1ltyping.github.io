@@ -1,1 +1,0 @@
-# sti1ltyping.github.io
