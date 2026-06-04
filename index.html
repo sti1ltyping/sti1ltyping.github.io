@@ -30,17 +30,29 @@
       --nav-h: 52px;
     }
 
+    html {
+      background: var(--bg); /* solid fallback always visible */
+    }
+
     html, body {
       min-height: 100vh;
-      background: var(--bg);
-      background-image: url('assets/wp1.jpg');
-      background-attachment: fixed;
-      background-position: center;
-      background-size: cover;
+      background: transparent;
       color: var(--text);
       font-family: 'Outfit', sans-serif;
       overflow-x: hidden;
       position: relative;
+    }
+
+    /* Fixed bg image lives on html::before — never moves, never gaps */
+    html::before {
+      content: '';
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-image: url('assets/wp1.jpg');
+      background-position: center;
+      background-size: cover;
+      background-color: var(--bg);
+      z-index: -2;
     }
 
     body::before {
@@ -342,20 +354,27 @@
     .anime-btn.genre-active { border-color: var(--accent-light); color: var(--accent-light); box-shadow: 0 0 16px rgba(255,107,148,0.4); }
 
     /* ══ CUSTOM CURSOR ══ */
-    * { cursor: none; }
-    #cursor-dot { position: fixed; width: 8px; height: 8px; background: var(--accent); border-radius: 50%; pointer-events: none; z-index: 9999; top: 0; left: 0; transform: translate(-50%, -50%); box-shadow: 0 0 10px var(--accent); }
-    #cursor-ring {
-      position: fixed; width: 30px; height: 30px;
-      border: 2px solid var(--accent); border-radius: 50%;
-      pointer-events: none; z-index: 9998; top: 0; left: 0;
-      transform: translate(-50%, -50%); opacity: 0.8;
-      box-shadow: 0 0 15px rgba(255,61,109,0.5);
-      transition: width 0.2s ease, height 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    /* Desktop only — hidden entirely on touch/mobile */
+    @media (pointer: fine) {
+      * { cursor: none; }
+      #cursor-dot { position: fixed; width: 8px; height: 8px; background: var(--accent); border-radius: 50%; pointer-events: none; z-index: 9999; top: 0; left: 0; transform: translate(-50%, -50%); box-shadow: 0 0 10px var(--accent); }
+      #cursor-ring {
+        position: fixed; width: 30px; height: 30px;
+        border: 2px solid var(--accent); border-radius: 50%;
+        pointer-events: none; z-index: 9998; top: 0; left: 0;
+        transform: translate(-50%, -50%); opacity: 0.8;
+        box-shadow: 0 0 15px rgba(255,61,109,0.5);
+        transition: width 0.2s ease, height 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+      #cursor-ring.hovered {
+        width: 48px; height: 48px;
+        border-color: var(--accent-light);
+        box-shadow: 0 0 22px rgba(255,107,148,0.55);
+      }
     }
-    #cursor-ring.hovered {
-      width: 48px; height: 48px;
-      border-color: var(--accent-light);
-      box-shadow: 0 0 22px rgba(255,107,148,0.55);
+    /* On touch devices: hide the cursor elements entirely */
+    @media (pointer: coarse) {
+      #cursor-dot, #cursor-ring { display: none; }
     }
     .ripple { position: fixed; border: 2px solid var(--accent); border-radius: 50%; pointer-events: none; z-index: 9997; animation: ripple-animation 0.6s ease-out; transform: translate(-50%, -50%); }
     @keyframes ripple-animation { 0% { width: 0; height: 0; opacity: 1; } 100% { width: 60px; height: 60px; opacity: 0; } }
@@ -363,13 +382,23 @@
     /* ── Responsive ── */
     @media (max-width: 700px) {
       :root { --nav-h: 52px; }
-      .nav-links li a { padding: 0 10px; font-size: 0.62rem; letter-spacing: 0.12em; gap: 5px; }
-      .nav-icon { width: 13px; height: 13px; }
+
+      /* Nav links — tighter so music btn + views don't collide */
+      .nav-links li a { padding: 0 8px; font-size: 0.58rem; letter-spacing: 0.08em; gap: 4px; }
+      .nav-icon { width: 12px; height: 12px; }
+
+      /* Music button — smaller, less gap */
+      #musicBtn { width: 28px; height: 28px; font-size: 12px; }
+      .eq-bars { display: none !important; } /* no room on mobile */
+      .nav-left { gap: 6px; }
+
+      /* Views — hide on mobile, no room */
+      .nav-views { display: none !important; }
+
       #page-profile main { padding: calc(var(--nav-h) + 30px) 16px 40px; gap: 28px; }
       .anime-page-inner { padding: calc(var(--nav-h) + 20px) 12px 40px; }
       .anime-card { min-height: 140px; }
       .anime-title { font-size: 1.05rem; }
-      .nav-views { display: none; }
     }
   </style>
 </head>
@@ -457,6 +486,7 @@
         </div>
         <h1 class="display-name">Alya is a cutie</h1>
         <p class="username">@sti1ltyping</p>
+        <p class="age-display" id="ageDisplay"></p>
       </header>
 
       <section class="bio">
@@ -467,16 +497,10 @@
         <br>
         <button class="hobbies-toggle" id="hobbiesToggle">
           <span class="toggle-icon">▼</span>
-          <strong>More about me</strong>
+          <strong>Things I do when free</strong>
         </button>
         <div class="hobbies-content" id="hobbiesContent">
-          <br>
-          <p>
-            Currently <span class="age-display" id="ageDisplay"></span> years old.<br>
-            
-          </p>
           <div class="hobbies-list">
-            <strong>Hobbies</strong>
             <div class="hobby-item"><span class="keyword-anime">Anime:</span><span>Love to escape reality</span></div>
             <div class="hobby-item"><span class="keyword-code">Coding:</span><span>Maybe I like to torture myself</span></div>
             <div class="hobby-item"><span class="keyword-game">Games:</span><span>Valorant and osu! I don't play for fun, I play to prove myself better than my friends</span></div>
@@ -517,7 +541,7 @@
           <span id="ratingBtnLabel">⭐ Rating</span>
           <svg id="ratingArrow" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:none"><polyline id="ratingArrowPoly" points="12 5 12 19"/><polyline id="ratingArrowHead" points="5 12 12 5 19 12"/></svg>
         </button>
-        <button class="anime-btn" onclick="openAnimeStats()">Stats</button>
+        <button class="anime-btn" onclick="openAnimeStats()">📊 Stats</button>
       </div>
 
       <div class="anime-list-grid" id="animeListGrid"></div>
@@ -591,6 +615,7 @@
         localStorage.setItem(LS_KEY, v);          // cache latest for fallback
         return v;
       } catch {
+        // API unreachable — use local fallback so badge still shows something
         const v = (parseInt(localStorage.getItem(LS_KEY) || '0', 10)) + 1;
         localStorage.setItem(LS_KEY, v);
         return v;
@@ -699,7 +724,7 @@
       let age = today.getFullYear() - b.getFullYear();
       const md = today.getMonth() - b.getMonth();
       if (md < 0 || (md === 0 && today.getDate() < b.getDate())) age--;
-      document.getElementById('ageDisplay').textContent = age;
+      document.getElementById('ageDisplay').textContent = age + ' years old';
     })();
 
     /* ── Hobbies toggle ── */
@@ -797,28 +822,30 @@
     setInterval(()=>spawnPetal(), 260);
 
     /* ══════════════════════════════════════════════════════
-       CUSTOM CURSOR
+       CUSTOM CURSOR — desktop (pointer: fine) only
     ══════════════════════════════════════════════════════ */
-    const cDot  = document.getElementById('cursor-dot');
-    const cRing = document.getElementById('cursor-ring');
-    let mx=0, my=0, rx=0, ry=0;
+    if (window.matchMedia('(pointer: fine)').matches) {
+      const cDot  = document.getElementById('cursor-dot');
+      const cRing = document.getElementById('cursor-ring');
+      let mx=0, my=0, rx=0, ry=0;
 
-    document.addEventListener('mousemove', e => {
-      mx = e.clientX; my = e.clientY;
-      cDot.style.left = mx+'px'; cDot.style.top = my+'px';
-    });
-    (function tick() {
-      rx += (mx-rx)*0.2; ry += (my-ry)*0.2;
-      cRing.style.left = rx+'px'; cRing.style.top = ry+'px';
-      requestAnimationFrame(tick);
-    })();
+      document.addEventListener('mousemove', e => {
+        mx = e.clientX; my = e.clientY;
+        cDot.style.left = mx+'px'; cDot.style.top = my+'px';
+      });
+      (function tick() {
+        rx += (mx-rx)*0.2; ry += (my-ry)*0.2;
+        cRing.style.left = rx+'px'; cRing.style.top = ry+'px';
+        requestAnimationFrame(tick);
+      })();
 
-    document.addEventListener('mouseenter', () => { cDot.style.opacity='1'; cRing.style.opacity='0.8'; });
-    document.addEventListener('mouseleave', () => { cDot.style.opacity='0'; cRing.style.opacity='0'; });
+      document.addEventListener('mouseenter', () => { cDot.style.opacity='1'; cRing.style.opacity='0.8'; });
+      document.addEventListener('mouseleave', () => { cDot.style.opacity='0'; cRing.style.opacity='0'; });
 
-    const INTERACTABLE = 'a, button, input, select, textarea, label, [onclick], .anime-card, .genre-chip, .social-link, .nav-links li a';
-    document.addEventListener('mouseover', e => { if (e.target.closest(INTERACTABLE)) cRing.classList.add('hovered'); });
-    document.addEventListener('mouseout',  e => { if (e.target.closest(INTERACTABLE)) cRing.classList.remove('hovered'); });
+      const INTERACTABLE = 'a, button, input, select, textarea, label, [onclick], .anime-card, .genre-chip, .social-link, .nav-links li a';
+      document.addEventListener('mouseover', e => { if (e.target.closest(INTERACTABLE)) cRing.classList.add('hovered'); });
+      document.addEventListener('mouseout',  e => { if (e.target.closest(INTERACTABLE)) cRing.classList.remove('hovered'); });
+    }
 
     document.addEventListener('click', e => {
       const r = document.createElement('div'); r.className = 'ripple';
