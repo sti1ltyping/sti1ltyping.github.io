@@ -1223,21 +1223,18 @@
 
     function cycleAnimeSort() {
       animeSort = (animeSort + 1) % 3;
-      const arrow     = document.getElementById('ratingArrow');
-      const head      = document.getElementById('ratingArrowHead');
       const btnRating = document.getElementById('btnRating');
+      const label     = document.getElementById('ratingBtnLabel');
 
       if (animeSort === 0) {
-        arrow.style.display = 'none';
+        label.textContent = 'Rating';
         btnRating.classList.remove('active-sort');
       } else if (animeSort === 1) {
-        arrow.style.display = 'inline';
-        head.setAttribute('points', '5 12 12 5 19 12');
-        document.getElementById('ratingArrowPoly').setAttribute('points', '12 5 12 19');
+        label.textContent = 'Rating ↓';
         btnRating.classList.add('active-sort');
       } else {
-        head.setAttribute('points', '5 12 12 19 19 12');
-        document.getElementById('ratingArrowPoly').setAttribute('points', '12 5 12 19');
+        label.textContent = 'Rating ↑';
+        btnRating.classList.add('active-sort');
       }
       applyFiltersAndRender();
     }
@@ -1246,12 +1243,16 @@
       selectedGenres = new Set();
       animeSort = 0;
       updateGenreBtnLabel();
-      document.getElementById('ratingArrow').style.display = 'none';
+      document.getElementById('ratingBtnLabel').textContent = 'Rating';
       document.getElementById('btnRating').classList.remove('active-sort');
       renderAnime(animeData);
     }
 
-    function openAnimeStats()  { document.getElementById('statsModal').classList.add('show'); renderPieChart(); }
+    function openAnimeStats() {
+      if (!animeData.length) return;
+      document.getElementById('statsModal').classList.add('show');
+      renderPieChart();
+    }
     function closeAnimeStats() { document.getElementById('statsModal').classList.remove('show'); }
 
     function renderPieChart() {
