@@ -24,7 +24,7 @@
             "Romance",
             "Shounen"
         ],
-        "rating": 9.67,
+        "rating": 9.99,
         "banner": "tonikawa.webp"
     },
     {
@@ -296,10 +296,11 @@
         "title": "anohana: The Flower We Saw That Day",
         "genre": [
             "Drama",
+            "Romance",
             "Slice of Life",
             "Supernatural"
         ],
-        "rating": 9.97,
+        "rating": 10,
         "banner": "anohana.webp"
     },
     {
@@ -309,7 +310,7 @@
             "Drama",
             "Romance"
         ],
-        "rating": 9.12,
+        "rating": 9.67,
         "banner": "loving_yamada_lvl999.webp"
     },
     {
@@ -333,7 +334,7 @@
             "School",
             "Seinen"
         ],
-        "rating": 8.42,
+        "rating": 9.42,
         "banner": "my_dressup_darling.webp"
     },
     {
@@ -352,7 +353,7 @@
             "Romance",
             "Shounen"
         ],
-        "rating": 8.98,
+        "rating": 9.16,
         "banner": "romantic_killer.webp"
     },
     {
@@ -428,7 +429,7 @@
             "Supernatural",
             "Seinen"
         ],
-        "rating": 9.61,
+        "rating": 9.97,
         "banner": "oshi_no_no.webp"
     },
     {
@@ -449,7 +450,7 @@
             "Romance",
             "Shoujo"
         ],
-        "rating": 9.27,
+        "rating": 9.89,
         "banner": "sugar_apple_ft.webp"
     },
     {
@@ -460,7 +461,7 @@
             "Romance",
             "Shoujo"
         ],
-        "rating": 9.21,
+        "rating": 9.90,
         "banner": "snow_white_w_red_hair.webp"
     },
     {
@@ -545,7 +546,7 @@
             "School",
             "Seinen"
         ],
-        "rating": 9.86,
+        "rating": 8.99,
         "banner": "more_than_a_married_couple.webp"
     },
     {
@@ -557,7 +558,7 @@
             "Shounen",
             "Slice of Life"
         ],
-        "rating": 9.18,
+        "rating": 9.45,
         "banner": "saint_cecilia.webp"
     },
     {
@@ -570,7 +571,7 @@
             "Sci-Fi",
             "Harem"
         ],
-        "rating": 9.24,
+        "rating": 9.55,
         "banner": "date_a_live.webp"
     },
     {
@@ -819,7 +820,7 @@
             "Sci-Fi",
             "Military"
         ],
-        "rating": 9.87,
+        "rating": 10,
         "banner": "86.webp"
     },
     {
@@ -855,7 +856,7 @@
             "Romance",
             "School"
         ],
-        "rating": 9.01,
+        "rating": 8.12,
         "banner": "the_world_in_colors.webp"
     },
     {
@@ -867,11 +868,11 @@
             "Historical",
             "Seinen"
         ],
-        "rating": 2.5,
+        "rating": 2.50,
         "banner": "vinland_saga.webp"
     },
     {
-        "title": "Kono Oto Tomare!: Sounds of Life",
+        "title": "Sounds of Life",
         "genre": [
             "Drama",
             "Music",
@@ -879,7 +880,7 @@
             "School",
             "Shounen"
         ],
-        "rating": 9.8,
+        "rating": 9.84,
         "banner": "sound_of_life.webp"
     },
     {
@@ -1002,7 +1003,7 @@
             "Romance",
             "Slice of Life"
         ],
-        "rating": 8.62,
+        "rating": 7.95,
         "banner": "taisho_otome_fairy_tale.webp"
     },
     {
@@ -1014,7 +1015,7 @@
             "Shounen",
             "Slice of Life"
         ],
-        "rating": 9.99,
+        "rating": 10,
         "banner": "giji_harem.webp"
     },
     {
@@ -1049,7 +1050,7 @@
             "School",
             "Shounen"
         ],
-        "rating": 9.68,
+        "rating": 9.98,
         "banner": "assassination_classroom.webp"
     },
     {
@@ -1379,7 +1380,7 @@
             "Shounen",
             "Supernatural"
         ],
-        "rating": 9.77,
+        "rating": 9.99,
         "banner": "fire_force.webp"
     },
     {
@@ -1394,7 +1395,7 @@
             "Shounen",
             "Military"
         ],
-        "rating": 8.50,
+        "rating": 8.95,
         "banner": "fullmetal_alchemist.webp"
     },
     {
