@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THE INTAKE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     TOKENS
+     ============================================================ */
+  :root{
+    --void:#08070a;
+    --void-2:#0d0c0f;
+    --yellow:#e8d34a;
+    --yellow-dim:#6b5f1f;
+    --yellow-glow: rgba(232,211,74,0.55);
+    --red-warn:#7a1414;
+    --red-glow: rgba(122,20,20,0.55);
+    --paper:#c9c3a8;
+    --static:#2a2a26;
+    --box-w: 620px;
+  }
+
+  *{ box-sizing:border-box; }
+
+  html,body{
+    margin:0; padding:0; height:100%;
+    background:var(--void);
+    color:var(--paper);
+    font-family:'Courier Prime', monospace;
+    overflow:hidden;
+  }
+
+  /* ============================================================
+     ATMOSPHERE LAYERS
+     ============================================================ */
+  .vignette{
+    position:fixed; inset:0; pointer-events:none; z-index:2;
+    background: radial-gradient(ellipse at center, rgba(0,0,0,0) 30%, rgba(0,0,0,0.85) 100%);
+  }
+
+  .scanlines{
+    position:fixed; inset:0; pointer-events:none; z-index:3; opacity:0.12;
+    background: repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.06) 0px,
+      rgba(255,255,255,0.06) 1px,
+      transparent 2px,
+      transparent 3px
+    );
+  }
+
+  .grain{
+    position:fixed; inset:0; pointer-events:none; z-index:1; opacity:0.05;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    animation: grainshift 1s steps(2) infinite;
+  }
+  @keyframes grainshift{ 0%{transform:translate(0,0);} 50%{transform:translate(-2%,1%);} 100%{transform:translate(1%,-1%);} }
+
+  .stage{
+    position:relative; z-index:5;
+    height:100vh; width:100vw;
+    display:flex; align-items:center; justify-content:center;
+    padding:24px;
+  }
+
+  /* ============================================================
+     THE FILE BOX (signature element)
+     ============================================================ */
+  .file-box{
+    position:relative;
+    width:100%; max-width:var(--box-w);
+    background: linear-gradient(180deg, var(--void-2), #060506);
+    border:1px solid var(--yellow-dim);
+    box-shadow:
+      0 0 0 1px rgba(232,211,74,0.08),
+      0 0 40px 4px var(--yellow-glow),
+      inset 0 0 60px rgba(0,0,0,0.6);
+    padding:40px 36px 32px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .grain{ animation:none; }
+  }
+
+  .file-box::before{
+    /* corner staple / clip marks */
+    content:"";
+    position:absolute; top:10px; left:50%; transform:translateX(-50%);
+    width:34px; height:8px;
+    background:linear-gradient(90deg, transparent, #555 20%, #888 50%, #555 80%, transparent);
+    opacity:0.5;
+  }
+
+  .eyebrow{
+    font-family:'Special Elite', monospace;
+    font-size:12px; letter-spacing:3px;
+    color:var(--yellow-dim);
+    display:flex; justify-content:space-between;
+    margin-bottom:22px;
+    text-transform:uppercase;
+  }
+  .eyebrow span.blink{ animation: blink 1.6s steps(2) infinite; }
+  @keyframes blink{ 50%{opacity:0.15;} }
+
+  h1.title{
+    font-family:'Special Elite', monospace;
+    color:var(--yellow);
+    font-size:34px;
+    letter-spacing:2px;
+    margin:0 0 6px 0;
+    text-shadow:0 0 18px var(--yellow-glow);
+  }
+
+  .subtitle{
+    font-size:13px; letter-spacing:2px; color:var(--yellow-dim);
+    margin:0 0 26px 0; text-transform:uppercase;
+  }
+
+  .rule{
+    border:none; border-top:1px dashed var(--yellow-dim);
+    opacity:0.5; margin:22px 0;
+  }
+
+  p.lede{
+    font-size:14.5px; line-height:1.7; color:var(--paper);
+    margin:0 0 26px 0;
+  }
+
+  /* question text */
+  .question-wrap{ min-height:110px; display:flex; align-items:center; }
+  .question{
+    font-family:'Courier Prime', monospace;
+    font-size:20px; line-height:1.5;
+    color:var(--yellow);
+    text-shadow:0 0 14px rgba(232,211,74,0.25);
+  }
+  .cursor{
+    display:inline-block; width:9px; height:1.1em; background:var(--yellow);
+    margin-left:2px; vertical-align:middle;
+    animation: caret 0.9s steps(1) infinite;
+  }
+  @keyframes caret{ 50%{ opacity:0; } }
+
+  /* buttons */
+  .btn-row{
+    display:flex; gap:18px; margin-top:32px;
+    opacity:0; transform:translateY(6px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    pointer-events:none;
+  }
+  .btn-row.show{ opacity:1; transform:translateY(0); pointer-events:auto; }
+
+  .stamp-btn{
+    flex:1; padding:16px 10px;
+    font-family:'Special Elite', monospace;
+    font-size:17px; letter-spacing:3px;
+    background:transparent;
+    cursor:pointer;
+    transition: transform 0.15s ease, background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+    transform:rotate(var(--tilt,0deg));
+  }
+  .stamp-btn:focus-visible{ outline:2px solid var(--yellow); outline-offset:3px; }
+
+  .btn-yes{
+    border:2px solid var(--yellow-dim); color:var(--yellow);
+    --tilt:-1.5deg;
+  }
+  .btn-yes:hover{
+    background:rgba(232,211,74,0.08);
+    box-shadow:0 0 22px var(--yellow-glow);
+    transform:rotate(-1.5deg) scale(1.03);
+  }
+
+  .btn-no{
+    border:2px solid #4a2020; color:#b95c5c;
+    --tilt:1.5deg;
+  }
+  .btn-no:hover{
+    background:rgba(122,20,20,0.12);
+    box-shadow:0 0 22px var(--red-glow);
+    transform:rotate(1.5deg) scale(1.03);
+    color:#e88a8a; border-color:var(--red-warn);
+  }
+
+  .stamp-btn:active{ transform:scale(0.97) rotate(0deg) !important; }
+
+  /* start / result screens */
+  .center-col{ text-align:center; }
+  .begin-btn{
+    margin-top:8px;
+    font-family:'Special Elite', monospace;
+    font-size:15px; letter-spacing:3px;
+    background:transparent; border:2px solid var(--yellow-dim); color:var(--yellow);
+    padding:14px 28px; cursor:pointer;
+    transition: all 0.2s ease;
+  }
+  .begin-btn:hover{ box-shadow:0 0 24px var(--yellow-glow); background:rgba(232,211,74,0.06); }
+
+  .progress{
+    font-size:11px; letter-spacing:2px; color:var(--yellow-dim); text-align:right;
+  }
+
+  .tier{
+    font-family:'Special Elite', monospace;
+    font-size:26px; color:var(--yellow); margin:18px 0 10px;
+    text-shadow:0 0 18px var(--yellow-glow);
+  }
+  .tier-desc{ font-size:14px; line-height:1.7; color:var(--paper); margin-bottom:24px; }
+
+  .mute-toggle{
+    position:fixed; bottom:18px; right:18px; z-index:6;
+    font-family:'Special Elite', monospace; font-size:11px; letter-spacing:2px;
+    color:var(--yellow-dim); background:transparent; border:1px solid var(--yellow-dim);
+    padding:8px 12px; cursor:pointer; opacity:0.7;
+  }
+  .mute-toggle:hover{ opacity:1; }
+
+  .hidden{ display:none !important; }
+
+  @media (max-width:480px){
+    .file-box{ padding:28px 20px 24px; }
+    h1.title{ font-size:26px; }
+    .question{ font-size:17px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+<div class="scanlines"></div>
+<div class="vignette"></div>
+
+<div class="stage">
+
+  <!-- START SCREEN -->
+  <div class="file-box center-col" id="screen-start">
+    <div class="eyebrow"><span>FILE NO. 000-A</span><span class="blink">● REC</span></div>
+    <h1 class="title" id="quiz-title">THE INTAKE</h1>
+    <p class="subtitle" id="quiz-subtitle">SUBJECT EVALUATION FORM // CLASSIFIED</p>
+    <hr class="rule">
+    <p class="lede">You will be asked a series of questions.<br>Answer honestly. Answer quickly.<br>There is no option to skip.</p>
+    <button class="begin-btn" id="begin-btn">BEGIN ASSESSMENT</button>
+  </div>
+
+  <!-- QUESTION SCREEN -->
+  <div class="file-box hidden" id="screen-quiz">
+    <div class="eyebrow">
+      <span id="case-label">SUBJECT FILE</span>
+      <span class="progress" id="progress-label">Q 01 / 12</span>
+    </div>
+    <div class="question-wrap">
+      <div class="question" id="question-text"><span class="cursor"></span></div>
+    </div>
+    <div class="btn-row" id="btn-row">
+      <button class="stamp-btn btn-yes" id="btn-yes">YES</button>
+      <button class="stamp-btn btn-no" id="btn-no">NO</button>
+    </div>
+  </div>
+
+  <!-- RESULT SCREEN -->
+  <div class="file-box center-col hidden" id="screen-result">
+    <div class="eyebrow"><span>FILE NO. 000-A</span><span>CLOSED</span></div>
+    <p class="subtitle">ASSESSMENT COMPLETE</p>
+    <div class="tier" id="tier-title">—</div>
+    <p class="tier-desc" id="tier-desc">—</p>
+    <hr class="rule">
+    <p class="lede" id="result-tally">—</p>
+    <button class="begin-btn" id="restart-btn">RUN AGAIN</button>
+  </div>
+
+</div>
+
+<button class="mute-toggle" id="mute-toggle">SOUND: ON</button>
+
+<audio id="bgm" src="sound.mp3" loop preload="auto"></audio>
+<audio id="yesSound" src="yesbutton.mp3" preload="auto"></audio>
+<audio id="noSound" src="nobuttton.mp3" preload="auto"></audio>
+
+<script>
+/* ==================================================================
+   CONFIG
+   Questions now live in questions.json (same folder as this file) —
+   edit that file to change the question list. Result tiers stay here
+   since they're scoring logic, not question content.
+   ================================================================== */
+const CONFIG = {
+  caseLabel: "SUBJECT FILE",
+  title: "THE INTAKE",              // overwritten by questions.json's "title" if present
+  subtitle: "SUBJECT EVALUATION FORM // CLASSIFIED", // overwritten by "subtitle" if present
+  questions: [],                    // populated by loadQuestions() below
+  // Edit result tiers here. Ranges are % of "yes" answers.
+  tiers: [
+    { max: 20,  title: "LOW DEVIATION",     desc: "Your file is unremarkable. That, in itself, has been noted." },
+    { max: 50,  title: "MODERATE DEVIATION", desc: "Consistent with most subjects. You are being watched a normal amount." },
+    { max: 80,  title: "HIGH DEVIATION",     desc: "Several answers have been flagged for review. Please remain available." },
+    { max: 101, title: "SUBJECT FLAGGED",    desc: "This file has been escalated. Do not leave the building." }
+  ]
+};
+
+async function loadQuestions(){
+  try{
+    const res = await fetch('questions.json');
+    if(!res.ok) throw new Error('bad response');
+    const data = await res.json();
+    if(data.title) CONFIG.title = data.title;
+    if(data.subtitle) CONFIG.subtitle = data.subtitle;
+    CONFIG.questions = (data.questions || []).map(q => ({ text: q.text }));
+    if(CONFIG.questions.length === 0) throw new Error('no questions in file');
+    return true;
+  } catch(err){
+    console.error('Could not load questions.json:', err);
+    return false;
+  }
+}
+
+/* ==================================================================
+   AUDIO ENGINE — all sounds synthesized, no external files
+   ================================================================== */
+let audioCtx = null;
+let masterGain = null;
+let soundOn = true;
+const bgm = document.getElementById('bgm');
+const yesSound = document.getElementById('yesSound');
+const noSound = document.getElementById('noSound');
+bgm.volume = 0.45;
+yesSound.volume = 0.6;
+noSound.volume = 0.6;
+
+function initAudio(){
+  if(audioCtx) return;
+  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  masterGain = audioCtx.createGain();
+  masterGain.gain.value = 0.55;
+  masterGain.connect(audioCtx.destination);
+  bgm.play().catch(err => console.warn('bgm autoplay blocked until interaction:', err));
+}
+
+function playHover(){
+  if(!audioCtx || !soundOn) return;
+  const osc = audioCtx.createOscillator();
+  osc.type = "sine";
+  osc.frequency.value = 340;
+  const g = audioCtx.createGain();
+  g.gain.value = 0.0001;
+  osc.connect(g); g.connect(masterGain);
+  const t = audioCtx.currentTime;
+  g.gain.exponentialRampToValueAtTime(0.03, t+0.01);
+  g.gain.exponentialRampToValueAtTime(0.0001, t+0.09);
+  osc.start(t); osc.stop(t+0.1);
+}
+
+function noiseBurst(duration, vol){
+  const bufferSize = audioCtx.sampleRate * duration;
+  const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+  const data = buffer.getChannelData(0);
+  for(let i=0;i<bufferSize;i++){ data[i] = (Math.random()*2-1) * (1 - i/bufferSize); }
+  const src = audioCtx.createBufferSource();
+  src.buffer = buffer;
+  const g = audioCtx.createGain();
+  g.gain.value = vol;
+  src.connect(g); g.connect(masterGain);
+  src.start();
+}
+
+function playClick(){
+  if(!audioCtx || !soundOn) return;
+  const t = audioCtx.currentTime;
+  // low thump
+  const osc = audioCtx.createOscillator();
+  osc.type = "sine"; osc.frequency.setValueAtTime(120, t);
+  osc.frequency.exponentialRampToValueAtTime(45, t+0.18);
+  const g = audioCtx.createGain();
+  g.gain.setValueAtTime(0.25, t);
+  g.gain.exponentialRampToValueAtTime(0.0001, t+0.22);
+  osc.connect(g); g.connect(masterGain);
+  osc.start(t); osc.stop(t+0.25);
+  // noise stamp
+  noiseBurst(0.15, 0.04);
+}
+
+function playTick(){
+  return;
+  if(!audioCtx || !soundOn) return;
+  const osc = audioCtx.createOscillator();
+  osc.type = "square"; osc.frequency.value = 900 + Math.random()*200;
+  const g = audioCtx.createGain();
+  g.gain.value = 0.015;
+  osc.connect(g); g.connect(masterGain);
+  const t = audioCtx.currentTime;
+  g.gain.exponentialRampToValueAtTime(0.0001, t+0.03);
+  osc.start(t); osc.stop(t+0.03);
+}
+
+/* ==================================================================
+   QUIZ LOGIC
+   ================================================================== */
+const screenStart = document.getElementById('screen-start');
+const screenQuiz = document.getElementById('screen-quiz');
+const screenResult = document.getElementById('screen-result');
+const questionText = document.getElementById('question-text');
+const btnRow = document.getElementById('btn-row');
+const progressLabel = document.getElementById('progress-label');
+
+document.getElementById('quiz-title').textContent = CONFIG.title;
+document.getElementById('quiz-subtitle').textContent = CONFIG.subtitle;
+document.getElementById('case-label').textContent = CONFIG.caseLabel;
+
+let qIndex = 0;
+let yesCount = 0;
+let typing = false;
+
+function pad(n){ return n.toString().padStart(2,'0'); }
+
+function showQuestion(){
+  const total = CONFIG.questions.length;
+  progressLabel.textContent = `Q ${pad(qIndex+1)} / ${pad(total)}`;
+  btnRow.classList.remove('show');
+  typeText(CONFIG.questions[qIndex].text);
+}
+
+function typeText(str){
+  typing = true;
+  questionText.innerHTML = '<span class="cursor"></span>';
+  let i = 0;
+  const speed = 35;
+  function step(){
+    if(i < str.length){
+      questionText.innerHTML = str.slice(0, i+1) + '<span class="cursor"></span>';
+      if(i % 2 === 0) playTick();
+      i++;
+      setTimeout(step, speed);
+    } else {
+      typing = false;
+      btnRow.classList.add('show');
+    }
+  }
+  step();
+}
+
+function answer(isYes){
+  if(typing) return;
+  if(isYes){
+    yesSound.currentTime = 0;
+    yesSound.play().catch(err => console.warn('yes sound play failed:', err));
+    yesCount++;
+  } else {
+    noSound.currentTime = 0;
+    noSound.play().catch(err => console.warn('no sound play failed:', err));
+  }
+  qIndex++;
+  if(qIndex >= CONFIG.questions.length){
+    showResult();
+  } else {
+    showQuestion();
+  }
+}
+
+function showResult(){
+  screenQuiz.classList.add('hidden');
+  screenResult.classList.remove('hidden');
+  const total = CONFIG.questions.length;
+  const pct = Math.round((yesCount/total)*100);
+  const tier = CONFIG.tiers.find(t => pct <= t.max) || CONFIG.tiers[CONFIG.tiers.length-1];
+  document.getElementById('tier-title').textContent = tier.title;
+  document.getElementById('tier-desc').textContent = tier.desc;
+  document.getElementById('result-tally').textContent =
+    `${yesCount} of ${total} answered YES  (${pct}%)`;
+}
+
+function restart(){
+  qIndex = 0; yesCount = 0;
+  screenResult.classList.add('hidden');
+  screenQuiz.classList.remove('hidden');
+  showQuestion();
+}
+
+/* ==================================================================
+   EVENT WIRING
+   ================================================================== */
+document.getElementById('begin-btn').addEventListener('click', async () => {
+  initAudio();
+  playClick();
+  const beginBtn = document.getElementById('begin-btn');
+  beginBtn.textContent = 'LOADING FILE...';
+  const ok = await loadQuestions();
+  if(!ok){
+    beginBtn.textContent = 'FILE NOT FOUND — RETRY';
+    document.querySelector('#screen-start .lede').innerHTML =
+      'Could not read <b>questions.json</b>.<br>Make sure it sits in the same folder as this page,<br>and that you\'re viewing this through a local server (not a double-clicked file).';
+    return;
+  }
+  document.getElementById('quiz-title').textContent = CONFIG.title;
+  document.getElementById('quiz-subtitle').textContent = CONFIG.subtitle;
+  document.getElementById('case-label').textContent = CONFIG.caseLabel;
+  screenStart.classList.add('hidden');
+  screenQuiz.classList.remove('hidden');
+  showQuestion();
+});
+
+document.getElementById('btn-yes').addEventListener('click', () => answer(true));
+document.getElementById('btn-no').addEventListener('click', () => answer(false));
+document.getElementById('restart-btn').addEventListener('click', () => { playClick(); restart(); });
+
+[document.getElementById('btn-yes'), document.getElementById('btn-no'),
+ document.getElementById('begin-btn'), document.getElementById('restart-btn')]
+ .forEach(btn => btn.addEventListener('mouseenter', playHover));
+
+const muteToggle = document.getElementById('mute-toggle');
+muteToggle.addEventListener('click', () => {
+  soundOn = !soundOn;
+  muteToggle.textContent = soundOn ? 'SOUND: ON' : 'SOUND: OFF';
+  if(masterGain) masterGain.gain.value = soundOn ? 0.55 : 0;
+  bgm.muted = !soundOn;
+  yesSound.muted = !soundOn;
+  noSound.muted = !soundOn;
+});
+</script>
+
+</body>
+</html>
